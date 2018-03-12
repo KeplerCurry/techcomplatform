@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+
+    <LinearLayout
+        android:id="@+id/home_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/home_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:srcCompat="@drawable/ic_home_set" />
+
+        <TextView
+            android:id="@+id/home_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/home"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:textColor="@color/colorBasic"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/community_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/community_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:srcCompat="@drawable/ic_community_unset" />
+
+        <TextView
+            android:id="@+id/community_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/community"
+            android:gravity="center"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/special_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/special_iamge"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:srcCompat="@drawable/ic_special_unset" />
+
+        <TextView
+            android:id="@+id/special_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/special_classify"
+            android:gravity="center"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/message_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/message_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:srcCompat="@drawable/ic_message_unset" />
+
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/message"
+            android:gravity="center"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mine_layout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/mine_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            app:srcCompat="@drawable/ic_mine_unset" />
+
+        <TextView
+            android:id="@+id/mine_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/mine"
+            android:gravity="center"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
