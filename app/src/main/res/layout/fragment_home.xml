@@ -17,6 +17,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/homeFragmentUnset"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/attention"/>
 
         <TextView
@@ -26,6 +27,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/homeFragmentUnset"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/commend"/>
 
         <TextView
@@ -35,6 +37,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/homeFragmentUnset"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/hot"/>
 
     </LinearLayout>
