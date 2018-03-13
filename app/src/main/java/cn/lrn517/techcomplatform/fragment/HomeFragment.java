@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -104,6 +105,7 @@ public class HomeFragment extends Fragment {
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             //获取控件实例
             LinearLayout.LayoutParams layoutParams = (android.widget.LinearLayout.LayoutParams) viewbar.getLayoutParams();
+            selectTextColor(currIndex);
             if ( currIndex == position ){
                 layoutParams.leftMargin=  (int) (currIndex * viewbar.getWidth() + positionOffset * viewbar.getWidth());
             }else if( currIndex > position ){
@@ -120,6 +122,23 @@ public class HomeFragment extends Fragment {
         @Override
         public void onPageScrollStateChanged(int state) {
 
+        }
+    }
+
+    private void selectTextColor(int i){
+        pager1.setTextColor(Color.parseColor("#a1abb5"));
+        pager2.setTextColor(Color.parseColor("#a1abb5"));
+        pager3.setTextColor(Color.parseColor("#a1abb5"));
+        switch ( i ){
+            case 0:
+                pager1.setTextColor(Color.parseColor("#000000"));
+                break;
+            case 1:
+                pager2.setTextColor(Color.parseColor("#000000"));
+                break;
+            case 2:
+                pager3.setTextColor(Color.parseColor("#000000"));
+                break;
         }
     }
 }

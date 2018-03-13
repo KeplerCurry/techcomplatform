@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBasic">#1296db</color>
+    <color name="homeFragmentUnset">#a1abb5</color>
 </resources>

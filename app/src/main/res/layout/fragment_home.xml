@@ -16,6 +16,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/homeFragmentUnset"
             android:text="@string/attention"/>
 
         <TextView
@@ -24,6 +25,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/homeFragmentUnset"
             android:text="@string/commend"/>
 
         <TextView
@@ -32,6 +34,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/homeFragmentUnset"
             android:text="@string/hot"/>
 
     </LinearLayout>
