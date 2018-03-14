@@ -1,5 +1,6 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.renderscript.Sampler;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
+    private int testValue = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +147,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 mImgMine.setImageResource(R.drawable.ic_mine_set);
                 mTvMine.setTextColor(Color.parseColor("#1296db"));
+                /*
+                test code
+                 */
+                if( 1 == testValue )
+                {
+                    Intent intent = new Intent(MainActivity.this,LoginAndRegisterActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
         fragmentTransaction.commit();
