@@ -28,7 +28,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="240dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -37,7 +37,7 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/register_telephone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -55,7 +55,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/register_test_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -66,12 +66,32 @@
                     android:layout_marginRight="30dp"/>
 
                 <Button
+                    android:id="@+id/register_get_test_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:layout_marginRight="30dp"
                     android:text="获取验证码"
+                    android:textColor="#FFFFFF"
+                    android:background="@color/colorBasic"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/register_evidence_test_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="验证"
                     android:textColor="#FFFFFF"
                     android:background="@color/colorBasic"/>
 
