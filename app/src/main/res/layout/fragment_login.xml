@@ -37,7 +37,7 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/login_telephone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -54,7 +54,7 @@
                 android:layout_weight="1">
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/login_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -71,7 +71,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/login_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

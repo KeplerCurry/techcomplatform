@@ -14,6 +14,7 @@ import android.widget.TextView;
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.fragment.LoginFragment;
 import cn.lrn517.techcomplatform.fragment.RegisterFragment;
+import cn.smssdk.SMSSDK;
 
 public class LoginAndRegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -99,5 +100,14 @@ public class LoginAndRegisterActivity extends AppCompatActivity implements View.
         if( null != mTabRegister ){
             fragmentTransaction.hide(mTabRegister);
         }
+    }
+
+    /*
+     *销毁Activity后解除SMSSDK绑定，防止内存泄漏
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SMSSDK.unregisterAllEventHandler();
     }
 }

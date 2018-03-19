@@ -17,8 +17,13 @@ import com.mob.MobSDK;
 
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.activity.LoginAndRegisterActivity;
+import cn.lrn517.techcomplatform.bean.common;
+import cn.lrn517.techcomplatform.model.UserModel;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,10 +33,12 @@ public class RegisterFragment extends Fragment {
     private View view;
     Context context ;
     private Button get_test_code,evidence_test_code;
-    private EditText telephone,test_code;
+    private EditText telephone,test_code,password;
     String telephone_number;
     String test_code_number;
     private EventHandler eventHandler;
+    private UserModel userModel = new UserModel();
+    private Call call;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -72,6 +79,32 @@ public class RegisterFragment extends Fragment {
                             @Override
                             public void run() {
                               Toast.makeText(getActivity(), "验证成功!", Toast.LENGTH_SHORT).show();
+                              call = userModel.register(telephone_number , password.getText().toString());
+                                Toast.makeText(getActivity(), "验证成功2222222!", Toast.LENGTH_SHORT).show();
+                                Callback<common> commonCallback = new Callback<common>() {
+                                    @Override
+                                    public void onResponse(Call<common> call, Response<common> response) {
+                                        common data = response.body();
+                                        int success = data.getSuccess();
+                                        switch ( success ){
+                                            case 0:
+                                                Toast.makeText( getActivity() , "注册失败" , Toast.LENGTH_SHORT).show();
+                                                break;
+                                            case 1:
+                                                Toast.makeText( getActivity() , "注册成功！" , Toast.LENGTH_SHORT).show();
+                                                break;
+                                            case 2:
+                                                Toast.makeText( getActivity() , "手机号已注册！" , Toast.LENGTH_SHORT).show();
+                                                break;
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<common> call, Throwable t) {
+                                        Toast.makeText( getActivity() , "请求失败！" , Toast.LENGTH_SHORT).show();
+                                    }
+                                };
+                                call.enqueue(commonCallback);
 
                             }
                         });
@@ -90,13 +123,11 @@ public class RegisterFragment extends Fragment {
         evidence_test_code = view.findViewById(R.id.register_evidence_test_code);
         telephone = view.findViewById(R.id.register_telephone);
         test_code = view.findViewById(R.id.register_test_code);
+        password = view.findViewById(R.id.register_password);
     }
 
 
-    protected void onDestory(){
-        super.onDestroy();
-        SMSSDK.unregisterAllEventHandler();
-    }
+
 
     private void initEvent(){
         get_test_code.setOnClickListener(new View.OnClickListener() {

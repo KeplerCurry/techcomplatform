@@ -90,9 +90,9 @@ public class HomeFragment extends Fragment {
         Fragment HomeAttentionFragment = new HomeAttentionFragment();
         Fragment HomeCommendFragment = new HomeCommendFragment();
         Fragment HomeHotFragment = new HomeHotFragment();
-        fragmentArrayList.add(HomeAttentionFragment);
-        fragmentArrayList.add(HomeCommendFragment);
         fragmentArrayList.add(HomeHotFragment);
+        fragmentArrayList.add(HomeCommendFragment);
+        fragmentArrayList.add(HomeAttentionFragment);
         //设置适配器
         viewPager.setAdapter(new HomeFragmentPagerAdapter(getActivity().getSupportFragmentManager() , fragmentArrayList));
         viewPager.setCurrentItem(0);
