@@ -25,4 +25,10 @@ public class DetailModel {
         detailService = retrofit.create(DetailService.class);
         return detailService.getHotData(page);
     }
+
+    //获取技术贴详情
+    public Call getTechDetailData( String tdid ){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getTechDetailData(tdid);
+    }
 }

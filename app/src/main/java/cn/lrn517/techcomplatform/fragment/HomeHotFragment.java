@@ -16,6 +16,7 @@ import java.util.List;
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.adapter.HotDataRecyclerViewAdapter;
 import cn.lrn517.techcomplatform.bean.homeData;
+import cn.lrn517.techcomplatform.listener.MoreRecyclerOnScrollListener;
 import cn.lrn517.techcomplatform.model.DetailModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +30,7 @@ public class HomeHotFragment extends Fragment {
     private View view;
     List data;
     private RecyclerView recyclerView;
-    int page = 0;
+    int page = 1;
     int page_copy = -1;
     Call call;
     DetailModel detailModel = new DetailModel();
@@ -53,7 +54,7 @@ public class HomeHotFragment extends Fragment {
     private void initView(View view){
         recyclerView = view.findViewById(R.id.home_hot_recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
@@ -80,13 +81,16 @@ public class HomeHotFragment extends Fragment {
         /*
         加载更多
          */
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new MoreRecyclerOnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if( newState == RecyclerView.SCROLL_STATE_IDLE ){
+            public void onLoadMore() {
+                hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING);
+                if( page == page_copy ){
+                    hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING_END);
+                }else{
                     LoadMoreData();
                 }
+
             }
         });
 
@@ -107,11 +111,13 @@ public class HomeHotFragment extends Fragment {
                         data.addAll(new_data);
                         hotDataRecyclerViewAdapter.notifyDataSetChanged();
                         Log.i("test" , "===================="+page);
+                        hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING_COMPLETE);
                     }
                     else
                     {
                         page_copy = page;
                         Log.i("test" , "+++++++++++++++++++");
+                        hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING_END);
                     }
                 }
 
