@@ -31,4 +31,29 @@ public class DetailModel {
         detailService = retrofit.create(DetailService.class);
         return detailService.getTechDetailData(tdid);
     }
+
+    //获取技术贴首次评论内容列表
+    public Call getTechFirstComment( String tdid ){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getTechFirstComment(tdid);
+    }
+
+    //获取技术贴回复内容列表
+    public Call getTechCommentAgain( String cid ){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getTechCommentAgain(cid);
+    }
+
+    //首次评论技术贴
+    public Call sendFirstComment(String tdid, String reviewer, String content ){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.sendFirstComment(tdid ,reviewer , content );
+    }
+
+    //回复首次评论技术贴
+
+    public Call sendCommentAgain(String cid , String healer , String content){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.sendCommentAgain(cid , healer , content );
+    }
 }

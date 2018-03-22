@@ -1,7 +1,11 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -16,6 +20,8 @@ import retrofit2.Response;
 public class TechDetailActivity extends AppCompatActivity {
 
     private TextView ualiase,tdtitle,tname,tdcontent,tdfirsttime;
+    private Button hit;
+    private ImageView collect,comment;
     private String tdid;
     private Call call;
     private DetailModel detailModel = new DetailModel();
@@ -33,6 +39,9 @@ public class TechDetailActivity extends AppCompatActivity {
         tdfirsttime = (TextView) findViewById(R.id.tech_detail_tdfirsttime);
         tname = (TextView) findViewById(R.id.tech_detail_tname);
         tdtitle = (TextView) findViewById(R.id.tech_detail_tdtitle);
+        hit = (Button) findViewById(R.id.tech_detail_hit);
+        collect = (ImageView) findViewById(R.id.tech_detail_collect);
+        comment = (ImageView) findViewById(R.id.tech_detail_comment);
     }
 
     private void initEvent(){
@@ -56,5 +65,16 @@ public class TechDetailActivity extends AppCompatActivity {
             }
         };
         call.enqueue(techDetailDataCallback);
+
+        comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TechDetailActivity.this, TechDetailCommentActivity.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("tdid" , tdid);
+                intent.putExtras(bundle1);
+                startActivity(intent);
+            }
+        });
     }
 }

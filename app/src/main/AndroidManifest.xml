@@ -28,7 +28,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginAndRegisterActivity" />
-        <activity android:name=".activity.TechDetailActivity"></activity>
+        <activity android:name=".activity.TechDetailActivity" />
+        <activity
+            android:name=".activity.TechDetailCommentActivity"
+            android:label="@string/title_activity_tech_detail_comment"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
