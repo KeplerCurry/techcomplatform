@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,7 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             recyclerViewHolder.state.setText(data.getState().toString());
             recyclerViewHolder.isfree.setText(data.getIsfree().toString());
             recyclerViewHolder.tdtitle.setText(data.getTdtitle().toString());
+            Log.i("testxxxx","--------------"+position);
 
             recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
