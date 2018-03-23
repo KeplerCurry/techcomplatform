@@ -56,4 +56,16 @@ public class DetailModel {
         detailService = retrofit.create(DetailService.class);
         return detailService.sendCommentAgain(cid , healer , content );
     }
+
+    //加载提问帖主体数据
+    public Call getAskData(String tdid){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getAskData(tdid);
+    }
+
+    //加载提问帖回答数据
+    public Call getFirstAnswerData(String tdid ){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getFirstAnswerData(tdid);
+    }
 }

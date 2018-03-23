@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,21 +17,21 @@ import java.util.List;
 import java.util.Map;
 
 import cn.lrn517.techcomplatform.R;
-import cn.lrn517.techcomplatform.activity.AskDetailActivity;
 import cn.lrn517.techcomplatform.activity.TechDetailActivity;
+import cn.lrn517.techcomplatform.bean.firstAnswerData;
 import cn.lrn517.techcomplatform.bean.homeData;
 
 /**
- * Created by lirun on 2018/3/20.
+ * Created by lirun on 2018/3/23.
  */
 
-public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class AskAnswerDataViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     Context context;
     List mDataList;
 
 
-    public HotDataRecyclerViewAdapter(Context context , List<Map<String,Object>> mDataList){
+    public AskAnswerDataViewAdapter(Context context , List<Map<String,Object>> mDataList){
         this.context = context;
         this.mDataList = mDataList;
     }
@@ -66,54 +65,33 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         // 通过判断显示类型，来创建不同的View
         if (viewType == TYPE_ITEM) {
             View view = LayoutInflater.from(context)
-                    .inflate(R.layout.hot_data_view, parent, false);
-            return new RecyclerViewHolder(view);
+                    .inflate(R.layout.ask_answer_data_view, parent, false);
+            return new AskAnswerDataViewAdapter.RecyclerViewHolder(view);
 
         } else if (viewType == TYPE_FOOTER) {
             View view = LayoutInflater.from(context)
                     .inflate(R.layout.layout_refresh_footer, parent, false);
-            return new FootViewHolder(view);
+            return new AskAnswerDataViewAdapter.FootViewHolder(view);
         }
         return null;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof RecyclerViewHolder) {
-            final homeData data = (homeData) mDataList.get(position);
-            RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
-            recyclerViewHolder.tname.setText(data.getIsfree().toString());
-            recyclerViewHolder.tdfirsttime.setText(data.getTdfirsttime().toString());
-            recyclerViewHolder.state.setText(data.getState().toString());
-            recyclerViewHolder.isfree.setText(data.getIsfree().toString());
-            recyclerViewHolder.tdtitle.setText(data.getTdtitle().toString());
+        if (holder instanceof AskAnswerDataViewAdapter.RecyclerViewHolder) {
+            final firstAnswerData data = (firstAnswerData) mDataList.get(position);
+            AskAnswerDataViewAdapter.RecyclerViewHolder recyclerViewHolder = (AskAnswerDataViewAdapter.RecyclerViewHolder) holder;
+            recyclerViewHolder.ualiase.setText(data.getUaliase().toString());
+            recyclerViewHolder.ctime.setText(data.getCtime().toString());
+            recyclerViewHolder.content.setText(data.getContent().toString());
+            recyclerViewHolder.ulevel.setText(data.getUlevel().toString());
+            recyclerViewHolder.utype.setText(data.getUtype().toString());
+
             Log.i("testxxxx","--------------"+position);
 
-            recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String state = data.getState().toString();
-                    if( "1".equals(state) ){
-                        Intent intent = new Intent(context , AskDetailActivity.class);
-                        String tdid_s = data.getTdid().toString();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("tdid" , tdid_s);
-                        intent.putExtras(bundle);
-                        context.startActivity(intent);
-                    }else{
-                        Intent intent = new Intent(context , TechDetailActivity.class);
-                        String tdid_s = data.getTdid().toString();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("tdid" , tdid_s);
-                        intent.putExtras(bundle);
-                        context.startActivity(intent);
-                    }
 
-                }
-            });
-
-        } else if (holder instanceof FootViewHolder) {
-            FootViewHolder footViewHolder = (FootViewHolder) holder;
+        } else if (holder instanceof AskAnswerDataViewAdapter.FootViewHolder) {
+            AskAnswerDataViewAdapter.FootViewHolder footViewHolder = (AskAnswerDataViewAdapter.FootViewHolder) holder;
             switch (loadState) {
                 case LOADING: // 正在加载
                     footViewHolder.pbLoading.setVisibility(View.VISIBLE);
@@ -162,15 +140,15 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tname,state,isfree,tdtitle,tdfirsttime;
+        TextView ualiase,ulevel,utype,content,ctime;
 
         RecyclerViewHolder(View itemView) {
             super(itemView);
-            tname =  itemView.findViewById(R.id.hot_data_view_tname);
-            state =  itemView.findViewById(R.id.hot_data_view_state);
-            isfree = itemView.findViewById(R.id.hot_data_view_isfree);
-            tdtitle = itemView.findViewById(R.id.hot_data_view_tdtitle);
-            tdfirsttime = itemView.findViewById(R.id.hot_data_view_tdfirsttime);
+            ualiase =  itemView.findViewById(R.id.ask_answer_ualiase);
+            ulevel =  itemView.findViewById(R.id.ask_answer_ulevel);
+            utype = itemView.findViewById(R.id.ask_answer_utype);
+            content = itemView.findViewById(R.id.ask_answer_content);
+            ctime = itemView.findViewById(R.id.ask_answer_ctime);
         }
     }
 

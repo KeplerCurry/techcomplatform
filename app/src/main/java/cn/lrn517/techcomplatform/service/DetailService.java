@@ -2,7 +2,9 @@ package cn.lrn517.techcomplatform.service;
 
 import java.util.List;
 
+import cn.lrn517.techcomplatform.bean.askData;
 import cn.lrn517.techcomplatform.bean.commonForTech;
+import cn.lrn517.techcomplatform.bean.firstAnswerData;
 import cn.lrn517.techcomplatform.bean.homeData;
 import cn.lrn517.techcomplatform.bean.techCommentAgain;
 import cn.lrn517.techcomplatform.bean.techDetailData;
@@ -54,5 +56,17 @@ public interface DetailService {
             @Query("cid") String cid,
             @Query("healer") String healer,
             @Query("content") String content
+    );
+
+    //加载提问帖主体数据
+    @POST("load_detail_state_1")
+    Call<askData> getAskData(
+            @Query("tdid") String tdid
+    );
+
+    //加载提问帖回答数据
+    @POST("load_detail_state_1_firstAnswerdata")
+    Call<List<firstAnswerData>> getFirstAnswerData(
+            @Query("tdid") String tdid
     );
 }

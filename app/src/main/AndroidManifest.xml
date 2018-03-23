@@ -32,7 +32,10 @@
         <activity
             android:name=".activity.TechDetailCommentActivity"
             android:label="@string/title_activity_tech_detail_comment"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.AskDetailActivity" />
+        <activity android:name=".activity.SeeAnswerActivity" />
+        <activity android:name=".activity.CommentAskActivity"></activity>
     </application>
 
 </manifest>

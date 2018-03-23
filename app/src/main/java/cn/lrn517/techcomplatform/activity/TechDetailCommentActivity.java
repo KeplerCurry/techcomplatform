@@ -64,6 +64,8 @@ public class TechDetailCommentActivity extends AppCompatActivity {
         firstRecyclerView = (RecyclerView) findViewById(R.id.tech_detail_comment_firstcommentView);
         linearLayoutManager = new LinearLayoutManager( TechDetailCommentActivity.this);
         firstRecyclerView.setLayoutManager(linearLayoutManager);
+        //临时添加
+        firstRecyclerView.setNestedScrollingEnabled(false);
     }
 
     private void initEvent(){
