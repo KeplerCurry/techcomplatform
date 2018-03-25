@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.SeeAnswerActivity;
 import cn.lrn517.techcomplatform.activity.TechDetailActivity;
 import cn.lrn517.techcomplatform.bean.firstAnswerData;
 import cn.lrn517.techcomplatform.bean.homeData;
@@ -29,11 +30,13 @@ public class AskAnswerDataViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
     Context context;
     List mDataList;
+    String tdtitle;
 
 
-    public AskAnswerDataViewAdapter(Context context , List<Map<String,Object>> mDataList){
+    public AskAnswerDataViewAdapter(Context context , List<Map<String,Object>> mDataList , String tdtitle){
         this.context = context;
         this.mDataList = mDataList;
+        this.tdtitle = tdtitle;
     }
 
     // 普通布局
@@ -88,6 +91,19 @@ public class AskAnswerDataViewAdapter extends RecyclerView.Adapter<RecyclerView.
             recyclerViewHolder.utype.setText(data.getUtype().toString());
 
             Log.i("testxxxx","--------------"+position);
+
+            recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context , SeeAnswerActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("cid" , data.getCid().toString());
+                    bundle.putString("tdtitle" , tdtitle);
+                    Log.i("testxxxx","--------------"+tdtitle);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
 
 
         } else if (holder instanceof AskAnswerDataViewAdapter.FootViewHolder) {

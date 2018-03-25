@@ -35,7 +35,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activity.AskDetailActivity" />
         <activity android:name=".activity.SeeAnswerActivity" />
-        <activity android:name=".activity.CommentAskActivity"></activity>
+        <activity android:name=".activity.CommentAnswerActivity" />
+        <activity android:name=".activity.AddAnswerActivity"></activity>
     </application>
 
 </manifest>

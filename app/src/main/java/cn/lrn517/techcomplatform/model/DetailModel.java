@@ -4,6 +4,7 @@ import cn.lrn517.techcomplatform.service.DetailService;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.POST;
 
 /**
  * Created by lirun on 2018/3/20.
@@ -67,5 +68,29 @@ public class DetailModel {
     public Call getFirstAnswerData(String tdid ){
         detailService = retrofit.create(DetailService.class);
         return detailService.getFirstAnswerData(tdid);
+    }
+
+    //回答提问帖
+    public Call sendAnswer(String tdid , String reviewer ,String content){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.sendAnswerData(tdid,reviewer,content);
+    }
+
+    //评论回答内容
+    public Call sendCommentAnswer(String cid,String healer,String content){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.sendCommentAnswerData(cid,healer,content);
+    }
+
+    //查看详细回答
+    public Call getCompleteAnswerData(String cid){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getCompleteAnswerData(cid);
+    }
+
+    //查看评论回答列表
+    public Call getCommentAnswerData(String cid){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getCommentAnswerData(cid);
     }
 }

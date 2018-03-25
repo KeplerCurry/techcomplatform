@@ -1,9 +1,13 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -25,7 +29,9 @@ public class AskDetailActivity extends AppCompatActivity {
     private TextView tname,tdtitle,tdcontent,commentcount;
     private Call call;
     private DetailModel detailModel = new DetailModel();
+    private LinearLayout addAnswer;
     String tdid = "";
+    String tdtitle_s = "";
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     AskAnswerDataViewAdapter askAnswerDataViewAdapter;
@@ -46,6 +52,7 @@ public class AskDetailActivity extends AppCompatActivity {
         tdtitle = (TextView) findViewById(R.id.ask_detail_tdtitle);
         tdcontent = (TextView) findViewById(R.id.ask_detail_tdcontent);
         commentcount = (TextView) findViewById(R.id.ask_detail_commentcount);
+        addAnswer = (LinearLayout) findViewById(R.id.ask_detail_addAnswer);
         recyclerView = (RecyclerView) findViewById(R.id.ask_detail_commentRecyclerView);
         linearLayoutManager = new LinearLayoutManager( AskDetailActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -63,6 +70,7 @@ public class AskDetailActivity extends AppCompatActivity {
                 tname.setText(data.getTname().toString());
                 tdtitle.setText(data.getTdtitle().toString());
                 tdcontent.setText(data.getTdcontent().toString());
+                tdtitle_s = data.getTdtitle().toString();
                 commentcount.setText(data.getCommentcount().toString());
             }
 
@@ -73,12 +81,28 @@ public class AskDetailActivity extends AppCompatActivity {
         };
         call.enqueue(askDataCallback);
 
+        getFirstAnswerData();
+
+        addAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AskDetailActivity.this,AddAnswerActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("tdid" , tdid);
+                bundle.putString("tdtitle" , tdtitle_s);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void getFirstAnswerData(){
         call = detailModel.getFirstAnswerData(tdid);
         Callback<List<firstAnswerData>> listCallback = new Callback<List<firstAnswerData>>() {
             @Override
             public void onResponse(Call<List<firstAnswerData>> call, Response<List<firstAnswerData>> response) {
                 data = response.body();
-                askAnswerDataViewAdapter = new AskAnswerDataViewAdapter(AskDetailActivity.this ,data);
+                askAnswerDataViewAdapter = new AskAnswerDataViewAdapter(AskDetailActivity.this ,data,tdtitle_s);
                 recyclerView.setAdapter(askAnswerDataViewAdapter);
 
             }
@@ -89,8 +113,18 @@ public class AskDetailActivity extends AppCompatActivity {
             }
         };
         call.enqueue(listCallback);
-
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("Activity" , "AskDetailActivity is onResume");
+        getFirstAnswerData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Activity" , "AskDetailActivity is onStart");
+    }
 }
