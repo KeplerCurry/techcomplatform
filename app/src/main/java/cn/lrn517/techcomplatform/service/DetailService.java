@@ -13,6 +13,7 @@ import cn.lrn517.techcomplatform.bean.homeData;
 import cn.lrn517.techcomplatform.bean.techCommentAgain;
 import cn.lrn517.techcomplatform.bean.techDetailData;
 import cn.lrn517.techcomplatform.bean.techFirstComment;
+import cn.lrn517.techcomplatform.bean.techclassifydata;
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -101,4 +102,8 @@ public interface DetailService {
     Call<List<commentAnswerData>> getCommentAnswerData(
             @Query("cid") String cid
     );
+
+    //获取技术分类列表
+    @POST("get_techclassify_data")
+    Call<List<techclassifydata>> getTechclassifyData();
 }

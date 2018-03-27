@@ -6,56 +6,86 @@
     tools:context="cn.lrn517.techcomplatform.fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/home_line1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/home_line1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/homeFragmentUnset"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="@string/hot"/>
+
+                <TextView
+                    android:id="@+id/home_line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/homeFragmentUnset"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="@string/commend"/>
+
+                <TextView
+                    android:id="@+id/home_line3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/homeFragmentUnset"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:text="@string/attention"/>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/home_bar"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/colorBasic"/>
+
+            <include layout="@layout/home_line"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/home_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:persistentDrawingCache="animation">
+
+            </android.support.v4.view.ViewPager>
+
+
+        </LinearLayout>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/home_add"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/homeFragmentUnset"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/hot"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_close"
+            android:elevation="8dp"/>
 
-        <TextView
-            android:id="@+id/home_line2"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/homeFragmentUnset"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/commend"/>
 
-        <TextView
-            android:id="@+id/home_line3"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/homeFragmentUnset"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/attention"/>
+    </android.support.design.widget.CoordinatorLayout>
 
-    </LinearLayout>
 
-    <View
-        android:id="@+id/home_bar"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@color/colorBasic"/>
 
-    <include layout="@layout/home_line"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/home_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:persistentDrawingCache="animation">
-
-    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

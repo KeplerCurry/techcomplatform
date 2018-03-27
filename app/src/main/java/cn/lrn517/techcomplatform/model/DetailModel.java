@@ -93,4 +93,10 @@ public class DetailModel {
         detailService = retrofit.create(DetailService.class);
         return detailService.getCommentAnswerData(cid);
     }
+
+    //获取技术分类列表
+    public Call getTechClassifyData(){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getTechclassifyData();
+    }
 }

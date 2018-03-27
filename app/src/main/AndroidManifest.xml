@@ -36,7 +36,11 @@
         <activity android:name=".activity.AskDetailActivity" />
         <activity android:name=".activity.SeeAnswerActivity" />
         <activity android:name=".activity.CommentAnswerActivity" />
-        <activity android:name=".activity.AddAnswerActivity"></activity>
+        <activity android:name=".activity.AddAnswerActivity" />
+        <activity android:name=".activity.AddAskForFirstActivity" />
+        <activity android:name=".activity.AddAskForFinishActivity" />
+        <activity android:name=".activity.AddTechnologyDetailFirstActivity" />
+        <activity android:name=".activity.AddTechnologyDetailFinishActivity" />
     </application>
 
 </manifest>

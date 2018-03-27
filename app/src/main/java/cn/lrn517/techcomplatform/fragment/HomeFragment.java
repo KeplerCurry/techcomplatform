@@ -1,8 +1,12 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
@@ -16,6 +20,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.AddAskForFirstActivity;
+import cn.lrn517.techcomplatform.activity.AddTechnologyDetailFirstActivity;
 import cn.lrn517.techcomplatform.adapter.HomeFragmentPagerAdapter;
 
 /**
@@ -28,6 +34,7 @@ public class HomeFragment extends Fragment {
     private ViewPager viewPager;
     private int currIndex; //当前页卡编号
     private TextView pager1,pager2,pager3;
+    private FloatingActionButton add;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -42,10 +49,13 @@ public class HomeFragment extends Fragment {
         initView(view);
         initBar(view);
         InitViewPager(view);
+        initEvent();
         return view;
     }
 
     private void initView(View view){
+
+        add = view.findViewById(R.id.home_add);
         pager1 = view.findViewById(R.id.home_line1);
         pager2 = view.findViewById(R.id.home_line2);
         pager3 = view.findViewById(R.id.home_line3);
@@ -140,5 +150,31 @@ public class HomeFragment extends Fragment {
                 pager3.setTextColor(Color.parseColor("#000000"));
                 break;
         }
+    }
+
+    private void initEvent(){
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("请选择发布类型");
+                alert.setPositiveButton("提问", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent( getActivity() , AddAskForFirstActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                alert.setNegativeButton("发帖", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent( getActivity() , AddTechnologyDetailFirstActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                alert.show();
+            }
+        });
     }
 }
