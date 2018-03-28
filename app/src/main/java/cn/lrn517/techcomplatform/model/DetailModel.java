@@ -17,7 +17,7 @@ public class DetailModel {
 
     public DetailModel(){
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://119.29.60.195/techcomplatformAPI/Json/json/")
+                .baseUrl("http://47.95.198.79/techcomplatformAPI/Json/json/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
