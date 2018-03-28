@@ -22,7 +22,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -68,14 +69,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Button" />
+                        android:text="关注"
+                        android:textColor="#ffffff"
+                        android:background="@color/colorBasic"/>
                 </LinearLayout>
                 
             </LinearLayout>
             
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp">
+                android:layout_height="60dp"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tech_detail_tdtitle"
@@ -87,24 +91,35 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="来自"/>
 
+                <LinearLayout
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+
                 <TextView
+
+                    android:background="@color/colorBasic"
                     android:id="@+id/tech_detail_tname"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="来自"/>
+                    android:text="来自"
+                    android:textColor="#ffffff"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/tech_detail_tdcontent"
@@ -118,7 +133,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:gravity="right">
+                android:gravity="right"
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,7 +156,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
 
         <Button
