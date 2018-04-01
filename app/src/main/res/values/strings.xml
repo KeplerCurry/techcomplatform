@@ -11,10 +11,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tech_detail_comment">TechDetailCommentActivity</string>
-    <string name="title_activity_main2">Main2Activity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="applyfor1">\n专栏旨在为特定主题下有持续创作及合作写作需求得用户提供写作工具，创建专栏需要进行申请，通过审核后即可使用。</string>
+    <string name="applyfor2">\n· 专栏需由本人申请，不可代为申请；\n· 10天内在技术交流社区内无违规行为。</string>
+    <string name="applyfor3">\n专栏需要有明确得写作方向，我们更欢迎专业方向得分享，部分方向暂时不接受申请。</string>
+    <string name="applyfor4">\n工作人员将在三个工作日内对专栏申请进行反馈。\n</string>
+    <string name="applyfor5"></string>
+    <string name="applyfor6"></string>
+    <string name="applyfor7"></string>
+    <string name="applyfor8"></string>
 </resources>

@@ -41,6 +41,7 @@
         <activity android:name=".activity.AddAskForFinishActivity" />
         <activity android:name=".activity.AddTechnologyDetailFirstActivity" />
         <activity android:name=".activity.AddTechnologyDetailFinishActivity" />
+        <activity android:name=".activity.ApplyForSpecialClassifyActivity"></activity>
     </application>
 
 </manifest>

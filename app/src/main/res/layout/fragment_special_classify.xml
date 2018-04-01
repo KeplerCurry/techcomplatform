@@ -16,13 +16,14 @@
             android:text="@string/special_classify" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/special_classify_add"
+            android:id="@+id/special_classify_apply_for"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="20dp"
+            android:layout_margin="16dp"
             android:elevation="8dp"
-            android:src="@drawable/ic_close"/>
+            android:backgroundTint="@color/colorBasic"
+            android:src="@drawable/ic_apply_for"/>
     </android.support.design.widget.CoordinatorLayout>
 
 
