@@ -41,7 +41,11 @@
         <activity android:name=".activity.AddAskForFinishActivity" />
         <activity android:name=".activity.AddTechnologyDetailFirstActivity" />
         <activity android:name=".activity.AddTechnologyDetailFinishActivity" />
-        <activity android:name=".activity.ApplyForSpecialClassifyActivity"></activity>
+        <activity android:name=".activity.ApplyForSpecialClassifyActivity" />
+        <activity android:name=".activity.AddTPZDetailActivity" />
+        <activity android:name=".activity.BrowseTechPersonZoneActivity" />
+        <activity android:name=".activity.BrowseTechPersonZoneDetailActivity" />
+        <activity android:name=".activity.CommentTPZDetailActivity"></activity>
     </application>
 
 </manifest>

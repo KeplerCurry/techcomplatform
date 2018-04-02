@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        card_view:cardCornerRadius="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/browse_tech_person_zone_detail_list_tpzdtitle"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="tpzdtitle"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/browse_tech_person_zone_detail_list_isfree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="免费"/>
+
+                <TextView
+                    android:id="@+id/browse_tech_person_zone_detail_list_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="$100"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/browse_tech_person_zone_detail_list_likecount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="1赞"/>
+
+                <TextView
+                    android:id="@+id/browse_tech_person_zone_detail_list_commentcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="1评论"/>
+
+                <TextView
+                    android:id="@+id/browse_tech_person_zone_detail_list_tpzdfirsttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="时间"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

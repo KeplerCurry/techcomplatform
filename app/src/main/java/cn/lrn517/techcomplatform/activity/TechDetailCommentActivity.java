@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ public class TechDetailCommentActivity extends AppCompatActivity {
 
     private ImageView close,send;
     private Call call;
-    private TextView sendtext;
+    private EditText sendtext;
     private DetailModel detailModel = new DetailModel();
     List firstCommentData;
     List adddata;
@@ -60,7 +61,7 @@ public class TechDetailCommentActivity extends AppCompatActivity {
     private void initView(){
         close = (ImageView) findViewById(R.id.tech_detail_comment_close);
         send = (ImageView) findViewById(R.id.tech_detail_comment_send);
-        sendtext = (TextView) findViewById(R.id.tech_detail_comment_firsttext);
+        sendtext = (EditText) findViewById(R.id.tech_detail_comment_firsttext);
         firstRecyclerView = (RecyclerView) findViewById(R.id.tech_detail_comment_firstcommentView);
         linearLayoutManager = new LinearLayoutManager( TechDetailCommentActivity.this);
         firstRecyclerView.setLayoutManager(linearLayoutManager);
