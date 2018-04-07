@@ -1,13 +1,261 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="cn.lrn517.techcomplatform.fragment.MineFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/home_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/mine" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/mine_userpic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/ic_launcher"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/mine_ualiase"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="ualiase"/>
+
+                    <TextView
+                        android:id="@+id/mine_lookatuserinfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="查看个人信息"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorBasic">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_latelybrowse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="最近浏览"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="我的收藏"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_attention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="关注"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="赞"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorBasic">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="余额"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_buyed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="已购"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_apply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="查看申请"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/colorBasic">
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/mine_editpassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="修改密码"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/mine_logout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="退出登录"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+            
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

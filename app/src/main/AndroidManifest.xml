@@ -45,7 +45,8 @@
         <activity android:name=".activity.AddTPZDetailActivity" />
         <activity android:name=".activity.BrowseTechPersonZoneActivity" />
         <activity android:name=".activity.BrowseTechPersonZoneDetailActivity" />
-        <activity android:name=".activity.CommentTPZDetailActivity"></activity>
+        <activity android:name=".activity.CommentTPZDetailActivity" />
+        <activity android:name=".activity.MyCollectionActivity"></activity>
     </application>
 
 </manifest>

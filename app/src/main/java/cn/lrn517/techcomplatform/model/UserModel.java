@@ -30,4 +30,10 @@ public class UserModel {
         userService = retrofit.create(UserService.class);
         return userService.login(telephone,password);
     }
+
+    //通过state查看收藏列表、点赞、关注信息
+    public Call getAttentionDataList(int state, String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.getAttentionDataList(state,uid);
+    }
 }

@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
-    private int testValue = 1;
+    private int testValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
