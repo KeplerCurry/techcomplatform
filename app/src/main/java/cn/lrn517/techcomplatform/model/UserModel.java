@@ -36,4 +36,22 @@ public class UserModel {
         userService = retrofit.create(UserService.class);
         return userService.getAttentionDataList(state,uid);
     }
+
+    //修改密码
+    public Call alterUserPassword(String uid, String oldpassword, String newpassword){
+        userService = retrofit.create(UserService.class);
+        return userService.alterUserPassword(uid, oldpassword, newpassword);
+    }
+
+    //查看申请列表
+    public Call getUserApplyFor(String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserApplyFor(uid);
+    }
+
+    //查看购买列表
+    public Call getUserBuyedData(String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserBuyedData(uid);
+    }
 }

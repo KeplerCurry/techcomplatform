@@ -46,7 +46,12 @@
         <activity android:name=".activity.BrowseTechPersonZoneActivity" />
         <activity android:name=".activity.BrowseTechPersonZoneDetailActivity" />
         <activity android:name=".activity.CommentTPZDetailActivity" />
-        <activity android:name=".activity.MyCollectionActivity"></activity>
+        <activity android:name=".activity.MyCollectionActivity" />
+        <activity android:name=".activity.MyAttentionActivity" />
+        <activity android:name=".activity.MyLikeActivity" />
+        <activity android:name=".activity.AlterPasswordActivity" />
+        <activity android:name=".activity.MyApplyActivity" />
+        <activity android:name=".activity.MyBuyedActivity"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,9 @@ import java.util.List;
 
 import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.bean.commonAttentionData;
+import cn.lrn517.techcomplatform.bean.userBuyedData;
 import cn.lrn517.techcomplatform.bean.userInfo;
+import cn.lrn517.techcomplatform.bean.userapplyfordata;
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -33,6 +35,26 @@ public interface UserService {
     @POST("load_attention_by_state")
     Call<List<commonAttentionData>> getAttentionDataList(
             @Query("state") int state,
+            @Query("uid") String uid
+    );
+
+    //修改密码
+    @POST("alter_user_password")
+    Call<common> alterUserPassword(
+            @Query("uid") String uid,
+            @Query("oldpassword") String oldpassword,
+            @Query("newpassword") String newpassword
+    );
+
+    //查看申请列表
+    @POST("load_apply_for")
+    Call<List<userapplyfordata>> getUserApplyFor(
+            @Query("uid") String uid
+    );
+
+    //查看购买列表
+    @POST("load_user_buyed")
+    Call<List<userBuyedData>> getUserBuyedData(
             @Query("uid") String uid
     );
 }

@@ -11,7 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.AlterPasswordActivity;
+import cn.lrn517.techcomplatform.activity.MyApplyActivity;
+import cn.lrn517.techcomplatform.activity.MyAttentionActivity;
+import cn.lrn517.techcomplatform.activity.MyBuyedActivity;
 import cn.lrn517.techcomplatform.activity.MyCollectionActivity;
+import cn.lrn517.techcomplatform.activity.MyLikeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +33,7 @@ public class MineFragment extends Fragment {
     private LinearLayout apply;
     private LinearLayout editpassword;
     private LinearLayout logout;
+    private LinearLayout my_like;
     private View view;
 
     public MineFragment() {
@@ -56,6 +62,7 @@ public class MineFragment extends Fragment {
         apply = view.findViewById(R.id.mine_apply);
         editpassword = view.findViewById(R.id.mine_editpassword);
         logout = view.findViewById(R.id.mine_logout);
+        my_like = view.findViewById(R.id.mine_like);
     }
 
     private void initEvent(){
@@ -66,6 +73,47 @@ public class MineFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        attention.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , MyAttentionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        my_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , MyLikeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        editpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , AlterPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MyApplyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buyed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( getActivity() , MyBuyedActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }

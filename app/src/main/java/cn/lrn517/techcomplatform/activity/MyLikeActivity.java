@@ -5,13 +5,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import cn.lrn517.techcomplatform.R;
-import cn.lrn517.techcomplatform.adapter.MyCollectionPagerAdapter;
+import cn.lrn517.techcomplatform.adapter.MyLikePagerAdapter;
 
-public class MyCollectionActivity extends AppCompatActivity {
+public class MyLikeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -20,21 +19,22 @@ public class MyCollectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_collection);
+        setContentView(R.layout.activity_my_like);
         initView();
         initEvent();
     }
 
     private void initView(){
-        toolbar = (Toolbar) findViewById(R.id.mycollection_toolbar);
-        toolbar.setTitle("我的收藏");
+        toolbar = (Toolbar) findViewById(R.id.my_like_toolbar);
+        toolbar.setTitle("点赞");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_left_black);
-        tabLayout = (TabLayout) findViewById(R.id.mycollection_tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("普通贴收藏"));
-        tabLayout.addTab(tabLayout.newTab().setText("专栏贴收藏"));
-        viewPager = (ViewPager) findViewById(R.id.mycollection_viewpager);
-        viewPager.setAdapter(new MyCollectionPagerAdapter(getSupportFragmentManager()));
+        tabLayout = (TabLayout) findViewById(R.id.my_like_tablayout);
+        tabLayout.addTab(tabLayout.newTab().setText("普通贴"));
+        tabLayout.addTab(tabLayout.newTab().setText("回答"));
+        tabLayout.addTab(tabLayout.newTab().setText("专栏贴"));
+        viewPager = (ViewPager) findViewById(R.id.my_like_viewpager);
+        viewPager.setAdapter(new MyLikePagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
     }
 

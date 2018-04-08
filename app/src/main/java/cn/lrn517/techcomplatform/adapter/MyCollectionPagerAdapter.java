@@ -13,6 +13,8 @@ import cn.lrn517.techcomplatform.fragment.MyCollectionTPZDetailFragment;
 
 public class MyCollectionPagerAdapter extends FragmentPagerAdapter {
 
+    private String[] mTitle = new String[]{"普通贴收藏","专栏贴收藏"};
+
     public MyCollectionPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -28,6 +30,11 @@ public class MyCollectionPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return mTitle.length;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mTitle[position];
     }
 }
