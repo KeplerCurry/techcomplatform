@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import cn.lrn517.techcomplatform.R;
@@ -29,7 +30,7 @@ public class MyCollectionActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.mycollection_toolbar);
         toolbar.setTitle("我的收藏");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_left_black);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);;
         tabLayout = (TabLayout) findViewById(R.id.mycollection_tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("普通贴收藏"));
         tabLayout.addTab(tabLayout.newTab().setText("专栏贴收藏"));
@@ -39,11 +40,18 @@ public class MyCollectionActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
                 finish();
-            }
-        });
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

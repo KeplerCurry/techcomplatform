@@ -4,10 +4,12 @@ import java.util.List;
 
 import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.bean.commonAttentionData;
+import cn.lrn517.techcomplatform.bean.loadUserInfo;
 import cn.lrn517.techcomplatform.bean.userBuyedData;
 import cn.lrn517.techcomplatform.bean.userInfo;
 import cn.lrn517.techcomplatform.bean.userapplyfordata;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -56,5 +58,18 @@ public interface UserService {
     @POST("load_user_buyed")
     Call<List<userBuyedData>> getUserBuyedData(
             @Query("uid") String uid
+    );
+
+    //查看用户信息
+    @POST("load_user_info")
+    Call<loadUserInfo> getUserInfoData(
+            @Query("uid") String uid
+    );
+
+    //获取用户个人发布的帖子、回答等列表
+    @POST("load_user_send")
+    Call<List<commonAttentionData>> getUserSendData(
+            @Query("uid") String uid,
+            @Query("state") int state
     );
 }

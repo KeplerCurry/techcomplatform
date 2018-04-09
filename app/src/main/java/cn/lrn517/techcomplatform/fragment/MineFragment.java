@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.activity.AlterPasswordActivity;
+import cn.lrn517.techcomplatform.activity.MineInfoActivity;
 import cn.lrn517.techcomplatform.activity.MyApplyActivity;
 import cn.lrn517.techcomplatform.activity.MyAttentionActivity;
 import cn.lrn517.techcomplatform.activity.MyBuyedActivity;
 import cn.lrn517.techcomplatform.activity.MyCollectionActivity;
 import cn.lrn517.techcomplatform.activity.MyLikeActivity;
+import cn.lrn517.techcomplatform.activity.UserInfoActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,6 +112,14 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent( getActivity() , MyBuyedActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lookat_userinfomation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MineInfoActivity.class);
                 startActivity(intent);
             }
         });

@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +51,9 @@
         <activity android:name=".activity.MyLikeActivity" />
         <activity android:name=".activity.AlterPasswordActivity" />
         <activity android:name=".activity.MyApplyActivity" />
-        <activity android:name=".activity.MyBuyedActivity"></activity>
+        <activity android:name=".activity.MyBuyedActivity" />
+        <activity android:name=".activity.MineInfoActivity" />
+        <activity android:name=".activity.UserInfoActivity"></activity>
     </application>
 
 </manifest>

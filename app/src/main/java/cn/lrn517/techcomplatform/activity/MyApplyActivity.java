@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -41,10 +42,22 @@ public class MyApplyActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_apply_toolbar);
         toolbar.setTitle("查看申请列表");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_left_black);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.my_apply_recyclerview);
         linearLayoutManager = new LinearLayoutManager( MyApplyActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initEvent(){
@@ -70,5 +83,7 @@ public class MyApplyActivity extends AppCompatActivity {
             }
         };
         call.enqueue(listCallback);
+
+
     }
 }

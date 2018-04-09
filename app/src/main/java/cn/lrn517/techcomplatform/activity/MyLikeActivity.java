@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import cn.lrn517.techcomplatform.R;
@@ -28,7 +29,7 @@ public class MyLikeActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_like_toolbar);
         toolbar.setTitle("点赞");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_left_black);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tabLayout = (TabLayout) findViewById(R.id.my_like_tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("普通贴"));
         tabLayout.addTab(tabLayout.newTab().setText("回答"));
@@ -39,11 +40,18 @@ public class MyLikeActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
                 finish();
-            }
-        });
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

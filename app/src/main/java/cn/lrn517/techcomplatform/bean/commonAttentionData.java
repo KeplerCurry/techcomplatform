@@ -13,6 +13,34 @@ public class commonAttentionData {
     private String tpzdtitle;
     private String id;
     private String tname;
+    private String tdid;
+    private String cid;
+
+    public String getTdid() {
+        return tdid;
+    }
+
+    public void setTdid(String tdid) {
+        this.tdid = tdid;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getTpzdid() {
+        return tpzdid;
+    }
+
+    public void setTpzdid(String tpzdid) {
+        this.tpzdid = tpzdid;
+    }
+
+    private String tpzdid;
 
     public String getTname() {
         return tname;

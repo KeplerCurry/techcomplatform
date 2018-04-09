@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import cn.lrn517.techcomplatform.R;
@@ -28,7 +29,7 @@ public class MyAttentionActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_attention_toolbar);
         toolbar.setTitle("我的关注");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_left_black);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tabLayout = (TabLayout) findViewById(R.id.my_attention_tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("用户"));
         tabLayout.addTab(tabLayout.newTab().setText("问题"));
@@ -39,11 +40,18 @@ public class MyAttentionActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
                 finish();
-            }
-        });
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

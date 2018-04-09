@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class MyBuyedActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.my_buyed_toolbar);
         toolbar.setTitle("购买记录");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_left_black);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         recyclerView = (RecyclerView) findViewById(R.id.my_buyed_recyclerview);
         linearLayoutManager = new LinearLayoutManager(MyBuyedActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -60,5 +61,17 @@ public class MyBuyedActivity extends AppCompatActivity {
             }
         };
         call.enqueue(listCallback);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -54,4 +54,16 @@ public class UserModel {
         userService = retrofit.create(UserService.class);
         return userService.getUserBuyedData(uid);
     }
+
+    //查看用户信息
+    public Call getUserInfoData(String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserInfoData(uid);
+    }
+
+    //获取用户个人发布的帖子、回答等列表
+    public Call getUserSendData(String uid, int state){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserSendData(uid, state);
+    }
 }
