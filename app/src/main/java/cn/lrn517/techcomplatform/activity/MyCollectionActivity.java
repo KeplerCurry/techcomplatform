@@ -30,7 +30,7 @@ public class MyCollectionActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.mycollection_toolbar);
         toolbar.setTitle("我的收藏");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tabLayout = (TabLayout) findViewById(R.id.mycollection_tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("普通贴收藏"));
         tabLayout.addTab(tabLayout.newTab().setText("专栏贴收藏"));
