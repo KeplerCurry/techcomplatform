@@ -39,17 +39,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/add_ask_for_first_tdtitle"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="添加问题标题"/>
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/add_ask_for_first_tdcontent"
+            <EditText
+                android:id="@+id/add_ask_for_first_tdtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background_normal"
+                android:hint="添加问题标题"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="添加问题详细描述"/>
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/add_ask_for_first_tdcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background_normal"
+                android:gravity="left|top"
+                android:hint="添加问题详细描述"/>
+
+        </android.support.design.widget.TextInputLayout>
+
 
     </LinearLayout>
 

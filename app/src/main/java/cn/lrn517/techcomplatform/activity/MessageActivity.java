@@ -1,5 +1,7 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Context;
+import android.hardware.input.InputManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,7 +33,7 @@ public class MessageActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
     private MessageViewAdapter messageViewAdapter;
-
+    private InputMethodManager inputMethodManager;
     private Call call;
     private MessageModel messageModel = new MessageModel();
 
@@ -61,6 +64,7 @@ public class MessageActivity extends AppCompatActivity {
         toolbar.setTitle("私信");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
     @Override
@@ -83,6 +87,7 @@ public class MessageActivity extends AppCompatActivity {
                 datacommon = response.body();
                 messageViewAdapter = new MessageViewAdapter(MessageActivity.this,datacommon,2,mineid);
                 recyclerView.setAdapter(messageViewAdapter);
+                recyclerView.scrollToPosition(messageViewAdapter.getItemCount()-1);
             }
 
             @Override
@@ -94,7 +99,7 @@ public class MessageActivity extends AppCompatActivity {
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 text = eText.getText().toString();
                 if( "".equals(text)){
 
@@ -105,6 +110,8 @@ public class MessageActivity extends AppCompatActivity {
                         public void onResponse(Call<sendMessageData> call, Response<sendMessageData> response) {
                             sendMessageData data = response.body();
                             if( 1 == data.getSuccess() ){
+                                eText.setText("");
+                                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
                                 loadMessageByUid newdata = new loadMessageByUid();
                                 newdata.setCreatetime(data.getCreatetime().toString());
                                 newdata.setIsread(0);
@@ -113,6 +120,7 @@ public class MessageActivity extends AppCompatActivity {
                                 newdata.setText(text);
                                 datacommon.add(newdata);
                                 messageViewAdapter.notifyDataSetChanged();
+                                recyclerView.scrollToPosition(messageViewAdapter.getItemCount()-1);
                             }
                             else{
                                 Toast.makeText(MessageActivity.this, "发送失败", Toast.LENGTH_SHORT).show();

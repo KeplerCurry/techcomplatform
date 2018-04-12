@@ -30,11 +30,12 @@
             android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:orientation="horizontal">
 
         <EditText
@@ -42,12 +43,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
+            android:background="@android:drawable/editbox_background_normal"
             android:hint="请输入要发送的内容"/>
 
         <ImageView
             android:id="@+id/send_message_send"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@android:drawable/ic_menu_send" />
 
