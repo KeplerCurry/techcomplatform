@@ -82,11 +82,36 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         if (holder instanceof RecyclerViewHolder) {
             final homeData data = (homeData) mDataList.get(position);
             RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
-            recyclerViewHolder.tname.setText(data.getIsfree().toString());
-            recyclerViewHolder.tdfirsttime.setText(data.getTdfirsttime().toString());
-            recyclerViewHolder.state.setText(data.getState().toString());
-            recyclerViewHolder.isfree.setText(data.getIsfree().toString());
+            recyclerViewHolder.tname.setText(data.getTname().toString());
+            if( "0".equals(data.getState().toString()) ){
+                recyclerViewHolder.state.setText("技术贴");
+                recyclerViewHolder.attention.setVisibility(View.GONE);
+                recyclerViewHolder.answer.setVisibility(View.GONE);
+                if( "0".equals(data.getIsfree().toString()) ){
+                    recyclerViewHolder.isfree.setText("需付费");
+                }else{
+                    recyclerViewHolder.isfree.setText("免费");
+                }
+                recyclerViewHolder.collect.setVisibility(View.VISIBLE);
+                recyclerViewHolder.like.setVisibility(View.VISIBLE);
+                recyclerViewHolder.collect.setText(data.getCollect().toString()+" 收藏");
+                recyclerViewHolder.like.setText(data.getLike().toString()+" 点赞 · ");
+            }else{
+                recyclerViewHolder.state.setText("问题");
+                recyclerViewHolder.collect.setVisibility(View.GONE);
+                recyclerViewHolder.like.setVisibility(View.GONE);
+                if( "0".equals(data.getIsfree().toString()) ){
+                    recyclerViewHolder.isfree.setText("有赏金");
+                }else{
+                    recyclerViewHolder.isfree.setText("无赏金");
+                }
+                recyclerViewHolder.answer.setVisibility(View.VISIBLE);
+                recyclerViewHolder.attention.setVisibility(View.VISIBLE);
+                recyclerViewHolder.answer.setText(data.getAnswer().toString()+" 回答");
+                recyclerViewHolder.attention.setText(data.getAttention().toString()+" 关注 · ");
+            }
             recyclerViewHolder.tdtitle.setText(data.getTdtitle().toString());
+            recyclerViewHolder.tdcontent.setText(data.getTdcontent().toString());
             Log.i("testxxxx","--------------"+position);
 
             recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +187,8 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tname,state,isfree,tdtitle,tdfirsttime;
+        TextView tname,state,isfree,tdtitle;
+        TextView tdcontent,attention,answer,like,collect;
 
         RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -170,7 +196,11 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             state =  itemView.findViewById(R.id.hot_data_view_state);
             isfree = itemView.findViewById(R.id.hot_data_view_isfree);
             tdtitle = itemView.findViewById(R.id.hot_data_view_tdtitle);
-            tdfirsttime = itemView.findViewById(R.id.hot_data_view_tdfirsttime);
+            tdcontent = itemView.findViewById(R.id.hot_data_view_tdcontent);
+            attention = itemView.findViewById(R.id.hot_data_view_attention);
+            answer = itemView.findViewById(R.id.hot_data_view_answer);
+            like = itemView.findViewById(R.id.hot_data_view_like);
+            collect = itemView.findViewById(R.id.hot_data_view_collect);
         }
     }
 

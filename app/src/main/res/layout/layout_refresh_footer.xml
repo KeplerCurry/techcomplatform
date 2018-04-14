@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:text="正在加载..."
-        android:textColor="#4DB6AC"
+        android:textColor="@color/colorBasic"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -35,7 +35,7 @@
             android:layout_height="1dp"
             android:layout_weight="1"
             android:alpha="0.5"
-            android:background="#4DB6AC"
+            android:background="@color/colorBasic"
             android:gravity="start" />
 
         <TextView
@@ -43,8 +43,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="15dp"
-            android:text="已经到底了"
-            android:textColor="#4DB6AC"
+            android:text="我是有底线滴"
+            android:textColor="@color/colorBasic"
             android:textSize="16sp" />
 
         <View
@@ -52,7 +52,7 @@
             android:layout_height="1dp"
             android:layout_weight="1"
             android:alpha="0.5"
-            android:background="#4DB6AC"
+            android:background="@color/colorBasic"
             android:gravity="end" />
 
     </LinearLayout>

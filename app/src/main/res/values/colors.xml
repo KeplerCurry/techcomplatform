@@ -8,4 +8,7 @@
     <color name="white">#FFFFFF</color>
     <color name="ssy">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="ghostcolor">#F8F8FF</color>
+    <color name="top_and_bottom_color">#a7b5c3</color>
+    <color name="textcontent">#3a4045</color>
 </resources>

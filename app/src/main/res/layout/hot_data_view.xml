@@ -1,103 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="125dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    card_view:cardCornerRadius="5dp">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        card_view:cardCornerRadius="1dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/top_and_bottom_color"
+                android:text="来自 · "/>
+
+            <TextView
+                android:id="@+id/hot_data_view_tname"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:textColor="@color/top_and_bottom_color"
+                android:text="XXX"/>
+
+            <TextView
+                android:id="@+id/hot_data_view_state"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_margin="3dp"
+                android:padding="3dp"
+                android:background="@drawable/hot_v_s"
+                android:textSize="12dp"
+                android:textColor="@color/ghostcolor"
+                android:text="技术贴"/>
+
+            <TextView
+                android:id="@+id/hot_data_view_isfree"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:text="免费"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <TextView
+                android:id="@+id/hot_data_view_tdtitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="标题xxxxxxxxxxxx"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="left|center"
+                android:textColor="@color/ssy"
+                android:textSize="25dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/hot_data_view_tdcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:includeFontPadding="false"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:text="xxxxxxxxxwwwwwwwwwwwwwwwwwwwwwwwwwwxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxwwwwwwwwwwwwwwwwwwwwwwwwwwwwxxxxx"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/textcontent"
+                android:maxLines="2"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/hot_data_view_attention"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1 关注 ·"
+                android:textColor="@color/top_and_bottom_color"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="来自"/>
+            <TextView
+                android:id="@+id/hot_data_view_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1 回答"
+                android:textColor="@color/top_and_bottom_color"/>
 
-                <TextView
-                    android:id="@+id/hot_data_view_tname"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="XXX"/>
+            <TextView
+                android:id="@+id/hot_data_view_like"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1 点赞 ·"
+                android:textColor="@color/top_and_bottom_color"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/hot_data_view_state"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="技术贴"/>
-
-                <TextView
-                    android:id="@+id/hot_data_view_isfree"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="免费"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/hot_data_view_tdtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="标题xxxxxxxxxxxx"
-                    android:gravity="center"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="发布时间"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/hot_data_view_tdfirsttime"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4.5"
-                    android:gravity="center"/>
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/hot_data_view_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1 收藏"
+                android:textColor="@color/top_and_bottom_color"/>
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
 
-</RelativeLayout>
+</android.support.v7.widget.CardView>

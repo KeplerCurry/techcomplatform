@@ -12,6 +12,51 @@ public class homeData {
     private String state;
     private String isfree;
     private String tdfirsttime;
+    private String tdcontent;
+    private String attention;
+    private String answer;
+    private String like;
+    private String collect;
+
+    public String getAttention() {
+        return attention;
+    }
+
+    public void setAttention(String attention) {
+        this.attention = attention;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getLike() {
+        return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
+
+    public String getCollect() {
+        return collect;
+    }
+
+    public void setCollect(String collect) {
+        this.collect = collect;
+    }
+
+    public String getTdcontent() {
+        return tdcontent;
+    }
+
+    public void setTdcontent(String tdcontent) {
+        this.tdcontent = tdcontent;
+    }
 
     public String getTdid() {
         return tdid;

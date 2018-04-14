@@ -141,4 +141,9 @@ public class HomeHotFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroyView() {
+        Log.i("msg","销毁Hot视图");
+        super.onDestroyView();
+    }
 }
