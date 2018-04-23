@@ -14,6 +14,7 @@ import cn.lrn517.techcomplatform.bean.techCommentAgain;
 import cn.lrn517.techcomplatform.bean.techDetailData;
 import cn.lrn517.techcomplatform.bean.techFirstComment;
 import cn.lrn517.techcomplatform.bean.techclassifydata;
+import cn.lrn517.techcomplatform.bean.userForTechDetailState;
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -32,6 +33,14 @@ public interface DetailService {
     //获取技术贴数据
     @POST("load_detail_state_0")
     Call<techDetailData> getTechDetailData(
+            @Query("tdid") String tdid
+    );
+
+    //获取用户是否对技术贴进行关注用户、点赞、收藏操作
+    @POST("getUserA_L_C")
+    Call<userForTechDetailState> getUsera_l_c(
+            @Query("auid") String auid,
+            @Query("uid") String uid,
             @Query("tdid") String tdid
     );
 
@@ -75,6 +84,13 @@ public interface DetailService {
             @Query("tdid") String tdid
     );
 
+    //判断用户是否关注该问题
+    @POST("getUserAttentionQuestion")
+    Call<common> getUserAttentionQuestion(
+            @Query("uid") String uid,
+            @Query("id") String id
+    );
+
     //回答提问帖
     @POST("send_detail_state_1_firstAnswer")
     Call<common> sendAnswerData(
@@ -94,6 +110,14 @@ public interface DetailService {
     //查看详细回答
     @POST("load_detail_state_1_answerData")
     Call<completeAnswerData> getCompleteAnswerData(
+            @Query("cid") String cid
+    );
+
+    //获取用户是否对回答进行关注用户、点赞操作
+    @POST("getUserForTheAnswer")
+    Call<userForTechDetailState> getUserForTheAnswer(
+            @Query("auid") String auid,
+            @Query("uid") String uid,
             @Query("cid") String cid
     );
 

@@ -7,12 +7,28 @@
     android:orientation="vertical"
     tools:context="cn.lrn517.techcomplatform.activity.TechDetailActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tech_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,20 +39,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/tech_detail_uphoto"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
-                        app:srcCompat="@mipmap/ic_launcher_round" />
+                        android:src="@mipmap/ic_launcher" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -50,7 +68,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="aliasename"/>
+                        android:text="aliasename"
+                        android:textColor="@color/ssy"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -60,32 +79,46 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tech_detail_attention_layout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2">
+                    android:layout_weight="2"
+                    android:background="@drawable/tech_detail_attention_0">
 
-                    <Button
-                        android:id="@+id/button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                    <TextView
+                        android:id="@+id/tech_detail_attention_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="关注"
-                        android:textColor="#ffffff"
-                        android:background="@color/colorBasic"/>
+                        android:gravity="center"
+                        android:textColor="#fff"
+                        android:textSize="18dp"/>
+
                 </LinearLayout>
-                
+
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:padding="5dp">
+                android:layout_height="0.1dp"
+                android:background="@color/line"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/tech_detail_tdtitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="标题名称"/>
+                    android:text="标题名称"
+                    android:textColor="@color/ssy"
+                    android:textSize="24dp"/>
 
             </LinearLayout>
 
@@ -93,7 +126,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -107,25 +142,26 @@
                 </LinearLayout>
 
                 <TextView
-
-                    android:background="@color/colorBasic"
                     android:id="@+id/tech_detail_tname"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="来自"
-                    android:textColor="#ffffff"/>
+                    android:textColor="@color/colorBasic"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:id="@+id/tech_detail_tdcontent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="文本内容"/>
+                    android:text="文本内容"
+                    android:textColor="@color/textcontent"/>
 
             </LinearLayout>
 
@@ -134,18 +170,22 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:gravity="right"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="编辑于     "/>
+                    android:text="编辑于     "
+                    android:textColor="@color/top_and_bottom_color"/>
 
                 <TextView
                     android:id="@+id/tech_detail_tdfirsttime"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="2018-3-21"/>
+                    android:text="2018-3-21"
+                    android:textColor="@color/top_and_bottom_color"/>
 
             </LinearLayout>
 
@@ -156,35 +196,104 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-
-        <Button
-            android:id="@+id/tech_detail_hit"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:text="10个赞" />
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/line"
+            tools:ignore="Suspicious0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:id="@+id/tech_detail_like"
+                android:layout_width="60dp"
+                android:layout_height="35dp"
+                android:orientation="horizontal"
+                android:background="@drawable/tech_detail_unlike"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="10dp">
+
+                <ImageView
+                    android:id="@+id/tech_detail_like_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like_unfill"/>
+
+                <TextView
+                    android:id="@+id/tech_detail_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="37"
+                    android:textSize="20dp"
+                    android:textColor="@color/unset"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/tech_detail_collect"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/tech_detail_collect_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_collect_unfill"/>
+
+                <TextView
+                    android:id="@+id/tech_detail_collect_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收藏"
+                    android:textColor="@color/unset"
+                    android:textSize="12dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tech_detail_comment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_message_unfill"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评论"
+                    android:textColor="@color/unset"
+                    android:textSize="12dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-        <ImageView
-            android:id="@+id/tech_detail_collect"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/btn_star" />
 
-        <ImageView
-            android:id="@+id/tech_detail_comment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
     </LinearLayout>
+
 </LinearLayout>

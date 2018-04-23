@@ -15,14 +15,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import java.util.Map;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.TechDetailCommentActivity;
 import cn.lrn517.techcomplatform.bean.commonForTech;
 import cn.lrn517.techcomplatform.bean.techCommentAgain;
 import cn.lrn517.techcomplatform.bean.techFirstComment;
 import cn.lrn517.techcomplatform.model.DetailModel;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,32 +68,29 @@ public class TechFirstCommentViewAdapter extends RecyclerView.Adapter<RecyclerVi
         if( null == data )
             return;
         final ViewHolder viewHolder = (ViewHolder) holder;
+        Glide.with(context)
+                .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString())
+                .dontAnimate()
+                .crossFade()
+                .into(viewHolder.uphoto);
         viewHolder.content.setText(data.getContent().toString());
-        viewHolder.chit.setText(data.getChit().toString());
         viewHolder.ctime.setText(data.getCtime().toString());
         viewHolder.ualiase.setText(data.getUaliase().toString());
-        viewHolder.layout.setVisibility(View.GONE);
-
+        Log.i("uphoto" , data.getUphoto().toString());
+        //viewHolder.layout.setVisibility(View.GONE);
         viewHolder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if( "回复".equals(viewHolder.reply.getText().toString()) ){
-                    viewHolder.layout.setVisibility(View.VISIBLE);
+                    //viewHolder.layout.setVisibility(View.VISIBLE);
                     viewHolder.reply.setText("取消回复");
+                    ((TechDetailCommentActivity) context).send(data.getUaliase().toString(),data.getCid().toString());
                 }else{
-                    viewHolder.layout.setVisibility(View.GONE);
+                    //viewHolder.layout.setVisibility(View.GONE);
                     viewHolder.reply.setText("回复");
+                    ((TechDetailCommentActivity) context).send(data.getUaliase().toString(),data.getCid().toString());
                 }
 
-            }
-        });
-        viewHolder.send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String content = viewHolder.sendtext.getText().toString();
-                String cid = data.getCid().toString();
-                Log.i("Adapter" , "cid:"+cid + "content:"+content);
-                reply(cid, content);
             }
         });
         getCommentAgainData(data.getCid().toString() , viewHolder);
@@ -102,24 +104,19 @@ public class TechFirstCommentViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView ualiase,content,ctime,chit,reply;
+        TextView ualiase,content,ctime,reply;
         RecyclerView commentAgainrecyclerView;
         LinearLayoutManager linearLayoutManager;
         LinearLayout layout;
-        EditText sendtext;
-        ImageView send;
-
+        CircleImageView uphoto;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ualiase = itemView.findViewById(R.id.tech_first_comment_ualiase);
             content = itemView.findViewById(R.id.tech_first_comment_content);
             ctime = itemView.findViewById(R.id.tech_first_comment_ctime);
-            chit = itemView.findViewById(R.id.tech_first_comment_chit);
             reply = itemView.findViewById(R.id.tech_first_comment_reply);
-            layout = itemView.findViewById(R.id.tech_first_comment_layout);
-            sendtext = itemView.findViewById(R.id.tech_first_comment_sendtext);
-            send = itemView.findViewById( R.id.tech_first_comment_send);
+            uphoto = itemView.findViewById(R.id.tech_first_comment_uphoto);
             commentAgainrecyclerView = itemView.findViewById(R.id.tech_first_comment_commentagainView);
             linearLayoutManager = new LinearLayoutManager( context );
             commentAgainrecyclerView.setLayoutManager(linearLayoutManager);
@@ -154,38 +151,4 @@ public class TechFirstCommentViewAdapter extends RecyclerView.Adapter<RecyclerVi
         };
         call.enqueue(listCallback);
     }
-
-    public void reply(final String cid ,final String content){
-        call = detailModel.sendCommentAgain(cid, healer , content);
-        Callback<commonForTech> commonForTechCallback = new Callback<commonForTech>() {
-            @Override
-            public void onResponse(Call<commonForTech> call, Response<commonForTech> response) {
-                commonForTech data = response.body();
-                if( 1 == data.getSuccess() ){
-                    catime = data.getTime().toString();
-                    addCommentAgainData(cid , catime ,content);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<commonForTech> call, Throwable t) {
-
-            }
-        };
-        call.enqueue(commonForTechCallback);
-    }
-
-    public void addCommentAgainData(String cid , String catime ,String content){
-
-        techCommentAgain testdata = new techCommentAgain();
-        testdata.setCatime(catime);
-        testdata.setUaliase(aliase);
-        testdata.setContent( content);
-        testdata.setCid(cid);
-        data.add(testdata);
-        techCommentAgainViewAdapter.notifyDataSetChanged();
-        Log.i("adddata" , "cid = " + cid +"的数据添加成功！");
-
-    }
-
 }

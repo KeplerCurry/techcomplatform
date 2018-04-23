@@ -19,6 +19,15 @@ public class techFirstComment {
     private String content;
     private String ctime;
     private String chit;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getUaliase() {
         return ualiase;

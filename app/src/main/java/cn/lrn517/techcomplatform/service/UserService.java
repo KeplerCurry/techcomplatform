@@ -72,4 +72,13 @@ public interface UserService {
             @Query("uid") String uid,
             @Query("state") int state
     );
+
+    //点赞、收藏、关注(添加、取消)通用接口
+    @POST("common_l_c_a")
+    Call<common> common_l_c_a(
+            @Query("flag") int flag,
+            @Query("state") int state,
+            @Query("id") String id,
+            @Query("uid") String uid
+    );
 }

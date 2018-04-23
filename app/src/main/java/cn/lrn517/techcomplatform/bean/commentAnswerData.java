@@ -14,9 +14,18 @@ public class commentAnswerData {
      */
 
     private String cid;
+    private String uphoto;
     private String ualiase;
     private String content;
     private String catime;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getCid() {
         return cid;

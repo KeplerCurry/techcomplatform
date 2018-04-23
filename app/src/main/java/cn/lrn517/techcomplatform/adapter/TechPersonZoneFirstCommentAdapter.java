@@ -82,15 +82,15 @@ public class TechPersonZoneFirstCommentAdapter extends RecyclerView.Adapter<Recy
 
             }
         });
-        viewHolder.send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String content = viewHolder.sendtext.getText().toString();
-                String tpzcid = data.getTpzcid().toString();
-                Log.i("Adapter" , "tpzcid:"+tpzcid + "content:"+content);
-                reply(tpzcid, content);
-            }
-        });
+//        viewHolder.send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String content = viewHolder.sendtext.getText().toString();
+//                String tpzcid = data.getTpzcid().toString();
+//                Log.i("Adapter" , "tpzcid:"+tpzcid + "content:"+content);
+//                reply(tpzcid, content);
+//            }
+//        });
         getCommentAgainData(data.getTpzcid().toString() , viewHolder);
 
     }
@@ -115,11 +115,7 @@ public class TechPersonZoneFirstCommentAdapter extends RecyclerView.Adapter<Recy
             ualiase = itemView.findViewById(R.id.tech_first_comment_ualiase);
             content = itemView.findViewById(R.id.tech_first_comment_content);
             ctime = itemView.findViewById(R.id.tech_first_comment_ctime);
-            chit = itemView.findViewById(R.id.tech_first_comment_chit);
             reply = itemView.findViewById(R.id.tech_first_comment_reply);
-            layout = itemView.findViewById(R.id.tech_first_comment_layout);
-            sendtext = itemView.findViewById(R.id.tech_first_comment_sendtext);
-            send = itemView.findViewById( R.id.tech_first_comment_send);
             commentAgainrecyclerView = itemView.findViewById(R.id.tech_first_comment_commentagainView);
             linearLayoutManager = new LinearLayoutManager( context );
             commentAgainrecyclerView.setLayoutManager(linearLayoutManager);

@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.model;
 
 import cn.lrn517.techcomplatform.service.DetailService;
+import cn.lrn517.techcomplatform.service.serviceAddress;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,7 +18,7 @@ public class DetailModel {
 
     public DetailModel(){
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://47.95.198.79/techcomplatformAPI/Json/json/")
+                .baseUrl(serviceAddress.SERVICE_ADDRESS+"/Json/json/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -31,6 +32,12 @@ public class DetailModel {
     public Call getTechDetailData( String tdid ){
         detailService = retrofit.create(DetailService.class);
         return detailService.getTechDetailData(tdid);
+    }
+
+    //获取用户是否对技术贴进行关注用户、点赞、收藏操作
+    public Call getUsera_l_c(String auid,String uid ,String tdid){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getUsera_l_c(auid, uid, tdid);
     }
 
     //获取技术贴首次评论内容列表
@@ -70,6 +77,12 @@ public class DetailModel {
         return detailService.getFirstAnswerData(tdid);
     }
 
+    //判断用户是否关注该问题
+    public Call getUserAttentionQuestion(String uid ,String id){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getUserAttentionQuestion(uid, id);
+    }
+
     //回答提问帖
     public Call sendAnswer(String tdid , String reviewer ,String content){
         detailService = retrofit.create(DetailService.class);
@@ -86,6 +99,12 @@ public class DetailModel {
     public Call getCompleteAnswerData(String cid){
         detailService = retrofit.create(DetailService.class);
         return detailService.getCompleteAnswerData(cid);
+    }
+
+    //获取用户是否对回答进行关注用户、点赞操作
+    public Call getUserForTheAnswer(String auid,String uid, String cid){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getUserForTheAnswer(auid, uid, cid);
     }
 
     //查看评论回答列表

@@ -42,7 +42,7 @@ public class TechCommentAgainViewAdapter extends RecyclerView.Adapter<RecyclerVi
             return;
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.content.setText(data.getContent().toString());
-        viewHolder.catime.setText(data.getCatime().toString());
+        //viewHolder.catime.setText(data.getCatime().toString());
         viewHolder.ualiase.setText(data.getUaliase().toString());
     }
 
@@ -60,7 +60,6 @@ public class TechCommentAgainViewAdapter extends RecyclerView.Adapter<RecyclerVi
             super(itemView);
             ualiase = itemView.findViewById(R.id.tech_comment_again_ualiase);
             content = itemView.findViewById(R.id.tech_comment_again_content);
-            catime = itemView.findViewById(R.id.tech_comment_again_catime);
         }
     }
 }

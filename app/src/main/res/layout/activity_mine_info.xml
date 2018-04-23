@@ -51,6 +51,7 @@
                     app:layout_collapseMode="parallax"
                     android:text="Ualiase"
                     android:textSize="28dp"
+                    android:textColor="@color/ssy"
                     android:gravity="center"/>
 
 

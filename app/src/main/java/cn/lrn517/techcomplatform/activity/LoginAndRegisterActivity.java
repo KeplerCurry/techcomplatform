@@ -1,11 +1,14 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -19,14 +22,13 @@ import cn.smssdk.SMSSDK;
 public class LoginAndRegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView l_a_r_text;
-    private ImageButton l_a_r_back;
-    private LinearLayout l_a_r_layout;
-
     private Fragment mTabLogin;
     private Fragment mTabRegister;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +40,16 @@ public class LoginAndRegisterActivity extends AppCompatActivity implements View.
     }
 
     private void initView(){
-        l_a_r_back = (ImageButton)findViewById(R.id.login_and_register_close);
         l_a_r_text = (TextView)findViewById(R.id.login_and_register_textview);
-        l_a_r_layout = (LinearLayout)findViewById(R.id.login_and_register_layout);
+        toolbar = findViewById(R.id.login_and_register_toolbar);
+        toolbar.setTitle("登录");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     private void initEvent(){
-        l_a_r_layout.setOnClickListener(this);
-
-        l_a_r_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        l_a_r_text.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -62,6 +60,18 @@ public class LoginAndRegisterActivity extends AppCompatActivity implements View.
             setSelect(0);
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setSelect( int i ){
@@ -77,7 +87,8 @@ public class LoginAndRegisterActivity extends AppCompatActivity implements View.
                     fragmentTransaction.show(mTabLogin);
                 }
                 l_a_r_text.setText("注册");
-                l_a_r_text.setTextColor(Color.parseColor("#000000"));
+                toolbar.setTitle("登录");
+                //l_a_r_text.setTextColor(Color.parseColor("#000000"));
                 break;
             case 1:
                 if( null == mTabRegister ){
@@ -87,7 +98,8 @@ public class LoginAndRegisterActivity extends AppCompatActivity implements View.
                     fragmentTransaction.show(mTabRegister);
                 }
                 l_a_r_text.setText("登录");
-                l_a_r_text.setTextColor(Color.parseColor("#000000"));
+                toolbar.setTitle("注册");
+                //l_a_r_text.setTextColor(Color.parseColor("#000000"));
                 break;
         }
         fragmentTransaction.commit();

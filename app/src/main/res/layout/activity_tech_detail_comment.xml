@@ -7,38 +7,50 @@
     android:orientation="vertical"
     tools:context="cn.lrn517.techcomplatform.activity.TechDetailActivity">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/tech_detail_comment_close"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_close" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tech_detail_comment_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_close_new"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="评论列表"/>
-    </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tech_detail_comment_swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tech_detail_comment_firstcommentView">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tech_detail_comment_firstcommentView"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,12 +62,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:hint="请输入要发送的内容"/>
+            android:hint="请输入要回复的内容"
+            android:background="@android:drawable/editbox_background_normal"/>
 
         <ImageView
             android:id="@+id/tech_detail_comment_send"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@android:drawable/ic_menu_send" />
 

@@ -13,22 +13,25 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="4dp">
 
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tech_first_comment_uphoto"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                android:src="@mipmap/ic_launcher_round" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,6 +42,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="4"
                     android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:textColor="@color/ssy"
                     android:text="Ualiase"/>
 
                 <TextView
@@ -60,6 +65,7 @@
                     android:id="@+id/tech_first_comment_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textColor="@color/textcontent"
                     android:text="content"/>
 
             </LinearLayout>
@@ -74,20 +80,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
+                    android:gravity="center|left"
                     android:text="2018-3-22 18:22"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="点赞"/>
-
-                <TextView
-                    android:id="@+id/tech_first_comment_chit"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="1"/>
 
             </LinearLayout>
 
@@ -96,10 +91,12 @@
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.RecyclerView
-
                     android:id="@+id/tech_first_comment_commentagainView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/comment_again_background">
 
                 </android.support.v7.widget.RecyclerView>
             </LinearLayout>
@@ -109,25 +106,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/tech_first_comment_layout"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/tech_first_comment_sendtext"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:hint="请输入要发送的内容"/>
-
-        <ImageView
-            android:id="@+id/tech_first_comment_send"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_send" />
-
-    </LinearLayout>
+        android:layout_height="0.1dp"
+        android:background="@color/line"/>
 
 </LinearLayout>

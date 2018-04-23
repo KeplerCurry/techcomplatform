@@ -22,6 +22,15 @@ public class firstAnswerData {
     private String ctime;
     private String ulevel;
     private String utype;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getUaliase() {
         return ualiase;

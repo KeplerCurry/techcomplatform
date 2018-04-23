@@ -7,39 +7,33 @@
     android:orientation="vertical"
     tools:context="cn.lrn517.techcomplatform.activity.AddAnswerActivity">
 
-
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/add_answer_close"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_close" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/add_answer_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_close_new"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5">
-
-            <TextView
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/add_answer_send"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="添加回答"
-                android:gravity="center"/>
-        </LinearLayout>
+                android:text="注册"
+                android:layout_gravity="right"
+                android:textColor="#ffffff"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_send"/>
 
-        <ImageView
-            android:id="@+id/add_answer_send"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_send" />
+        </android.support.v7.widget.Toolbar>
 
-    </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,9 +43,20 @@
             android:id="@+id/add_answer_tdtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="@color/ssy"
+            android:textSize="24dp"
+            android:text="xxxxx"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/line"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +66,9 @@
             android:id="@+id/add_answer_content_send"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="写回答。。。。。。。。。"/>
+            android:background="@android:drawable/editbox_background_normal"
+            android:hint="写回答。。。。。。。。。"
+            android:gravity="left|top"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.LoginAndRegisterActivity;
 import cn.lrn517.techcomplatform.bean.userInfo;
 import cn.lrn517.techcomplatform.model.UserModel;
 import retrofit2.Call;
@@ -70,6 +71,7 @@ public class LoginFragment extends Fragment {
                             Log.i("data" , data.toString());
                             saveUserInfo(data);
                             Toast.makeText(getActivity() , "登录成功" , Toast.LENGTH_SHORT).show();
+                            getActivity().finish();
                         }
                     }
 
@@ -88,6 +90,7 @@ public class LoginFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("uid" , data.getUid().toString());
         editor.putString("ualiase" , data.getUaliase().toString());
+        editor.putString("uphoto",  data.getUphoto().toString());
         editor.putString("ispassed" , data.getIspassed().toString());
         editor.putString("ulevel" , data.getUlevel().toString());
         editor.putString("uexp" , data.getUexp().toString());

@@ -11,4 +11,7 @@
     <color name="ghostcolor">#F8F8FF</color>
     <color name="top_and_bottom_color">#a7b5c3</color>
     <color name="textcontent">#3a4045</color>
+    <color name="unset">#8a8a8a</color>
+    <color name="commentagain">#e9f0f6</color>
+    <color name="line">#c9c9c9</color>
 </resources>

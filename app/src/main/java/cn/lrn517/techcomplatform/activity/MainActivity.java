@@ -1,5 +1,7 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.fragment.CommunityFragment;
@@ -31,10 +35,23 @@ public class MainActivity extends BaseActivity
     private Fragment mTabSpecialClassify;
     private Fragment mTabMeasage;
     private Fragment mTabMine;
+
+    private LinearLayout login;
+    private LinearLayout unlogin;
+
+    NavigationView navigationView;
+
+    private SharedPreferences sharedPreferences;
+    //登录后返回MainActivity的控制碎片变量
+    private int i;
+    private String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
+        sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("首页");
         setSupportActionBar(toolbar);
@@ -45,12 +62,16 @@ public class MainActivity extends BaseActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_home);
+    }
 
+    private void initView(){
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View navview = navigationView.getHeaderView(0);
+        login = navview.findViewById(R.id.login_layout);
+        unlogin = navview.findViewById(R.id.unlogin_layout);
     }
 
     private void setSelect( int i ){
@@ -91,11 +112,18 @@ public class MainActivity extends BaseActivity
                 }
                 break;
             case 4:
-                if( null == mTabMine){
-                    mTabMine = new MineFragment();
-                    fragmentTransaction.add(R.id.main_fragment , mTabMine);
+                sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+                uid = sharedPreferences.getString("uid" , null);
+                if( null == uid ){
+                    Intent intent = new Intent(MainActivity.this,LoginAndRegisterActivity.class);
+                    startActivity(intent);
                 }else{
-                    fragmentTransaction.show(mTabMine);
+                    if( null == mTabMine){
+                        mTabMine = new MineFragment();
+                        fragmentTransaction.add(R.id.main_fragment , mTabMine);
+                    }else{
+                        fragmentTransaction.show(mTabMine);
+                    }
                 }
                 break;
         }
@@ -148,13 +176,6 @@ public class MainActivity extends BaseActivity
         if (id == R.id.search) {
             return true;
         }
-//        switch( id ){
-//            case :
-//                return true;
-//            case android.R.id.selectAll:
-//                break;
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -167,26 +188,41 @@ public class MainActivity extends BaseActivity
         if (id == R.id.nav_home) {
             toolbar.setTitle("首页");
             setSelect(0);
+            i = 0;
         } else if (id == R.id.nav_community) {
             toolbar.setTitle("社区");
             setSelect(1);
+            i = 1;
         } else if (id == R.id.nav_special) {
             toolbar.setTitle("专栏");
             setSelect(2);
+            i = 2;
         } else if (id == R.id.nav_message) {
             toolbar.setTitle("私信");
             setSelect(3);
+            i = 3;
         } else if (id == R.id.nav_mine) {
             toolbar.setTitle("个人");
             setSelect(4);
-        }else if (id == R.id.nav_share ){
-
-        } else if (id == R.id.nav_send) {
-
+            i = 4;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
+        if( null != uid ){
+            login.setVisibility(View.VISIBLE);
+            unlogin.setVisibility(View.GONE);
+        }else{
+            login.setVisibility(View.GONE);
+            unlogin.setVisibility(View.VISIBLE);
+        }
     }
 }

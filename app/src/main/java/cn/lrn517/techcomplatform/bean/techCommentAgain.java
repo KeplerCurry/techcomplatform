@@ -14,7 +14,7 @@ public class techCommentAgain {
      */
 
     private String ualiase;
-    private String cid;
+    //private String cid;
     private String content;
     private String catime;
 
@@ -26,13 +26,13 @@ public class techCommentAgain {
         this.ualiase = ualiase;
     }
 
-    public String getCid() {
-        return cid;
-    }
+//    public String getCid() {
+//        return cid;
+//    }
 
-    public void setCid(String cid) {
-        this.cid = cid;
-    }
+//    public void setCid(String cid) {
+//        this.cid = cid;
+//    }
 
     public String getContent() {
         return content;

@@ -37,12 +37,12 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
             return fragment1;
         }else if( 1 == position ){
             if( null == fragment2){
-                fragment2 = new HomeAttentionFragment();
+                fragment2 = new HomeCommendFragment();
             }
             return fragment2;
         }else{
             if( null == fragment3 ){
-                fragment3 = new HomeCommendFragment();
+                fragment3 = new HomeAttentionFragment();
             }
             return fragment3;
         }

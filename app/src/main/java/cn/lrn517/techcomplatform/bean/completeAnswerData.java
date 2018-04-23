@@ -23,6 +23,26 @@ public class completeAnswerData {
     private String chit;
     private String ctime;
     private String commentcount;
+    private String uid;
+    private String uphoto;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUphoto() {
+
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
+
     private int success;
 
     public String getUaliase() {

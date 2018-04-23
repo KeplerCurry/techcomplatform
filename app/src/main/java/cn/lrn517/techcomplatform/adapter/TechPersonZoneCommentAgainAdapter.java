@@ -61,7 +61,6 @@ public class TechPersonZoneCommentAgainAdapter extends RecyclerView.Adapter<Recy
             super(itemView);
             ualiase = itemView.findViewById(R.id.tech_comment_again_ualiase);
             content = itemView.findViewById(R.id.tech_comment_again_content);
-            tpzcatime = itemView.findViewById(R.id.tech_comment_again_catime);
         }
     }
 }

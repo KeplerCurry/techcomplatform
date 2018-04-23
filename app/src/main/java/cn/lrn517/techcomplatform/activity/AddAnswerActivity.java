@@ -1,7 +1,9 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,17 +19,18 @@ import retrofit2.Response;
 
 public class AddAnswerActivity extends AppCompatActivity {
 
-    private ImageView close,send;
+    private ImageView send;
     private TextView tdtitle;
     private EditText content_send;
     String tdid = "";
     String tdtitle_s ="";
+    Toolbar toolbar;
 
     private DetailModel detailModel = new DetailModel();
     private Call call;
+    private SharedPreferences sharedPreferences;
 
-    //测试数据
-    String uid = "20180319155823";
+    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,25 +40,23 @@ public class AddAnswerActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        close = (ImageView) findViewById(R.id.add_answer_close);
         send = (ImageView) findViewById(R.id.add_answer_send);
         tdtitle = (TextView) findViewById(R.id.add_answer_tdtitle);
         content_send = (EditText) findViewById(R.id.add_answer_content_send);
+        toolbar = findViewById(R.id.add_answer_toolbar);
+        toolbar.setTitle("添加回答");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void initEvent(){
-
         Bundle bundle = getIntent().getExtras();
         tdid = bundle.getString("tdid");
         tdtitle_s = bundle.getString("tdtitle");
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
         tdtitle.setText(tdtitle_s);
 
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override

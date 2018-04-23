@@ -22,6 +22,16 @@ public class userInfo {
     private String uexp;
     private String ulogintime;
     private String uloginip;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
+
     private int success;
 
     public int getSuccess() {

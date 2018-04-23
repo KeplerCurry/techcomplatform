@@ -6,60 +6,95 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ask_answer_uphoto"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:id="@+id/ask_answer_ualiase"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="ualiase"/>
+            android:text="ualiase"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:textColor="@color/top_and_bottom_color"/>
 
         <TextView
             android:id="@+id/ask_answer_ulevel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:text="Lv.1"/>
 
         <TextView
             android:id="@+id/ask_answer_utype"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:text="高级用户"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:id="@+id/ask_answer_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="content"/>
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="content"
+            android:textColor="@color/textcontent"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="回答时间"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/top_and_bottom_color"/>
 
         <TextView
             android:id="@+id/ask_answer_ctime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="2018-3-29 18:11"/>
+            android:text="2018-3-29 18:11"
+            android:textColor="@color/top_and_bottom_color"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/line"/>
 
 </LinearLayout>

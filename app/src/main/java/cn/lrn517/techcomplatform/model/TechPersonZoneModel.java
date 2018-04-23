@@ -2,6 +2,7 @@ package cn.lrn517.techcomplatform.model;
 
 
 import cn.lrn517.techcomplatform.service.TechPersonZoneService;
+import cn.lrn517.techcomplatform.service.serviceAddress;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,7 +18,7 @@ public class TechPersonZoneModel {
 
     public TechPersonZoneModel(){
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://47.95.198.79/techcomplatformAPI/Json/json/")
+                .baseUrl(serviceAddress.SERVICE_ADDRESS+"/Json/json/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

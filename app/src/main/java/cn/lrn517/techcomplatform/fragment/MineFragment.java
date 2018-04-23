@@ -1,9 +1,12 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +40,8 @@ public class MineFragment extends Fragment {
     private LinearLayout logout;
     private LinearLayout my_like;
     private View view;
+
+    private SharedPreferences sharedPreferences;
 
     public MineFragment() {
         // Required empty public constructor
@@ -124,6 +129,21 @@ public class MineFragment extends Fragment {
             }
         });
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearSpData();
+            }
+        });
+
+    }
+
+    private void clearSpData(){
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        Log.i("mag" , "清除数据成功！");
     }
 
 }

@@ -24,6 +24,35 @@ public class techDetailData {
     private String tdtitle;
     private String tdcontent;
     private String tdfirsttime;
+    private String uphoto;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    private String likecount;
+
+    public String getLikecount() {
+        return likecount;
+    }
+
+    public void setLikecount(String likecount) {
+        this.likecount = likecount;
+    }
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
+
     private Object tdaltertime;
 
     public String getUaliase() {

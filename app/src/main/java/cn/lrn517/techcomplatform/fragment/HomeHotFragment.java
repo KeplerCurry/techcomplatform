@@ -3,9 +3,11 @@ package cn.lrn517.techcomplatform.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,6 +41,7 @@ public class HomeHotFragment extends Fragment {
     Call call;
     DetailModel detailModel = new DetailModel();
     HotDataRecyclerViewAdapter hotDataRecyclerViewAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public HomeHotFragment() {
         // Required empty public constructor
@@ -60,28 +63,14 @@ public class HomeHotFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         //linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+        swipeRefreshLayout = view.findViewById(R.id.home_hot_swiperefreshlayout);
+        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#1296db"));
     }
 
     private void initEvent(){
-        call = detailModel.getHotData(page);
-        Callback<List<homeData>> listCallback = new Callback<List<homeData>>() {
-            @Override
-            public void onResponse(Call<List<homeData>> call, Response<List<homeData>> response) {
-                data = response.body();
-                if( null != data )
-                {
-                    hotDataRecyclerViewAdapter = new HotDataRecyclerViewAdapter(getActivity() , data);
-                    recyclerView.setAdapter(hotDataRecyclerViewAdapter);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<List<homeData>> call, Throwable t) {
-
-            }
-        };
-        call.enqueue(listCallback);
-
+        swipeRefreshLayout.setRefreshing(true);
+        getFirstData();
 
 
         /*
@@ -100,6 +89,40 @@ public class HomeHotFragment extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                data.clear();
+                hotDataRecyclerViewAdapter.notifyDataSetChanged();
+                page = 1;
+                page_copy = -1;
+                getFirstData();
+                Toast.makeText(getActivity(), "刷新成功!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void getFirstData(){
+        call = detailModel.getHotData(page);
+        Callback<List<homeData>> listCallback = new Callback<List<homeData>>() {
+            @Override
+            public void onResponse(Call<List<homeData>> call, Response<List<homeData>> response) {
+                data = response.body();
+                if( null != data )
+                {
+                    hotDataRecyclerViewAdapter = new HotDataRecyclerViewAdapter(getActivity() , data);
+                    recyclerView.setAdapter(hotDataRecyclerViewAdapter);
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<homeData>> call, Throwable t) {
+
+            }
+        };
+        call.enqueue(listCallback);
     }
 
     private void LoadMoreData(){

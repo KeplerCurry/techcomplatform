@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.model;
 
 import cn.lrn517.techcomplatform.service.UserService;
+import cn.lrn517.techcomplatform.service.serviceAddress;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,7 +17,7 @@ public class UserModel {
 
     public UserModel(){
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://47.95.198.79/techcomplatformAPI/Json/json/")
+                .baseUrl(serviceAddress.SERVICE_ADDRESS+"/Json/json/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
@@ -65,5 +66,11 @@ public class UserModel {
     public Call getUserSendData(String uid, int state){
         userService = retrofit.create(UserService.class);
         return userService.getUserSendData(uid, state);
+    }
+
+    //点赞、收藏、关注(添加、取消)通用接口
+    public Call common_like_collect_attention(int flag , int state, String id , String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.common_l_c_a(flag, state, id, uid);
     }
 }
