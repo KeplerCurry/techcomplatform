@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.bean.commonAttentionData;
+import cn.lrn517.techcomplatform.bean.homeattentiondata;
 import cn.lrn517.techcomplatform.bean.loadUserInfo;
 import cn.lrn517.techcomplatform.bean.userBuyedData;
 import cn.lrn517.techcomplatform.bean.userInfo;
@@ -79,6 +80,12 @@ public interface UserService {
             @Query("flag") int flag,
             @Query("state") int state,
             @Query("id") String id,
+            @Query("uid") String uid
+    );
+
+    //app关注内容
+    @POST("attentionData")
+    Call<homeattentiondata> attentionData(
             @Query("uid") String uid
     );
 }

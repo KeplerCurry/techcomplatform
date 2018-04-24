@@ -30,6 +30,12 @@ public interface DetailService {
             @Query("page") int page
     );
 
+    //获取推荐页面数据
+    @POST("commentData")
+    Call<List<homeData>> getCommentData(
+            @Query("page") int page
+    );
+
     //获取技术贴数据
     @POST("load_detail_state_0")
     Call<techDetailData> getTechDetailData(

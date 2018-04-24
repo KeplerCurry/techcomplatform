@@ -2,9 +2,11 @@ package cn.lrn517.techcomplatform.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,9 +22,11 @@ import retrofit2.Response;
 
 public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
 
-    private ImageView back, send;
+    private ImageView send;
     private EditText tdtitle,tdcontent;
     private AddModel addModel = new AddModel();
+    private SharedPreferences sharedPreferences;
+    private Toolbar toolbar;
     Call call;
 
     int isfree;
@@ -32,7 +36,7 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
     String tdcontent_s;
 
     //测试数据
-    String tuid = "20180319155823";
+    String tuid= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,10 +47,14 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        back = (ImageView) findViewById(R.id.add_technology_detail_finish_close);
+        toolbar = findViewById(R.id.add_technology_detail_finish_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         send = (ImageView) findViewById(R.id.add_technology_detail_finish_send);
         tdtitle = (EditText) findViewById(R.id.add_technology_detail_finish_tdtitle);
         tdcontent = (EditText) findViewById(R.id.add_technology_detail_finish_tdcontent);
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        tuid = sharedPreferences.getString("uid" , null );
     }
 
     private void initEvent(){
@@ -55,21 +63,28 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(AddTechnologyDetailFinishActivity.this);
-                dialog.setTitle("确认发布？");
-                dialog.setPositiveButton("确认发布", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        sendTechnologyDetail();
-                    }
-                });
-                dialog.setNegativeButton("我再想想", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                tdcontent_s = tdcontent.getText().toString();
+                tdtitle_s = tdtitle.getText().toString();
+                if( "".equals(tdcontent_s) || "".equals(tdtitle_s)){
+                    Toast.makeText(AddTechnologyDetailFinishActivity.this, "请将标题或内容填写完整", Toast.LENGTH_SHORT).show();
+                }else{
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(AddTechnologyDetailFinishActivity.this);
+                    dialog.setTitle("确认发布？");
+                    dialog.setPositiveButton("确认发布", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            sendTechnologyDetail();
+                        }
+                    });
+                    dialog.setNegativeButton("我再想想", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                });
-                dialog.show();
+                        }
+                    });
+                    dialog.show();
+                }
+
             }
         });
     }
@@ -77,13 +92,11 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
     private void getDataForFirst(){
         Bundle bundle = getIntent().getExtras();
         isfree = bundle.getInt("isfree");
-        price = bundle.getDouble("price");
+        price = bundle.getDouble("price",0.0);
         tid = bundle.getString("tid");
     }
 
     private void sendTechnologyDetail(){
-        tdcontent_s = tdcontent.getText().toString();
-        tdtitle_s = tdtitle.getText().toString();
         call =  addModel.sendTechnologyDetail(tuid , tdtitle_s , tdcontent_s , tid , isfree , price);
         Callback<addTechDetailResult> addTechDetailResultCallback = new Callback<addTechDetailResult>() {
             @Override
@@ -96,8 +109,8 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                     Toast.makeText(AddTechnologyDetailFinishActivity.this, "发表成功！", Toast.LENGTH_SHORT).show();
+                    AddTechnologyDetailFirstActivity.activity.finish();
                     finish();
-
                 }
             }
 

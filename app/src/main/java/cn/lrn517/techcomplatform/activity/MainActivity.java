@@ -11,10 +11,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.fragment.CommunityFragment;
@@ -22,6 +28,8 @@ import cn.lrn517.techcomplatform.fragment.HomeFragment;
 import cn.lrn517.techcomplatform.fragment.MessageFragment;
 import cn.lrn517.techcomplatform.fragment.MineFragment;
 import cn.lrn517.techcomplatform.fragment.SpecialClassifyFragment;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,6 +46,8 @@ public class MainActivity extends BaseActivity
 
     private LinearLayout login;
     private LinearLayout unlogin;
+    private CircleImageView uphoto;
+    private TextView level,type,aliase;
 
     NavigationView navigationView;
 
@@ -72,6 +82,10 @@ public class MainActivity extends BaseActivity
         View navview = navigationView.getHeaderView(0);
         login = navview.findViewById(R.id.login_layout);
         unlogin = navview.findViewById(R.id.unlogin_layout);
+        uphoto = navview.findViewById(R.id.login_uphoto);
+        level = navview.findViewById(R.id.login_ulevel);
+        type = navview.findViewById(R.id.login_utype);
+        aliase = navview.findViewById(R.id.login_ualiase);
     }
 
     private void setSelect( int i ){
@@ -218,7 +232,25 @@ public class MainActivity extends BaseActivity
         sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
         uid = sharedPreferences.getString("uid" , null);
         if( null != uid ){
+            String uphoto_url = sharedPreferences.getString("uphoto", null);
+            String ualiase_s = sharedPreferences.getString("ualiase",  null);
+            String type_s = sharedPreferences.getString("utype", null);
+            String level_s = sharedPreferences.getString("ulevel" , null);
+            Log.i("Main" , uphoto_url);
+            Log.i("xxxxx", "onResume: "+serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+uphoto_url.toString());
             login.setVisibility(View.VISIBLE);
+            Glide.with(MainActivity.this)
+                    .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+uphoto_url)
+                    .dontAnimate()
+                    .crossFade()
+                    .into(uphoto);
+            aliase.setText(ualiase_s);
+            level.setText("Lv."+level_s);
+            if( "0".equals(type_s)){
+                type.setText("普通用户");
+            }else{
+                type.setText("高级用户");
+            }
             unlogin.setVisibility(View.GONE);
         }else{
             login.setVisibility(View.GONE);

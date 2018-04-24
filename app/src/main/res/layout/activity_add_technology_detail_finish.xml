@@ -5,60 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/ghostcolor"
     tools:context="cn.lrn517.techcomplatform.activity.AddTechnologyDetailFinishActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/add_technology_detail_finish_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_close_new"
+            app:title="添加内容"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
+
+            <ImageView
+                android:id="@+id/add_technology_detail_finish_send"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="注册"
+                android:layout_gravity="right"
+                android:textColor="#ffffff"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_send"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/add_technology_detail_finish_close"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_close"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="添加内容"/>
-
-        <ImageView
-            android:id="@+id/add_technology_detail_finish_send"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_send"/>
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/add_technology_detail_finish_tdtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background_normal"
                 android:hint="添加标题"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/add_technology_detail_finish_tdcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="添加内容"/>
+                android:background="@android:drawable/editbox_background_normal"
+                android:hint="添加内容"
+                android:gravity="top|left"/>
 
-        </LinearLayout>
-
-    </ScrollView>
+        </android.support.design.widget.TextInputLayout>
 
 
+
+
+    </LinearLayout>
 
 </LinearLayout>

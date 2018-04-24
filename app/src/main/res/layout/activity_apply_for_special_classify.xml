@@ -5,14 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/ghostcolor"
     tools:context="cn.lrn517.techcomplatform.activity.ApplyForSpecialClassifyActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/apply_for_special_classify_toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="8dp">
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/apply_for_special_classify_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,14 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="10dp"
-               android:background="#707070">
 
-           </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,10 +83,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000">
-
-            </LinearLayout>
+                android:layout_height="0.1dp"
+                android:background="@color/line"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,7 +97,13 @@
                 android:id="@+id/apply_for_special_classify_tpzname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background_normal"
                 android:hint="请输入专栏名称"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -118,6 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/tech_detail_attention_0"
             android:text="申请"/>
 
     </LinearLayout>

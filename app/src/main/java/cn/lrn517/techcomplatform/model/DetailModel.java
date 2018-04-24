@@ -28,6 +28,12 @@ public class DetailModel {
         return detailService.getHotData(page);
     }
 
+    //获取推荐页面数据
+    public Call getCommentData( int page ){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getCommentData(page);
+    }
+
     //获取技术贴详情
     public Call getTechDetailData( String tdid ){
         detailService = retrofit.create(DetailService.class);

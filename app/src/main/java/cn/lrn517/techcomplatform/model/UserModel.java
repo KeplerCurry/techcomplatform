@@ -73,4 +73,10 @@ public class UserModel {
         userService = retrofit.create(UserService.class);
         return userService.common_l_c_a(flag, state, id, uid);
     }
+
+    //app关注内容
+    public Call attentionData(String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.attentionData(uid);
+    }
 }

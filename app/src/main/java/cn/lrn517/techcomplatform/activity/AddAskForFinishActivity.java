@@ -2,9 +2,11 @@ package cn.lrn517.techcomplatform.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,8 +28,9 @@ import retrofit2.Response;
 
 public class AddAskForFinishActivity extends AppCompatActivity {
 
-    private ImageView back,send;
+    private ImageView send;
     private Spinner spinner;
+    private Toolbar toolbar;
     private DetailModel detailModel = new DetailModel();
     private AddModel addModel = new AddModel();
     Call call;
@@ -37,9 +40,10 @@ public class AddAskForFinishActivity extends AppCompatActivity {
     private ArrayAdapter<String> tnameadapter;
     private String[] tid;
     private String[] tname;
+    private SharedPreferences sharedPreferences;
 
     //测试数据
-    String tuid = "20180319155823";
+    String tuid = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +53,13 @@ public class AddAskForFinishActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        back = (ImageView) findViewById(R.id.add_ask_for_finish_back);
+        toolbar = findViewById(R.id.add_ask_for_finish_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         send = (ImageView) findViewById(R.id.add_ask_for_finish_send);
         spinner = (Spinner) findViewById(R.id.add_ask_for_finish_spinner);
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        tuid = sharedPreferences.getString("uid" , null );
     }
 
     private void initEvent(){
@@ -139,6 +147,8 @@ public class AddAskForFinishActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
                     Toast.makeText(AddAskForFinishActivity.this , "发布提问成功！" , Toast.LENGTH_SHORT).show();
+                    AddAskForFirstActivity.activity.finish();
+                    finish();
                 }
             }
 

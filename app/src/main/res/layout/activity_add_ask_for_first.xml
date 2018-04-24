@@ -5,34 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/ghostcolor"
     tools:context="cn.lrn517.techcomplatform.activity.AddAskForFirstActivity">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/add_ask_for_first_close"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_close"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/add_ask_for_first_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_close_new"
+            app:title="提问"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="提问"/>
+            <TextView
+                android:id="@+id/add_ask_for_first_next"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="下一步"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"/>
 
-        <TextView
-            android:id="@+id/add_ask_for_first_next"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="下一步"/>
+        </android.support.v7.widget.Toolbar>
 
-    </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

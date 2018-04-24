@@ -54,6 +54,7 @@ public class AskAnswerDataViewAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final firstAnswerData data = (firstAnswerData) mDataList.get(position);
         AskAnswerDataViewAdapter.RecyclerViewHolder recyclerViewHolder = (AskAnswerDataViewAdapter.RecyclerViewHolder) holder;
+        Log.i("------", "onBindViewHolder: "+serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString());
         Glide.with(context)
                 .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString())
                 .dontAnimate()

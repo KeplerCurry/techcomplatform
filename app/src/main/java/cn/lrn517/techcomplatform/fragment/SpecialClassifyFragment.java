@@ -1,7 +1,9 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -37,10 +39,11 @@ public class SpecialClassifyFragment extends Fragment {
     Call call;
     private TechPersonZoneModel techPersonZoneModel = new TechPersonZoneModel();
     private LinearLayoutManager linearLayoutManager;
+    private SharedPreferences sharedPreferences;
     private RecyclerView recyclerView;
 
     //测试数据
-    int i = 1;
+    int i = 0;
 
     public SpecialClassifyFragment() {
         // Required empty public constructor
@@ -52,6 +55,8 @@ public class SpecialClassifyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_special_classify, container, false);
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        i = sharedPreferences.getInt("applySCState" , -1);
         initView(view);
         initEvent();
         return view;
@@ -80,7 +85,7 @@ public class SpecialClassifyFragment extends Fragment {
         applyfor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( 0 == i ){
+                if( -1 == i ){
                     Intent intent = new Intent(getActivity() , ApplyForSpecialClassifyActivity.class);
                     startActivity(intent);
                 }else{
@@ -112,4 +117,10 @@ public class SpecialClassifyFragment extends Fragment {
         call.enqueue(listCallback);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        i = sharedPreferences.getInt("applySCState" , -1);
+    }
 }

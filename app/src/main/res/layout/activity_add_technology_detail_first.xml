@@ -5,107 +5,154 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/ghostcolor"
     tools:context="cn.lrn517.techcomplatform.activity.AddTechnologyDetailFirstActivity">
 
-
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/add_technology_detail_first_close"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_close"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/add_technology_detail_first_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="发表技术贴"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:text="发表技术贴"/>
+            <TextView
+                android:id="@+id/add_technology_detail_first_next"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="下一步"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"/>
 
-        <TextView
-            android:id="@+id/add_technology_detail_first_next"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="下一步"/>
+        </android.support.v7.widget.Toolbar>
 
-    </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="请选择要发表的技术类型"/>
-
-        <Spinner
-            android:id="@+id/add_technology_detail_first_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </Spinner>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="是否免费？"/>
+        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:gravity="center|left"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请选择要发表的技术类别"
+                android:textColor="@color/textcontent"/>
+
+            <Spinner
+                android:id="@+id/add_technology_detail_first_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/line"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center|left"
+            android:text="是否免费？"
+            android:textColor="@color/textcontent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/textcontent"
+                android:layout_marginLeft="10dp"
                 android:text="Yes"/>
 
             <CheckBox
                 android:id="@+id/add_technology_detail_first_check_yes"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_marginLeft="10dp"/>
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/textcontent"
+                android:layout_marginLeft="10dp"
                 android:text="N"/>
 
             <CheckBox
                 android:id="@+id/add_technology_detail_first_check_no"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_marginLeft="10dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/line"/>
+
+        <LinearLayout
+            android:id="@+id/add_technology_detail_first_price_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="价格:"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
-            <EditText
-                android:id="@+id/add_technology_detail_first_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/textcontent"
+                    android:text="价格:"/>
+
+                <EditText
+                    android:id="@+id/add_technology_detail_first_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:layout_marginLeft="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/line"/>
 
         </LinearLayout>
+
 
     </LinearLayout>
 </LinearLayout>

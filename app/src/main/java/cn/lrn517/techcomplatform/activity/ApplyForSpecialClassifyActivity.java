@@ -1,5 +1,6 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -31,19 +32,23 @@ public class ApplyForSpecialClassifyActivity extends AppCompatActivity {
     private EditText tpzname;
     private DetailModel detailModel = new DetailModel();
     private TechPersonZoneModel techPersonZoneModel = new TechPersonZoneModel();
+    private SharedPreferences sharedPreferences;
     private Call call;
     private ArrayAdapter<String> tnameadapter;
     private String[] tid;
     private String[] tname;
     String tid_s = "";
     String tpzname_s = "";
+    String ualiase = null;
+    String uid = null;
 
-    //测试数据
-    String uid = "20180319155823";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_for_special_classify);
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid", null);
+        ualiase = sharedPreferences.getString("ualiase" , null);
         initView();
         initEvent();
     }
@@ -52,10 +57,9 @@ public class ApplyForSpecialClassifyActivity extends AppCompatActivity {
         tpzname = (EditText) findViewById(R.id.apply_for_special_classify_tpzname);
         spinner = (Spinner) findViewById(R.id.apply_for_special_classify_spinner);
         toolbar = (Toolbar) findViewById(R.id.apply_for_special_classify_toolbar);
-        toolbar.setTitle("申请专栏-XXX");
+        toolbar.setTitle("申请专栏-"+ualiase);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_close_black);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         button = (Button) findViewById(R.id.apply_for_special_classify_button);
     }
 
@@ -128,7 +132,13 @@ public class ApplyForSpecialClassifyActivity extends AppCompatActivity {
                 if( 1 == data.getSuccess()){
                     Toast.makeText(ApplyForSpecialClassifyActivity.this, "申请成功！", Toast.LENGTH_SHORT).show();
                     //这时候在share里保存申请状态，防止重复申请
-
+                    sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    /*
+                    0 ->未申请 1-已申请 2->申请成功
+                     */
+                    editor.putInt("applySCState" , 1 );
+                    editor.commit();
                     finish();
                 }
             }

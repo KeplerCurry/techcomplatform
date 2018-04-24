@@ -3,6 +3,7 @@ package cn.lrn517.techcomplatform.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,10 +11,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
+import java.time.temporal.IsoFields;
 import java.util.List;
 
 import cn.lrn517.techcomplatform.R;
@@ -25,11 +28,12 @@ import retrofit2.Response;
 
 public class AddTechnologyDetailFirstActivity extends AppCompatActivity {
 
-    private ImageView close;
+    private Toolbar toolbar;
     private TextView next;
     private Spinner spinner;
     private CheckBox yes,no;
     private EditText price;
+    private LinearLayout pricelayout;
     private DetailModel detailModel = new DetailModel();
     Call call;
     private ArrayAdapter<String> tnameadapter;
@@ -41,21 +45,27 @@ public class AddTechnologyDetailFirstActivity extends AppCompatActivity {
     String tname_s;
     String tid_s;
 
+    public static AddTechnologyDetailFirstActivity activity = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_technology_detail_first);
+        activity = this;
         initView();
         initEvent();
     }
 
     private void initView(){
-        close = (ImageView) findViewById(R.id.add_technology_detail_first_close);
         next = (TextView) findViewById(R.id.add_technology_detail_first_next);
         spinner = (Spinner) findViewById(R.id.add_technology_detail_first_spinner);
         yes = (CheckBox) findViewById(R.id.add_technology_detail_first_check_yes);
         no = (CheckBox) findViewById(R.id.add_technology_detail_first_check_no);
         price = (EditText) findViewById(R.id.add_technology_detail_first_price);
+        pricelayout = findViewById(R.id.add_technology_detail_first_price_layout);
+        pricelayout.setVisibility(View.GONE);
+        toolbar = findViewById(R.id.add_technology_detail_first_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -103,7 +113,12 @@ public class AddTechnologyDetailFirstActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("tid" , tid_s);
                 bundle.putInt("isfree" , isfree);
-                price_num = Double.valueOf(price.getText().toString());
+                if( 1 == isfree ){
+
+                }
+                else{
+                    price_num = Double.valueOf(price.getText().toString());
+                }
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -118,7 +133,11 @@ public class AddTechnologyDetailFirstActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if( b ){
                     no.setChecked(false);
+                    pricelayout.setVisibility(View.GONE);
                     isfree = 1;
+                }else{
+                    pricelayout.setVisibility(View.VISIBLE);
+                    isfree = 0;
                 }
             }
         });
@@ -128,7 +147,12 @@ public class AddTechnologyDetailFirstActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if( b ){
                     yes.setChecked(false);
+                    pricelayout.setVisibility(View.VISIBLE);
                     isfree = 0;
+                }
+                else{
+                    pricelayout.setVisibility(View.GONE);
+                    isfree = 1;
                 }
             }
         });
