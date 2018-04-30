@@ -88,15 +88,15 @@ public class    LoginFragment extends Fragment {
     private void saveUserInfo(userInfo data){
         sharedPreferences = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("uid" , data.getUid().toString());
-        editor.putString("ualiase" , data.getUaliase().toString());
-        editor.putString("uphoto",  data.getUphoto().toString());
-        editor.putString("ispassed" , data.getIspassed().toString());
-        editor.putString("ulevel" , data.getUlevel().toString());
-        editor.putString("uexp" , data.getUexp().toString());
-        editor.putString("ulogintime" , data.getUlogintime().toString());
-        editor.putString("uloginip" , data.getUloginip().toString());
-        editor.commit();
+        editor.putString("uid" , data.getUid());
+        editor.putString("ualiase" , data.getUaliase());
+        editor.putString("uphoto",  data.getUphoto());
+        editor.putString("ispassed" , data.getIspassed());
+        editor.putString("ulevel" , data.getUlevel());
+        editor.putString("uexp" , data.getUexp());
+        editor.putString("ulogintime" , data.getUlogintime());
+        editor.putString("uloginip" , data.getUloginip());
+        editor.apply();
     }
 
 }

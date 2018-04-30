@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.activity.AlterPasswordActivity;
+import cn.lrn517.techcomplatform.activity.MainActivity;
 import cn.lrn517.techcomplatform.activity.MineInfoActivity;
 import cn.lrn517.techcomplatform.activity.MyApplyActivity;
 import cn.lrn517.techcomplatform.activity.MyAttentionActivity;
@@ -22,6 +25,8 @@ import cn.lrn517.techcomplatform.activity.MyBuyedActivity;
 import cn.lrn517.techcomplatform.activity.MyCollectionActivity;
 import cn.lrn517.techcomplatform.activity.MyLikeActivity;
 import cn.lrn517.techcomplatform.activity.UserInfoActivity;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +34,9 @@ import cn.lrn517.techcomplatform.activity.UserInfoActivity;
 public class MineFragment extends Fragment {
 
     private TextView ualiase;
-    private TextView lookat_userinfomation;
-    private LinearLayout latelybrowse;
+    private CircleImageView uphoto;
+    private LinearLayout login_layout,unloginlayout;
+    private LinearLayout add;
     private LinearLayout my_collection;
     private LinearLayout attention;
     private LinearLayout account;
@@ -42,6 +48,8 @@ public class MineFragment extends Fragment {
     private View view;
 
     private SharedPreferences sharedPreferences;
+
+    private String uid;
 
     public MineFragment() {
         // Required empty public constructor
@@ -59,9 +67,12 @@ public class MineFragment extends Fragment {
     }
 
     private void initView(View view){
+        uphoto = view.findViewById(R.id.mine_uphoto);
         ualiase = view.findViewById(R.id.mine_ualiase);
-        lookat_userinfomation = view.findViewById(R.id.mine_lookatuserinfo);
-        latelybrowse = view.findViewById(R.id.mine_latelybrowse);
+        login_layout = view.findViewById(R.id.mine_login_layout);
+        unloginlayout = view.findViewById(R.id.mine_unlogin_layout);
+        ualiase = view.findViewById(R.id.mine_ualiase);
+        add = view.findViewById(R.id.mine_add);
         my_collection = view.findViewById(R.id.mine_collection);
         attention = view.findViewById(R.id.mine_attention);
         account = view.findViewById(R.id.mine_account);
@@ -73,6 +84,23 @@ public class MineFragment extends Fragment {
     }
 
     private void initEvent(){
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
+        if( uid != null ){
+            login_layout.setVisibility(View.VISIBLE);
+            unloginlayout.setVisibility(View.GONE);
+            Glide.with(getActivity())
+                    .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+sharedPreferences.getString("uphoto" , null))
+                    .dontAnimate()
+                    .crossFade()
+                    .into(uphoto);
+            ualiase.setText(sharedPreferences.getString("ualiase" , null));
+
+        }else{
+            login_layout.setVisibility(View.GONE);
+            unloginlayout.setVisibility(View.VISIBLE);
+        }
+
         my_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +149,7 @@ public class MineFragment extends Fragment {
             }
         });
 
-        lookat_userinfomation.setOnClickListener(new View.OnClickListener() {
+        login_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MineInfoActivity.class);

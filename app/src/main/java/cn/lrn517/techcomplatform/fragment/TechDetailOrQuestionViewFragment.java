@@ -1,11 +1,7 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,13 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
 
 import cn.lrn517.techcomplatform.R;
-import cn.lrn517.techcomplatform.adapter.HotDataRecyclerViewAdapter;
+import cn.lrn517.techcomplatform.adapter.TechDetailOrQuestionDataRecyclerViewAdapter;
 import cn.lrn517.techcomplatform.bean.homeData;
 import cn.lrn517.techcomplatform.listener.MoreRecyclerOnScrollListener;
 import cn.lrn517.techcomplatform.model.DetailModel;
@@ -31,19 +26,23 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeHotFragment extends Fragment {
+public class TechDetailOrQuestionViewFragment extends Fragment {
 
     private View view;
-    List data;
+    //private TextView test;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private String tid;
+    private int state;
+    List data;
     int page = 1;
     int page_copy = -1;
     Call call;
     DetailModel detailModel = new DetailModel();
-    HotDataRecyclerViewAdapter hotDataRecyclerViewAdapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    TechDetailOrQuestionDataRecyclerViewAdapter techDetailOrQuestionDataRecyclerViewAdapter;
 
-    public HomeHotFragment() {
+    public TechDetailOrQuestionViewFragment() {
         // Required empty public constructor
     }
 
@@ -52,36 +51,33 @@ public class HomeHotFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_home_hot, container, false);
+        view = inflater.inflate(R.layout.fragment_question_view, container, false);
         initView(view);
         initEvent();
         return view;
     }
 
     private void initView(View view){
-        recyclerView = view.findViewById(R.id.home_hot_recyclerview);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        //linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //test = view.findViewById(R.id.question_view_test);
+        swipeRefreshLayout = view.findViewById(R.id.question_view_swiperefreshlayout);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorBasic));
+        recyclerView = view.findViewById(R.id.question_view_recyclerview);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        swipeRefreshLayout = view.findViewById(R.id.home_hot_swiperefreshlayout);
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#1296db"));
     }
 
     private void initEvent(){
-
+        tid = getArguments().getString("tid");
+        state = getArguments().getInt("state");
         swipeRefreshLayout.setRefreshing(true);
         getFirstData();
 
-
-        /*
-        加载更多
-         */
         recyclerView.addOnScrollListener(new MoreRecyclerOnScrollListener() {
             @Override
             public void onLoadMore() {
-                hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING);
+                techDetailOrQuestionDataRecyclerViewAdapter.setLoadState(techDetailOrQuestionDataRecyclerViewAdapter.LOADING);
                 if( page == page_copy ){
-                    hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING_END);
+                    techDetailOrQuestionDataRecyclerViewAdapter.setLoadState(techDetailOrQuestionDataRecyclerViewAdapter.LOADING_END);
                 }else{
                     LoadMoreData();
                 }
@@ -93,26 +89,25 @@ public class HomeHotFragment extends Fragment {
             @Override
             public void onRefresh() {
                 data.clear();
-                hotDataRecyclerViewAdapter.notifyDataSetChanged();
+                techDetailOrQuestionDataRecyclerViewAdapter.notifyDataSetChanged();
                 page = 1;
                 page_copy = -1;
                 getFirstData();
                 Toast.makeText(getActivity(), "刷新成功!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void getFirstData(){
-        call = detailModel.getHotData(page);
+        call = detailModel.getTechOrQuestionData(tid,state,page);
         Callback<List<homeData>> listCallback = new Callback<List<homeData>>() {
             @Override
             public void onResponse(Call<List<homeData>> call, Response<List<homeData>> response) {
                 data = response.body();
                 if( null != data )
                 {
-                    hotDataRecyclerViewAdapter = new HotDataRecyclerViewAdapter(getActivity() , data);
-                    recyclerView.setAdapter(hotDataRecyclerViewAdapter);
+                    techDetailOrQuestionDataRecyclerViewAdapter = new TechDetailOrQuestionDataRecyclerViewAdapter(getActivity() , data);
+                    recyclerView.setAdapter(techDetailOrQuestionDataRecyclerViewAdapter);
                     swipeRefreshLayout.setRefreshing(false);
                 }
             }
@@ -129,7 +124,7 @@ public class HomeHotFragment extends Fragment {
         page++;
         if( -1 == page_copy )
         {
-            call = detailModel.getHotData(page);
+            call = detailModel.getTechOrQuestionData(tid,state,page);
             Callback<List<homeData>> listCallback = new Callback<List<homeData>>() {
                 @Override
                 public void onResponse(Call<List<homeData>> call, Response<List<homeData>> response) {
@@ -138,15 +133,15 @@ public class HomeHotFragment extends Fragment {
                     if( 0 != new_data.size() )
                     {
                         data.addAll(new_data);
-                        hotDataRecyclerViewAdapter.notifyDataSetChanged();
+                        techDetailOrQuestionDataRecyclerViewAdapter.notifyDataSetChanged();
                         Log.i("test" , "===================="+page);
-                        hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING_COMPLETE);
+                        techDetailOrQuestionDataRecyclerViewAdapter.setLoadState(techDetailOrQuestionDataRecyclerViewAdapter.LOADING_COMPLETE);
                     }
                     else
                     {
                         page_copy = page;
                         Log.i("test" , "+++++++++++++++++++");
-                        hotDataRecyclerViewAdapter.setLoadState(hotDataRecyclerViewAdapter.LOADING_END);
+                        techDetailOrQuestionDataRecyclerViewAdapter.setLoadState(techDetailOrQuestionDataRecyclerViewAdapter.LOADING_END);
                     }
                 }
 
@@ -164,9 +159,4 @@ public class HomeHotFragment extends Fragment {
 
     }
 
-    @Override
-    public void onDestroyView() {
-        Log.i("msg","销毁Hot视图");
-        super.onDestroyView();
-    }
 }

@@ -38,8 +38,7 @@ public class UserInfoActivity extends BaseActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    //测试数据
-    String uid = "20180319124601";
+    String uid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +50,8 @@ public class UserInfoActivity extends BaseActivity {
 
     private void initView(){
         Bundle bundle = getIntent().getExtras();
-//        if( null != bundle.getString("uid")){
-//            uid = bundle.getString("uid").toString();
-//        }
+        uid = bundle.getString("uid").toString();
+
         toolbar = (Toolbar) findViewById(R.id.user_info_toolbar);
         collapsingToolbarLayout = findViewById(R.id.user_info_collapsing_toolbar);
         appBarLayout = findViewById(R.id.user_info_app_bar);
@@ -74,7 +72,6 @@ public class UserInfoActivity extends BaseActivity {
         tabLayout.addTab(tabLayout.newTab().setText("帖子"));
         tabLayout.addTab(tabLayout.newTab().setText("回答"));
         tabLayout.addTab(tabLayout.newTab().setText("专栏"));
-        tabLayout.addTab(tabLayout.newTab().setText("更多"));
         viewPager = findViewById(R.id.user_info_viewpager);
         viewPager.setAdapter(new UserInfoPagerAdapter(getSupportFragmentManager(),uid));
         tabLayout.setupWithViewPager(viewPager);

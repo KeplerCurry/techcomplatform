@@ -18,9 +18,11 @@ public class MineInfoPagerAdapter extends FragmentPagerAdapter {
     private Fragment fragment2;
     private Fragment fragment3;
     private Bundle bundle;
+    private String uid;
 
-    public MineInfoPagerAdapter(FragmentManager fm) {
+    public MineInfoPagerAdapter(FragmentManager fm , String uid) {
         super(fm);
+        this.uid = uid;
     }
 
     @Override
@@ -29,18 +31,21 @@ public class MineInfoPagerAdapter extends FragmentPagerAdapter {
             fragment1 = new UserInfoCommonFragment();
             bundle = new Bundle();
             bundle.putInt("id", 11);
+            bundle.putString("uid" , uid);
             fragment1.setArguments(bundle);
             return fragment1;
         }else if( 1 == position ){
             fragment2 = new UserInfoCommonFragment();
             bundle = new Bundle();
             bundle.putInt("id" , 12);
+            bundle.putString("uid" , uid);
             fragment2.setArguments(bundle);
             return fragment2;
         }else{
             fragment3 = new UserInfoCommonFragment();
             bundle = new Bundle();
             bundle.putInt("id" , 13);
+            bundle.putString("uid" , uid);
             fragment3.setArguments(bundle);
             return fragment3;
         }

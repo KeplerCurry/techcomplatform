@@ -1,7 +1,9 @@
 package cn.lrn517.techcomplatform.activity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.input.InputManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,13 +36,15 @@ public class MessageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MessageViewAdapter messageViewAdapter;
     private InputMethodManager inputMethodManager;
+    private SharedPreferences sharedPreferences;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private Call call;
     private MessageModel messageModel = new MessageModel();
 
-    private String mineid = "20180319124601";
+    private String mineid = "";
     private String userid = "";
     private String text = "";
-    private String ualiase = "tchCST4601";
+    private String ualiase = "";
     List datacommon;
 
     @Override
@@ -58,8 +62,13 @@ public class MessageActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(MessageActivity.this);
         recyclerView = findViewById(R.id.send_message_recyclerview);
         recyclerView.setLayoutManager(linearLayoutManager);
+        swipeRefreshLayout = findViewById(R.id.send_message_swiperefreshlayout);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorBasic));
         Bundle bundle = getIntent().getExtras();
         userid = bundle.getString("userid");
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        mineid = sharedPreferences.getString("uid" , null);
+        ualiase = sharedPreferences.getString("ualiase" , null);
         toolbar = (Toolbar) findViewById(R.id.send_message_toolbar);
         toolbar.setTitle("私信");
         setSupportActionBar(toolbar);
@@ -80,22 +89,8 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void initEvent(){
-        call = messageModel.loadMessageByUid(mineid,userid);
-        Callback<List<loadMessageByUid>> callback = new Callback<List<loadMessageByUid>>() {
-            @Override
-            public void onResponse(Call<List<loadMessageByUid>> call, Response<List<loadMessageByUid>> response) {
-                datacommon = response.body();
-                messageViewAdapter = new MessageViewAdapter(MessageActivity.this,datacommon,2,mineid);
-                recyclerView.setAdapter(messageViewAdapter);
-                recyclerView.scrollToPosition(messageViewAdapter.getItemCount()-1);
-            }
-
-            @Override
-            public void onFailure(Call<List<loadMessageByUid>> call, Throwable t) {
-
-            }
-        };
-        call.enqueue(callback);
+        swipeRefreshLayout.setRefreshing(true);
+        getData();
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +99,7 @@ public class MessageActivity extends AppCompatActivity {
                 if( "".equals(text)){
 
                 }else{
+                    swipeRefreshLayout.setRefreshing(true);
                     call = messageModel.sendMessage(userid,mineid,text);
                     Callback<sendMessageData> callback1 = new Callback<sendMessageData>() {
                         @Override
@@ -112,15 +108,9 @@ public class MessageActivity extends AppCompatActivity {
                             if( 1 == data.getSuccess() ){
                                 eText.setText("");
                                 inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
-                                loadMessageByUid newdata = new loadMessageByUid();
-                                newdata.setCreatetime(data.getCreatetime().toString());
-                                newdata.setIsread(0);
-                                newdata.setSendid(mineid);
-                                newdata.setUaliase(ualiase);
-                                newdata.setText(text);
-                                datacommon.add(newdata);
-                                messageViewAdapter.notifyDataSetChanged();
-                                recyclerView.scrollToPosition(messageViewAdapter.getItemCount()-1);
+                                datacommon.clear();
+                                getData();
+                                Toast.makeText(MessageActivity.this, "发送消息成功！", Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 Toast.makeText(MessageActivity.this, "发送失败", Toast.LENGTH_SHORT).show();
@@ -136,6 +126,34 @@ public class MessageActivity extends AppCompatActivity {
                 }
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+                Toast.makeText(MessageActivity.this, "刷新成功！", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getData(){
+        call = messageModel.loadMessageByUid(mineid,userid);
+        Callback<List<loadMessageByUid>> callback = new Callback<List<loadMessageByUid>>() {
+            @Override
+            public void onResponse(Call<List<loadMessageByUid>> call, Response<List<loadMessageByUid>> response) {
+                datacommon = response.body();
+                swipeRefreshLayout.setRefreshing(false);
+                messageViewAdapter = new MessageViewAdapter(MessageActivity.this,datacommon,2,mineid);
+                recyclerView.setAdapter(messageViewAdapter);
+                recyclerView.scrollToPosition(messageViewAdapter.getItemCount()-1);
+
+            }
+            @Override
+            public void onFailure(Call<List<loadMessageByUid>> call, Throwable t) {
+
+            }
+        };
+        call.enqueue(callback);
     }
 
 }

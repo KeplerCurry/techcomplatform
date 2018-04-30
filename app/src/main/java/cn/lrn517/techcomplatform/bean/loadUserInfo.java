@@ -19,6 +19,15 @@ public class loadUserInfo {
     private String utype;
     private String attention_user;
     private String user_attention;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getUaliase() {
         return ualiase;

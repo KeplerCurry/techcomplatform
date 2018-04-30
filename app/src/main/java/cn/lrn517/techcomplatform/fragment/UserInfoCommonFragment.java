@@ -31,16 +31,15 @@ public class UserInfoCommonFragment extends Fragment {
     //控制变量
     int i;
     private View view;
-    private LinearLayout detail_ll,answer_ll,tpzdetail_ll,more_ll;
+    private LinearLayout detail_ll,answer_ll,tpzdetail_ll;
     private TextView detail_tv,answer_tv,tpzdetail_tv;
     private RecyclerView detail_rv,answer_rv,tpzdetail_rv;
     private LinearLayoutManager linearLayoutManager;
-    private LinearLayout like,attention,colleciton;
     private UserModel userModel = new UserModel();
     private MyLikeCommonViewAdapter myLikeCommonViewAdapter;
     Call call;
 
-    String uid = "20180319124601";
+    String uid = "";
 
     public UserInfoCommonFragment() {
         // Required empty public constructor
@@ -67,16 +66,12 @@ public class UserInfoCommonFragment extends Fragment {
         detail_ll = view.findViewById(R.id.user_info_common_detail_layout);
         answer_ll = view.findViewById(R.id.user_info_common_answer_layout);
         tpzdetail_ll = view.findViewById(R.id.user_info_common_tpzdetail_layout);
-        more_ll = view.findViewById(R.id.user_info_common_more_layout);
         detail_tv = view.findViewById(R.id.user_info_common_detail_text);
         answer_tv = view.findViewById(R.id.user_info_common_answer_text);
         tpzdetail_tv = view.findViewById(R.id.user_info_common_tpzdetail_text);
         detail_rv = view.findViewById(R.id.user_info_common_detail_recyclerview);
         answer_rv = view.findViewById(R.id.user_info_common_answer_recyclerview);
         tpzdetail_rv = view.findViewById(R.id.user_info_common_tpzdetail_recyclerview);
-        like = view.findViewById(R.id.user_info_common_more_like);
-        attention = view.findViewById(R.id.user_info_common_more_attention);
-        colleciton = view.findViewById(R.id.user_info_common_more_collection);
         linearLayoutManager = new LinearLayoutManager(getActivity());
     }
 
@@ -91,16 +86,12 @@ public class UserInfoCommonFragment extends Fragment {
             case 13:
                 selectTPZdetail();
                 break;
-            case 14:
-                selectMore();
-                break;
         }
     }
 
     private void selectDetail(){
         answer_ll.setVisibility(View.GONE);
         tpzdetail_ll.setVisibility(View.GONE);
-        more_ll.setVisibility(View.GONE);
         call = userModel.getUserSendData(uid,1);
         Callback<List<commonAttentionData>> callback = new Callback<List<commonAttentionData>>() {
             @Override
@@ -127,7 +118,6 @@ public class UserInfoCommonFragment extends Fragment {
     private void selectAnswer(){
         detail_ll.setVisibility(View.GONE);
         tpzdetail_ll.setVisibility(View.GONE);
-        more_ll.setVisibility(View.GONE);
         call = userModel.getUserSendData(uid,2);
         Callback<List<commonAttentionData>> callback = new Callback<List<commonAttentionData>>() {
             @Override
@@ -154,7 +144,6 @@ public class UserInfoCommonFragment extends Fragment {
     private void selectTPZdetail(){
         answer_ll.setVisibility(View.GONE);
         detail_ll.setVisibility(View.GONE);
-        more_ll.setVisibility(View.GONE);
         call = userModel.getUserSendData(uid,3);
         Callback<List<commonAttentionData>> callback = new Callback<List<commonAttentionData>>() {
             @Override

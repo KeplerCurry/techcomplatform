@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +20,8 @@ import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.activity.MessageActivity;
 import cn.lrn517.techcomplatform.bean.loadMessageByUid;
 import cn.lrn517.techcomplatform.bean.loadMessageData;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by lirun on 2018/4/10.
@@ -57,6 +61,11 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             final loadMessageData.ListBean data = (loadMessageData.ListBean) list.get(position);
             MessageViewAdapter.ViewHolder_1 viewHolder_1 = (MessageViewAdapter.ViewHolder_1) holder;
             viewHolder_1.ualiase.setText(data.getUaliase().toString());
+            Glide.with(context)
+                    .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString())
+                    .dontAnimate()
+                    .crossFade()
+                    .into(viewHolder_1.uphoto);
             viewHolder_1.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -72,6 +81,12 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             MessageViewAdapter.ViewHolder_2 viewHolder_2 = (MessageViewAdapter.ViewHolder_2) holder;
             if( uid.equals(data1.getSendid())){
                 viewHolder_2.left.setVisibility(View.GONE);
+                viewHolder_2.right.setVisibility(View.VISIBLE);
+                Glide.with(context)
+                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data1.getUphoto().toString())
+                        .dontAnimate()
+                        .crossFade()
+                        .into(viewHolder_2.uphoto_r);
                 viewHolder_2.createtime_r.setText(data1.getCreatetime().toString());
                 if( 1 == data1.getIsread()){
                     viewHolder_2.isread_r.setText("已读");
@@ -81,7 +96,13 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 viewHolder_2.ualiase_r.setText(data1.getUaliase().toString());
                 viewHolder_2.text_r.setText(data1.getText().toString());
             }else{
+                viewHolder_2.left.setVisibility(View.VISIBLE);
                 viewHolder_2.right.setVisibility(View.GONE);
+                Glide.with(context)
+                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data1.getUphoto().toString())
+                        .dontAnimate()
+                        .crossFade()
+                        .into(viewHolder_2.uphoto_l);
                 viewHolder_2.createtime_l.setText(data1.getCreatetime().toString());
                 if( 1 == data1.getIsread()){
                     viewHolder_2.isread_l.setText("已读");
@@ -103,11 +124,12 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private class ViewHolder_1 extends RecyclerView.ViewHolder{
 
         TextView ualiase;
-        ImageView image;
+        CircleImageView uphoto;
 
         ViewHolder_1(View itemView){
             super(itemView);
             ualiase = itemView.findViewById(R.id.message_list_view_ualiase);
+            uphoto = itemView.findViewById(R.id.message_list_view_uphoto);
         }
     }
 
@@ -116,6 +138,7 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         LinearLayout left, right;
         TextView createtime_l, ualiase_l, text_l, isread_l;
         TextView createtime_r, ualiase_r, text_r, isread_r;
+        CircleImageView uphoto_l,uphoto_r;
 
         ViewHolder_2(View itemView) {
             super(itemView);
@@ -129,6 +152,8 @@ public class MessageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ualiase_r = itemView.findViewById(R.id.chat_ualiase_right);
             text_r = itemView.findViewById(R.id.chat_text_right);
             isread_r = itemView.findViewById(R.id.chat_isread_right);
+            uphoto_l = itemView.findViewById(R.id.chat_uphoto_left);
+            uphoto_r = itemView.findViewById(R.id.chat_uphoto_right);
         }
     }
 

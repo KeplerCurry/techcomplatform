@@ -22,22 +22,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@color/top_and_bottom_color"
-                android:text="来自 · "/>
-
-            <TextView
-                android:id="@+id/hot_data_view_tname"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center|left"
-                android:textColor="@color/top_and_bottom_color"
-                android:text="XXX"/>
-
-            <TextView
                 android:id="@+id/hot_data_view_state"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

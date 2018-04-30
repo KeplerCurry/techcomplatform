@@ -13,7 +13,7 @@ import cn.lrn517.techcomplatform.fragment.UserInfoCommonFragment;
 
 public class UserInfoPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitle = new String[]{"帖子","回答","专栏","更多"};
+    private String[] mTitle = new String[]{"帖子","回答","专栏"};
     private Fragment fragment1;
     private Fragment fragment2;
     private Fragment fragment3;
@@ -42,20 +42,13 @@ public class UserInfoPagerAdapter extends FragmentPagerAdapter {
             bundle.putString("uid",uid);
             fragment2.setArguments(bundle);
             return fragment2;
-        }else if( 2 == position){
+        }else{
             fragment3 = new UserInfoCommonFragment();
             bundle = new Bundle();
             bundle.putInt("id" , 13);
             bundle.putString("uid",uid);
             fragment3.setArguments(bundle);
             return fragment3;
-        }else{
-            fragment4 = new UserInfoCommonFragment();
-            bundle = new Bundle();
-            bundle.putInt("id" , 14);
-            bundle.putString("uid",uid);
-            fragment4.setArguments(bundle);
-            return fragment4;
         }
     }
 

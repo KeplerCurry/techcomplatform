@@ -30,6 +30,14 @@ public interface DetailService {
             @Query("page") int page
     );
 
+    //技术贴/问题 数据获取
+    @POST("techDetailOrQuestonByTid")
+    Call<List<homeData>> getTechOrQuestionData(
+            @Query("tid") String tid,
+            @Query("state") int state,
+            @Query("page") int page
+    );
+
     //获取推荐页面数据
     @POST("commentData")
     Call<List<homeData>> getCommentData(

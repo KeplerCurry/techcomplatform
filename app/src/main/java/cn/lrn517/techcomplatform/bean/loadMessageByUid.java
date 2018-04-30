@@ -23,6 +23,15 @@ public class loadMessageByUid {
     private String createtime;
     private int isread;
     private String ualiase;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getMid() {
         return mid;

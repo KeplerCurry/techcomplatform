@@ -40,6 +40,15 @@ public class loadMessageData {
 
         private String sendid;
         private String ualiase;
+        private String uphoto;
+
+        public String getUphoto() {
+            return uphoto;
+        }
+
+        public void setUphoto(String uphoto) {
+            this.uphoto = uphoto;
+        }
 
         public String getSendid() {
             return sendid;

@@ -1,10 +1,12 @@
 package cn.lrn517.techcomplatform.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -12,13 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.adapter.MineInfoPagerAdapter;
 import cn.lrn517.techcomplatform.bean.loadUserInfo;
 import cn.lrn517.techcomplatform.listener.AppBarStateChangeListener;
 import cn.lrn517.techcomplatform.model.UserModel;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,15 +42,20 @@ public class MineInfoActivity extends BaseActivity {
     private TextView utype;
     private TextView attention_me;
     private TextView my_attention;
+    private CircleImageView uphoto;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private SharedPreferences sharedPreferences;
+    private FloatingActionButton edit_info;
 
-    public String uid = "20180319124601";
+    public String uid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine_info);
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
         initView();
         initEvent();
     }
@@ -57,7 +69,9 @@ public class MineInfoActivity extends BaseActivity {
         if( null != actionBar ){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        edit_info = findViewById(R.id.mine_info_floatingactionbutton);
         collapsingToolbarLayout.setTitle(" ");
+        uphoto = findViewById(R.id.mine_info_uphoto);
         ualiase = findViewById(R.id.mine_info_ualiase);
         ulevel = findViewById(R.id.mine_info_ulevel);
         utype = findViewById(R.id.mine_info_utype);
@@ -68,7 +82,7 @@ public class MineInfoActivity extends BaseActivity {
         tabLayout.addTab(tabLayout.newTab().setText("回答"));
         tabLayout.addTab(tabLayout.newTab().setText("专栏"));
         viewPager = findViewById(R.id.mine_info_viewpager);
-        viewPager.setAdapter(new MineInfoPagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new MineInfoPagerAdapter(getSupportFragmentManager() , uid));
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -102,6 +116,14 @@ public class MineInfoActivity extends BaseActivity {
             }
         });
 
+        edit_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MineInfoActivity.this,EditUserInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
         setUserInfo();
     }
 
@@ -111,9 +133,19 @@ public class MineInfoActivity extends BaseActivity {
             @Override
             public void onResponse(Call<loadUserInfo> call, Response<loadUserInfo> response) {
                 loadUserInfo data = response.body();
+                Glide.with(MineInfoActivity.this)
+                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto())
+                        .dontAnimate()
+                        .crossFade()
+                        .into(uphoto);
                 ualiase.setText(data.getUaliase().toString());
-                ulevel.setText(data.getUlevel().toString());
-                utype.setText(data.getUtype().toString());
+                ulevel.setText("Lv."+data.getUlevel().toString());
+                if( "0".equals(data.getUtype().toString())){
+                    utype.setText("普通用户");
+                }else{
+                    utype.setText("高级用户");
+                }
+
                 my_attention.setText(data.getUser_attention()+"我关注的人");
                 attention_me.setText(data.getAttention_user()+"关注我的人");
             }

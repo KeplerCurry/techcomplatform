@@ -136,6 +136,22 @@ public class TechDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        uphoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if( authoruid == uid ){
+                    Intent intent = new Intent(TechDetailActivity.this, MineInfoActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(TechDetailActivity.this, UserInfoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("uid" , authoruid);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void getDetailByNull(){
@@ -156,6 +172,7 @@ public class TechDetailActivity extends AppCompatActivity {
                 tname.setText(data.getTname().toString());
                 tdtitle.setText(data.getTdtitle().toString());
                 liketext.setText(data.getLikecount().toString());
+                authoruid = data.getUid().toString();
 
             }
 

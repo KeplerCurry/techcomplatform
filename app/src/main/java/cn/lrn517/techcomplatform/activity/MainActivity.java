@@ -11,20 +11,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextPaint;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import cn.lrn517.techcomplatform.R;
-import cn.lrn517.techcomplatform.fragment.CommunityFragment;
-import cn.lrn517.techcomplatform.fragment.HomeFragment;
+import cn.lrn517.techcomplatform.fragment.QuestionFragment;
+import cn.lrn517.techcomplatform.fragment.TechDetailFragment;
 import cn.lrn517.techcomplatform.fragment.MessageFragment;
 import cn.lrn517.techcomplatform.fragment.MineFragment;
 import cn.lrn517.techcomplatform.fragment.SpecialClassifyFragment;
@@ -63,7 +61,7 @@ public class MainActivity extends BaseActivity
         sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
         uid = sharedPreferences.getString("uid" , null);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("首页");
+        toolbar.setTitle("技术交流区");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setSelect(0);
@@ -95,7 +93,7 @@ public class MainActivity extends BaseActivity
         switch( i ){
             case 0:
                 if( null == mTabHome ){
-                    mTabHome = new HomeFragment();
+                    mTabHome = new TechDetailFragment();
                     fragmentTransaction.add(R.id.main_fragment , mTabHome);
                 }else{
                     fragmentTransaction.show(mTabHome);
@@ -103,7 +101,7 @@ public class MainActivity extends BaseActivity
                 break;
             case 1:
                 if( null == mTabCommunity ){
-                    mTabCommunity = new CommunityFragment();
+                    mTabCommunity = new QuestionFragment();
                     fragmentTransaction.add(R.id.main_fragment , mTabCommunity);
                 }else{
                     fragmentTransaction.show(mTabCommunity);
@@ -200,11 +198,11 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            toolbar.setTitle("首页");
+            toolbar.setTitle("技术分享区");
             setSelect(0);
             i = 0;
         } else if (id == R.id.nav_community) {
-            toolbar.setTitle("社区");
+            toolbar.setTitle("问题交流区");
             setSelect(1);
             i = 1;
         } else if (id == R.id.nav_special) {

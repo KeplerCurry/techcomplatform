@@ -1,7 +1,11 @@
 package cn.lrn517.techcomplatform.model;
 
+import java.util.concurrent.TimeUnit;
+
 import cn.lrn517.techcomplatform.service.UserService;
 import cn.lrn517.techcomplatform.service.serviceAddress;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -16,6 +20,12 @@ public class UserModel {
     private UserService userService;
 
     public UserModel(){
+
+        OkHttpClient client = new OkHttpClient.Builder().
+                connectTimeout(30, TimeUnit.SECONDS).
+                readTimeout(30, TimeUnit.SECONDS).
+                writeTimeout(30, TimeUnit.SECONDS).build();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(serviceAddress.SERVICE_ADDRESS+"/Json/json/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -36,6 +46,12 @@ public class UserModel {
     public Call getAttentionDataList(int state, String uid){
         userService = retrofit.create(UserService.class);
         return userService.getAttentionDataList(state,uid);
+    }
+
+    //修改用户信息
+    public Call editUserInfo(MultipartBody.Part file , String uid, String ualiase){
+        userService = retrofit.create(UserService.class);
+        return userService.editUserInfo(file, uid, ualiase);
     }
 
     //修改密码

@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,13 +21,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MessageFragment extends Fragment {
 
-    //测试数据
-    String uid = "20180319124601";
+    String uid;
 
     private Call call;
     private MessageModel messageModel = new MessageModel();
@@ -35,6 +37,7 @@ public class MessageFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
     private MessageViewAdapter messageViewAdapter;
+    private SharedPreferences sharedPreferences;
 
     public MessageFragment() {
         // Required empty public constructor
@@ -59,6 +62,9 @@ public class MessageFragment extends Fragment {
     }
 
     private void initEvent(){
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
+
         call = messageModel.loadMessageList(uid);
         Callback<loadMessageData> callback = new Callback<loadMessageData>() {
             @Override

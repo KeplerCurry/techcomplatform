@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/ghostcolor"
     tools:context="cn.lrn517.techcomplatform.fragment.MineFragment">
 
     <ScrollView
@@ -15,20 +16,40 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_margin="5dp"
+                android:id="@+id/mine_unlogin_layout"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:orientation="horizontal">
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:background="@drawable/comment_again_background">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="登录账号，发现更大的世界"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mine_login_layout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:background="@drawable/comment_again_background"
+                android:layout_margin="5dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/mine_userpic"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@mipmap/ic_launcher"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/mine_uphoto"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"/>
 
                 </LinearLayout>
 
@@ -36,21 +57,26 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
 
                     <TextView
                         android:id="@+id/mine_ualiase"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="ualiase"/>
+                        android:text="ualiase"
+                        android:textColor="@color/ssy"
+                        android:textSize="18dp"
+                        android:gravity="center|left"/>
 
                     <TextView
-                        android:id="@+id/mine_lookatuserinfo"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="查看个人信息"/>
+                        android:text="查看个人信息"
+                        android:textSize="10dp"
+                        android:gravity="center|left"/>
 
                 </LinearLayout>
 
@@ -58,164 +84,219 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/colorBasic">
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginBottom="5dp"/>
 
-            </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mine_latelybrowse"
+                android:id="@+id/mine_add"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_add"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="最近浏览"/>
+                    android:text="我的发布"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <LinearLayout
                 android:id="@+id/mine_collection"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_collection"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="我的收藏"/>
+                    android:text="我的收藏"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <LinearLayout
                 android:id="@+id/mine_attention"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_attention"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="关注"/>
+                    android:text="我的关注"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <LinearLayout
                 android:id="@+id/mine_like"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_like"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="赞"/>
+                    android:text="我的赞"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/colorBasic">
-
-            </LinearLayout>
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <LinearLayout
                 android:id="@+id/mine_account"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_account"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="余额"/>
+                    android:text="余额"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <LinearLayout
                 android:id="@+id/mine_buyed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_buyed"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="已购"/>
+                    android:text="已购"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
 
             <LinearLayout
                 android:id="@+id/mine_apply"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_mine_apply"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="查看申请"/>
+                    android:text="查看申请"
+                    android:textColor="@color/ssy"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="40dp"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/colorBasic">
-
-            </LinearLayout>
+                android:layout_height="0.1dp"
+                android:background="@color/line"
+                android:layout_marginTop="5dp" />
             
             <LinearLayout
                 android:id="@+id/mine_editpassword"
@@ -229,6 +310,11 @@
                     android:gravity="center"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line" />
             
             <LinearLayout
                 android:id="@+id/mine_logout"
@@ -242,6 +328,11 @@
                     android:gravity="center"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line" />
             
         </LinearLayout>
 

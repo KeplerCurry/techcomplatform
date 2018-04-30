@@ -4,9 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="cn.lrn517.techcomplatform.fragment.HomeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="cn.lrn517.techcomplatform.fragment.QuestionFragment">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -18,25 +16,24 @@
             android:orientation="vertical">
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/home_tablayout"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                app:tabTextColor="@color/top_and_bottom_color">
+                android:id="@+id/question_tablayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable">
 
             </android.support.design.widget.TabLayout>
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/home_viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/question_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                </android.support.v4.view.ViewPager>
+            </android.support.v4.view.ViewPager>
 
         </LinearLayout>
 
-
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/home_add"
+            android:id="@+id/question_floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -45,11 +42,6 @@
             android:backgroundTint="@color/colorBasic"
             android:elevation="8dp"/>
 
-
     </android.support.design.widget.CoordinatorLayout>
-
-
-
-
 
 </LinearLayout>

@@ -4,14 +4,18 @@ import java.util.List;
 
 import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.bean.commonAttentionData;
+import cn.lrn517.techcomplatform.bean.commonEdit;
 import cn.lrn517.techcomplatform.bean.homeattentiondata;
 import cn.lrn517.techcomplatform.bean.loadUserInfo;
 import cn.lrn517.techcomplatform.bean.userBuyedData;
 import cn.lrn517.techcomplatform.bean.userInfo;
 import cn.lrn517.techcomplatform.bean.userapplyfordata;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -32,6 +36,15 @@ public interface UserService {
     Call<userInfo> login(
             @Query("telephone") String telephone,
             @Query("password") String password
+    );
+
+    //修改个人信息
+    @Multipart
+    @POST("editUserInfo")
+    Call<commonEdit> editUserInfo(
+            @Part MultipartBody.Part file,
+            @Query("uid") String uid,
+            @Query("ualiase") String ualiase
     );
 
     //通过state查看收藏列表、点赞、关注信息

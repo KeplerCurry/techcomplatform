@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/mine_info_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -19,44 +19,126 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:id="@+id/mine_info_background_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax"
-                android:contentDescription=""
-                tools:ignore="ContentDescription" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/mine_info_pic"
+                    android:id="@+id/mine_info_uphoto"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="100dp"
                     app:layout_collapseMode="parallax"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_launcher"
+                    android:background="@drawable/circle_white_background"
+                    android:padding="2dp"
+                    android:layout_marginTop="30dp"/>
 
                 <TextView
                     android:id="@+id/mine_info_ualiase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     app:layout_collapseMode="parallax"
                     android:text="Ualiase"
                     android:textSize="28dp"
-                    android:textColor="@color/ssy"
+                    android:textColor="@color/white"
                     android:gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/login_v_s"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/mine_info_ulevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="Lv.1"
+                            android:textSize="12dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/login_v_s"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/mine_info_utype"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:text="高级用户"
+                            android:textSize="10dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="一句话描述自己"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/white"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/mine_info_attention_me"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="关注我的人"/>
+
+                    <LinearLayout
+                        android:layout_width="0.1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        tools:ignore="Suspicious0dp" />
+
+                    <TextView
+                        android:id="@+id/mine_info_my_attention"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="我关注的人"/>
+
+                </LinearLayout>
 
 
             </LinearLayout>
-
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/mine_info_toolbar"
@@ -82,62 +164,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="一句话描述自己"
-                android:gravity="center"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Lv." />
-
-                <TextView
-                    android:id="@+id/mine_info_ulevel"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="10" />
-
-                <TextView
-                    android:id="@+id/mine_info_utype"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="高级用户" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/mine_info_attention_me"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="关注我的人"/>
-
-                <TextView
-                    android:id="@+id/mine_info_my_attention"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="我关注的人"/>
-
-            </LinearLayout>
-
             <android.support.design.widget.TabLayout
                 android:id="@+id/mine_info_tablayout"
                 android:layout_width="match_parent"
@@ -157,11 +183,13 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/mine_info_floatingactionbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_special_unset"
-        app:layout_anchor="@id/mine_info_app_bar"
-        app:layout_anchorGravity="bottom|end"/>
+        android:src="@drawable/ic_mine_edit"
+        android:layout_gravity="bottom|right"
+        app:backgroundTint="#ff9900"
+        android:elevation="8dp" />
 
 </android.support.design.widget.CoordinatorLayout>

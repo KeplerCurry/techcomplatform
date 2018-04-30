@@ -26,13 +26,13 @@ import cn.lrn517.techcomplatform.bean.homeData;
  * Created by lirun on 2018/3/20.
  */
 
-public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class TechDetailOrQuestionDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     Context context;
     List mDataList;
 
 
-    public HotDataRecyclerViewAdapter(Context context , List<Map<String,Object>> mDataList){
+    public TechDetailOrQuestionDataRecyclerViewAdapter(Context context , List<Map<String,Object>> mDataList){
         this.context = context;
         this.mDataList = mDataList;
     }
@@ -82,7 +82,6 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         if (holder instanceof RecyclerViewHolder) {
             final homeData data = (homeData) mDataList.get(position);
             RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
-            recyclerViewHolder.tname.setText(data.getTname().toString());
             if( "0".equals(data.getState().toString()) ){
                 recyclerViewHolder.state.setText("技术贴");
                 recyclerViewHolder.attention.setVisibility(View.GONE);
@@ -187,12 +186,11 @@ public class HotDataRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tname,state,isfree,tdtitle;
+        TextView state,isfree,tdtitle;
         TextView tdcontent,attention,answer,like,collect;
 
         RecyclerViewHolder(View itemView) {
             super(itemView);
-            tname =  itemView.findViewById(R.id.hot_data_view_tname);
             state =  itemView.findViewById(R.id.hot_data_view_state);
             isfree = itemView.findViewById(R.id.hot_data_view_isfree);
             tdtitle = itemView.findViewById(R.id.hot_data_view_tdtitle);
