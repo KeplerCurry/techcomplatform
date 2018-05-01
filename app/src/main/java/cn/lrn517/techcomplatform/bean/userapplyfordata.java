@@ -14,6 +14,15 @@ public class userapplyfordata {
     private int state;
     private String pic;
     private int flag;
+    private String tpzid;
+
+    public String getTpzid() {
+        return tpzid;
+    }
+
+    public void setTpzid(String tpzid) {
+        this.tpzid = tpzid;
+    }
 
     public String getUafid() {
         return uafid;

@@ -43,7 +43,6 @@ public class TechPersonZoneCommentAgainAdapter extends RecyclerView.Adapter<Recy
             return;
         TechPersonZoneCommentAgainAdapter.ViewHolder viewHolder = (TechPersonZoneCommentAgainAdapter.ViewHolder) holder;
         viewHolder.content.setText(data.getContent().toString());
-        viewHolder.tpzcatime.setText(data.getTpzcatime().toString());
         viewHolder.ualiase.setText(data.getUaliase().toString());
     }
 
@@ -54,7 +53,7 @@ public class TechPersonZoneCommentAgainAdapter extends RecyclerView.Adapter<Recy
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView ualiase,content,tpzcatime;
+        TextView ualiase,content;
 
 
         public ViewHolder(View itemView) {

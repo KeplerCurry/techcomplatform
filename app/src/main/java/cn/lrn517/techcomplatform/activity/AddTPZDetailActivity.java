@@ -1,5 +1,6 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -29,13 +30,13 @@ public class AddTPZDetailActivity extends AppCompatActivity {
     private TechPersonZoneModel techPersonZoneModel = new TechPersonZoneModel();
     Call call;
     int isfree_flag = 1;
-    double price = 0.0;
+    int price = 0;
     String title = "";
     String content = "";
 
 
     //测试数据
-    String tpzid = "tpz-123456789";
+    String tpzid = "tpz-1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,6 @@ public class AddTPZDetailActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.add_tpzdetail_toolbar);
         toolbar.setTitle("发表专栏文章");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_left_black);
     }
 
     private void initEvent(){
@@ -85,50 +85,35 @@ public class AddTPZDetailActivity extends AppCompatActivity {
     }
 
     private void sendTechPersonZoneDetail(){
-        if( 1 == isfree_flag ){
-            title = tpzdtitle.getText().toString();
-            content = tpzdcontent.getText().toString();
-            call = techPersonZoneModel.sendTechPersonZoneDetail(tpzid , title , content , isfree_flag , price);
-            Callback<commonForSendTPZ> commonForSendTPZCallback = new Callback<commonForSendTPZ>() {
-                @Override
-                public void onResponse(Call<commonForSendTPZ> call, Response<commonForSendTPZ> response) {
-                    commonForSendTPZ data = response.body();
-                    if( 1 == data.getSuccess()){
-                        Toast.makeText(AddTPZDetailActivity.this, "发表成功！", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(AddTPZDetailActivity.this, "失败", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<commonForSendTPZ> call, Throwable t) {
-
-                }
-            };
-            call.enqueue(commonForSendTPZCallback);
-        }else{
-            price = Double.valueOf(tpzdprice.getText().toString());
-            title = tpzdtitle.getText().toString();
-            content = tpzdcontent.getText().toString();
-            call = techPersonZoneModel.sendTechPersonZoneDetail(tpzid , title , content , isfree_flag , price);
-            Callback<commonForSendTPZ> commonForSendTPZCallback = new Callback<commonForSendTPZ>() {
-                @Override
-                public void onResponse(Call<commonForSendTPZ> call, Response<commonForSendTPZ> response) {
-                    commonForSendTPZ data = response.body();
-                    if( 1 == data.getSuccess()){
-                        Toast.makeText(AddTPZDetailActivity.this, "发表成功！", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(AddTPZDetailActivity.this, "失败", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<commonForSendTPZ> call, Throwable t) {
-
-                }
-            };
-            call.enqueue(commonForSendTPZCallback);
+        title = tpzdtitle.getText().toString();
+        content = tpzdcontent.getText().toString();
+        if( !"".equals(tpzdprice.getText().toString())){
+            price = Integer.valueOf(tpzdprice.getText().toString());
         }
+        call = techPersonZoneModel.sendTechPersonZoneDetail(tpzid , title , content , isfree_flag , price);
+        Callback<commonForSendTPZ> commonForSendTPZCallback = new Callback<commonForSendTPZ>() {
+            @Override
+            public void onResponse(Call<commonForSendTPZ> call, Response<commonForSendTPZ> response) {
+                commonForSendTPZ data = response.body();
+                if( 1 == data.getSuccess()){
+                    Toast.makeText(AddTPZDetailActivity.this, "发表成功！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddTPZDetailActivity.this,BrowseTechPersonZoneDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("tpzdid" , data.getTpzdid());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(AddTPZDetailActivity.this, "失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<commonForSendTPZ> call, Throwable t) {
+
+            }
+        };
+        call.enqueue(commonForSendTPZCallback);
     }
 
 

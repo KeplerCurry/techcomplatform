@@ -96,6 +96,8 @@ public class    LoginFragment extends Fragment {
         editor.putString("uexp" , data.getUexp());
         editor.putString("ulogintime" , data.getUlogintime());
         editor.putString("uloginip" , data.getUloginip());
+        editor.putString("tpzid" , data.getTpzid());
+        editor.putInt("applyTPZState" , data.getApplyTPZState());
         editor.apply();
     }
 

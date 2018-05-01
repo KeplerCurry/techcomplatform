@@ -12,10 +12,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import java.util.Map;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.CommentTPZDetailActivity;
 import cn.lrn517.techcomplatform.bean.commonForTPZ;
 import cn.lrn517.techcomplatform.bean.commonForTech;
 import cn.lrn517.techcomplatform.bean.techCommentAgain;
@@ -24,6 +27,8 @@ import cn.lrn517.techcomplatform.bean.tpzCommentAgain;
 import cn.lrn517.techcomplatform.bean.tpzFirstComment;
 import cn.lrn517.techcomplatform.model.DetailModel;
 import cn.lrn517.techcomplatform.model.TechPersonZoneModel;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,10 +46,6 @@ public class TechPersonZoneFirstCommentAdapter extends RecyclerView.Adapter<Recy
     private Call call;
     TechPersonZoneCommentAgainAdapter techPersonZoneCommentAgainAdapter;
     List data;
-    //测试数据
-    String healer = "20180319155823";
-    String aliase = "tchCST582你好好3";
-    String tpzcatime = "";
 
     public TechPersonZoneFirstCommentAdapter(Context context , List<Map<String,Object>> mDataList){
         this.context = context;
@@ -64,33 +65,30 @@ public class TechPersonZoneFirstCommentAdapter extends RecyclerView.Adapter<Recy
         if( null == data )
             return;
         final TechPersonZoneFirstCommentAdapter.ViewHolder viewHolder = (TechPersonZoneFirstCommentAdapter.ViewHolder) holder;
+        Glide.with(context)
+                .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString())
+                .dontAnimate()
+                .crossFade()
+                .into(viewHolder.uphoto);
         viewHolder.content.setText(data.getContent().toString());
         viewHolder.ctime.setText(data.getTpzctime().toString());
         viewHolder.ualiase.setText(data.getUaliase().toString());
-        viewHolder.layout.setVisibility(View.GONE);
 
         viewHolder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if( "回复".equals(viewHolder.reply.getText().toString()) ){
-                    viewHolder.layout.setVisibility(View.VISIBLE);
+                    //viewHolder.layout.setVisibility(View.VISIBLE);
                     viewHolder.reply.setText("取消回复");
+                    ((CommentTPZDetailActivity) context).send(data.getUaliase().toString(),data.getTpzcid().toString(),1);
                 }else{
-                    viewHolder.layout.setVisibility(View.GONE);
+                    //viewHolder.layout.setVisibility(View.GONE);
                     viewHolder.reply.setText("回复");
+                    ((CommentTPZDetailActivity) context).send(data.getUaliase().toString(),data.getTpzcid().toString(),0);
                 }
 
             }
         });
-//        viewHolder.send.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String content = viewHolder.sendtext.getText().toString();
-//                String tpzcid = data.getTpzcid().toString();
-//                Log.i("Adapter" , "tpzcid:"+tpzcid + "content:"+content);
-//                reply(tpzcid, content);
-//            }
-//        });
         getCommentAgainData(data.getTpzcid().toString() , viewHolder);
 
     }
@@ -102,16 +100,16 @@ public class TechPersonZoneFirstCommentAdapter extends RecyclerView.Adapter<Recy
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView ualiase,content,ctime,chit,reply;
+        TextView ualiase,content,ctime,reply;
         RecyclerView commentAgainrecyclerView;
+        CircleImageView uphoto;
         LinearLayoutManager linearLayoutManager;
         LinearLayout layout;
-        EditText sendtext;
-        ImageView send;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
+            uphoto = itemView.findViewById(R.id.tech_first_comment_uphoto);
             ualiase = itemView.findViewById(R.id.tech_first_comment_ualiase);
             content = itemView.findViewById(R.id.tech_first_comment_content);
             ctime = itemView.findViewById(R.id.tech_first_comment_ctime);
@@ -151,36 +149,4 @@ public class TechPersonZoneFirstCommentAdapter extends RecyclerView.Adapter<Recy
         call.enqueue(listCallback);
     }
 
-    public void reply(final String tpzcid ,final String content){
-        call = techPersonZoneModel.sendTechPersonZoneCommentAgain(tpzcid, healer , content);
-        Callback<commonForTPZ> commonForTPZCallback = new Callback<commonForTPZ>() {
-            @Override
-            public void onResponse(Call<commonForTPZ> call, Response<commonForTPZ> response) {
-                commonForTPZ data = response.body();
-                if( 1 == data.getSuccess() ){
-                    tpzcatime = data.getTime().toString();
-                    addCommentAgainData(tpzcid , tpzcatime ,content);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<commonForTPZ> call, Throwable t) {
-
-            }
-        };
-        call.enqueue(commonForTPZCallback);
-    }
-
-    public void addCommentAgainData(String tpzcid , String tpzcatime ,String content){
-
-        tpzCommentAgain testdata = new tpzCommentAgain();
-        testdata.setTpzcatime(tpzcatime);
-        testdata.setUaliase(aliase);
-        testdata.setContent( content);
-        testdata.setTpzcid(tpzcid);
-        data.add(testdata);
-        techPersonZoneCommentAgainAdapter.notifyDataSetChanged();
-        Log.i("adddata" , "tpzcid = " + tpzcid +"的数据添加成功！");
-
-    }
 }

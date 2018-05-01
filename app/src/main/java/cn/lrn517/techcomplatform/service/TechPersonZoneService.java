@@ -11,6 +11,7 @@ import cn.lrn517.techcomplatform.bean.techpersonzonelist;
 import cn.lrn517.techcomplatform.bean.techpersonzoneuserinfo;
 import cn.lrn517.techcomplatform.bean.tpzCommentAgain;
 import cn.lrn517.techcomplatform.bean.tpzFirstComment;
+import cn.lrn517.techcomplatform.bean.userForTechDetailState;
 import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -85,5 +86,13 @@ public interface TechPersonZoneService {
             @Query("tpzcid") String tpzcid,
             @Query("healer") String healer,
             @Query("content") String content
+    );
+
+    //获取用户是否对专栏贴进行关注用户、点赞、收藏操作
+    @POST("getUserA_L_C_TPZ")
+    Call<userForTechDetailState> getUsera_l_c_TPZ(
+            @Query("auid") String auid,
+            @Query("uid") String uid,
+            @Query("tpzdid") String tpzdid
     );
 }

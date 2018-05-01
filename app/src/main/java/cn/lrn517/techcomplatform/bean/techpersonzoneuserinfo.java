@@ -19,6 +19,15 @@ public class techpersonzoneuserinfo {
     private String tpzid;
     private String tpzname;
     private String listcount;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getTname() {
         return tname;

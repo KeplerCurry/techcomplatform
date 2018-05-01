@@ -1,5 +1,7 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,13 +26,15 @@ public class MyBuyedActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private Call call;
     private UserModel userModel = new UserModel();
-
-    String uid = "20180319124601";
+    private SharedPreferences sharedPreferences;
+    String uid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_buyed);
+        sharedPreferences = getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid", null);
         initView();
         initEvent();
     }

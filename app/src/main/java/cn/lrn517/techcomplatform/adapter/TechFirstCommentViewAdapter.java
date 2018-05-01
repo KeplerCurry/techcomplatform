@@ -45,10 +45,6 @@ public class TechFirstCommentViewAdapter extends RecyclerView.Adapter<RecyclerVi
     private Call call;
     TechCommentAgainViewAdapter techCommentAgainViewAdapter;
     List data;
-    //测试数据
-    String healer = "20180319155823";
-    String aliase = "tchCST582你好好3";
-    String catime = "";
 
     public TechFirstCommentViewAdapter(Context context , List<Map<String,Object>> mDataList){
         this.context = context;
@@ -84,11 +80,11 @@ public class TechFirstCommentViewAdapter extends RecyclerView.Adapter<RecyclerVi
                 if( "回复".equals(viewHolder.reply.getText().toString()) ){
                     //viewHolder.layout.setVisibility(View.VISIBLE);
                     viewHolder.reply.setText("取消回复");
-                    ((TechDetailCommentActivity) context).send(data.getUaliase().toString(),data.getCid().toString());
+                    ((TechDetailCommentActivity) context).send(data.getUaliase().toString(),data.getCid().toString(),1);
                 }else{
                     //viewHolder.layout.setVisibility(View.GONE);
                     viewHolder.reply.setText("回复");
-                    ((TechDetailCommentActivity) context).send(data.getUaliase().toString(),data.getCid().toString());
+                    ((TechDetailCommentActivity) context).send(data.getUaliase().toString(),data.getCid().toString(),0);
                 }
 
             }

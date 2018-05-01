@@ -7,12 +7,23 @@
     android:orientation="vertical"
     tools:context="cn.lrn517.techcomplatform.activity.BrowseTechPersonZoneActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/browse_tech_person_zone_toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.Toolbar>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/browse_tech_person_zone_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:contentInsetStart="0dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,34 +39,47 @@
                 android:layout_height="120dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="0dp"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/browse_tech_person_zone_uphoto"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:src="@mipmap/ic_launcher"/>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="2.5"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center|left">
 
                         <TextView
                             android:id="@+id/browse_tech_person_zone_tpzname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/textcontent"
                             android:text="tpzname"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/textcontent"
+                            android:text="来自"/>
 
                         <TextView
                             android:id="@+id/browse_tech_person_zone_tname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/textcontent"
                             android:text="tname"/>
 
                     </LinearLayout>
@@ -64,17 +88,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center|left">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/textcontent"
                             android:text="作者"/>
 
                         <TextView
                             android:id="@+id/browse_tech_person_zone_ualiase"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/textcontent"
                             android:text="ualiase"/>
 
                     </LinearLayout>
@@ -83,18 +112,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center|left">
 
                         <TextView
                             android:id="@+id/browse_tech_person_zone_followcount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/textcontent"
                             android:text="1"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/textcontent"
                             android:text="人关注"/>
+
+                        <LinearLayout
+                            android:id="@+id/browse_tech_person_zone_attention_layout"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="30dp"
+                            android:background="@drawable/tech_detail_attention_0">
+
+                            <TextView
+                                android:id="@+id/browse_tech_person_zone_attention_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="关注"
+                                android:gravity="center"
+                                android:textColor="#fff"
+                                android:textSize="14dp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -104,10 +159,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="#707070">
-
-            </LinearLayout>
+                android:layout_height="0.1dp"
+                android:background="@color/line"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,9 +170,17 @@
                     android:id="@+id/browse_tech_person_zone_detailcount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="70篇文章"/>
+                    android:gravity="center|left"
+                    android:layout_marginLeft="10dp"
+                    android:text="70篇文章"
+                    android:textColor="@color/ssy"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/line"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/browse_tech_person_zone_listview"

@@ -144,4 +144,12 @@ public interface DetailService {
     //获取技术分类列表
     @POST("get_techclassify_data")
     Call<List<techclassifydata>> getTechclassifyData();
+
+    //判断用户是否关注专栏
+    @POST("getUserAttentionTPZ")
+    Call<common> getUserAttentionTPZ(
+            @Query("uid") String uid,
+            @Query("id") String id
+    );
+
 }

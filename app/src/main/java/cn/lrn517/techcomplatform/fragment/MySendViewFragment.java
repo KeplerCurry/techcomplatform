@@ -14,9 +14,8 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import cn.lrn517.techcomplatform.R;
-import cn.lrn517.techcomplatform.adapter.MyAttentionCommonViewAdapter;
-import cn.lrn517.techcomplatform.adapter.MyLikeCommonViewAdapter;
-import cn.lrn517.techcomplatform.bean.commonAttentionData;
+import cn.lrn517.techcomplatform.adapter.MySendCommonViewAdapter;
+import cn.lrn517.techcomplatform.bean.commonForUserSend;
 import cn.lrn517.techcomplatform.model.UserModel;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,18 +24,20 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyLikeDetailFragment extends Fragment {
+public class MySendViewFragment extends Fragment {
 
-    private View view;
     private RecyclerView recyclerView;
+    private MySendCommonViewAdapter mySendCommonViewAdapter;
     private LinearLayoutManager linearLayoutManager;
-    private Call call;
-    private UserModel userModel = new UserModel();
-    private MyLikeCommonViewAdapter myLikeCommonViewAdapter;
+    private View view;
     private SharedPreferences sharedPreferences;
-    String uid = "";
+    private String uid;
+    private int state;
 
-    public MyLikeDetailFragment() {
+    private UserModel userModel = new UserModel();
+    private Call call;
+
+    public MySendViewFragment() {
         // Required empty public constructor
     }
 
@@ -45,34 +46,35 @@ public class MyLikeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_my_like_detail, container, false);
-        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
-        uid = sharedPreferences.getString("uid", null);
+        view = inflater.inflate(R.layout.fragment_my_send_view, container, false);
         initView(view);
         initEvent();
         return view;
     }
 
     private void initView(View view){
-        recyclerView = view.findViewById(R.id.my_like_detail_recyclerview);
+        state = getArguments().getInt("state");
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" ,null);
+        recyclerView = view.findViewById(R.id.my_send_recyclerview);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     private void initEvent(){
-        call = userModel.getAttentionDataList(21,uid);
-        Callback<List<commonAttentionData>> callback = new Callback<List<commonAttentionData>>() {
+        call = userModel.getUserSendList(state,uid);
+        Callback<List<commonForUserSend>> callback = new Callback<List<commonForUserSend>>() {
             @Override
-            public void onResponse(Call<List<commonAttentionData>> call, Response<List<commonAttentionData>> response) {
+            public void onResponse(Call<List<commonForUserSend>> call, Response<List<commonForUserSend>> response) {
                 List data = response.body();
                 if( 0 != data.size()){
-                    myLikeCommonViewAdapter = new MyLikeCommonViewAdapter(getActivity() , data , 21);
-                    recyclerView.setAdapter(myLikeCommonViewAdapter);
+                    mySendCommonViewAdapter = new MySendCommonViewAdapter(getActivity(),data,state);
+                    recyclerView.setAdapter(mySendCommonViewAdapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<commonAttentionData>> call, Throwable t) {
+            public void onFailure(Call<List<commonForUserSend>> call, Throwable t) {
 
             }
         };

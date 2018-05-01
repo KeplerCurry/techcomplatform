@@ -130,4 +130,11 @@ public class DetailModel {
         detailService = retrofit.create(DetailService.class);
         return detailService.getTechclassifyData();
     }
+
+    //判断用户是否关注专栏
+    public Call getUserAttentionTPZ(String uid, String id){
+        detailService = retrofit.create(DetailService.class);
+        return detailService.getUserAttentionTPZ(uid, id);
+    }
+
 }

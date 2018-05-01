@@ -48,11 +48,9 @@ public class TechPersonZoneDetailListAdapter extends RecyclerView.Adapter<Recycl
         viewHolder.tpzdtitle.setText(data.getTpzdtitle().toString());
         viewHolder.tpzdfirsttime.setText(data.getTpzdfirsttime().toString());
         if( "1".equals(data.getIsfree())){
-            viewHolder.price.setVisibility(View.GONE);
-            viewHolder.isfree.setText("免费");
+            viewHolder.price.setText("免费");
         }else{
-            viewHolder.isfree.setText("收费");
-            viewHolder.price.setText("$"+data.getPrice().toString());
+            viewHolder.price.setText(data.getPrice().toString()+"硬币");
         }
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +71,13 @@ public class TechPersonZoneDetailListAdapter extends RecyclerView.Adapter<Recycl
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tpzdtitle,isfree,price,tpzdfirsttime;
+        TextView tpzdtitle,price,tpzdfirsttime;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             tpzdtitle = itemView.findViewById(R.id.browse_tech_person_zone_detail_list_tpzdtitle);
-            isfree = itemView.findViewById(R.id.browse_tech_person_zone_detail_list_isfree);
+            //isfree = itemView.findViewById(R.id.browse_tech_person_zone_detail_list_isfree);
             price = itemView.findViewById(R.id.browse_tech_person_zone_detail_list_price);
             tpzdfirsttime = itemView.findViewById(R.id.browse_tech_person_zone_detail_list_tpzdfirsttime);
         }

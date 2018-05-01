@@ -6,45 +6,70 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        card_view:cardCornerRadius="1dp">
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/special_classify_list_uphoto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
                 android:src="@mipmap/ic_launcher"/>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2.5"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center|left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/textcontent"
+                        android:text="专栏 ·"/>
 
                     <TextView
                         android:id="@+id/special_classify_list_tpzname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/textcontent"
                         android:text="tpzname"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center|left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/textcontent"
+                        android:text="专栏分类 ·"/>
 
                     <TextView
                         android:id="@+id/special_classify_list_tname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/textcontent"
+                        android:layout_marginLeft="5dp"
                         android:text="tname"/>
 
                 </LinearLayout>
@@ -53,17 +78,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center|left">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="作者"/>
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/textcontent"
+                        android:text="作者 ·"/>
 
                     <TextView
                         android:id="@+id/special_classify_list_ualiase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/textcontent"
+                        android:layout_marginLeft="5dp"
                         android:text="ualiase"/>
 
                 </LinearLayout>

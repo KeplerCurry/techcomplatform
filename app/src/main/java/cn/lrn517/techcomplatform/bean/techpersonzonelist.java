@@ -10,6 +10,15 @@ public class techpersonzonelist {
     private String tpzname;
     private String ualiase;
     private String tname;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getTpzid() {
         return tpzid;

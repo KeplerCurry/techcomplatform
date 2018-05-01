@@ -10,6 +10,15 @@ public class tpzFirstComment {
     private String tpzcid;
     private String content;
     private String tpzctime;
+    private String uphoto;
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getUaliase() {
         return ualiase;

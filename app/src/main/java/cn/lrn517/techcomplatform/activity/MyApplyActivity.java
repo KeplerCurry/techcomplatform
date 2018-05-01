@@ -1,5 +1,6 @@
 package cn.lrn517.techcomplatform.activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,14 +27,16 @@ public class MyApplyActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private Call call;
     private UserModel userModel = new UserModel();
+    SharedPreferences sharedPreferences;
 
-    //测试数据
-    String uid = "20180319124601";
+    String uid = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_apply);
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
         initView();
         initEvent();
     }
@@ -73,8 +76,13 @@ public class MyApplyActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<userapplyfordata>> call, Response<List<userapplyfordata>> response) {
                 List data = response.body();
-                MyApplyViewAdapter myApplyViewAdapter = new MyApplyViewAdapter(MyApplyActivity.this , data);
-                recyclerView.setAdapter(myApplyViewAdapter);
+                if( 0 != data.size() ){
+                    MyApplyViewAdapter myApplyViewAdapter = new MyApplyViewAdapter(MyApplyActivity.this , data);
+                    recyclerView.setAdapter(myApplyViewAdapter);
+                }else{
+
+                }
+
             }
 
             @Override

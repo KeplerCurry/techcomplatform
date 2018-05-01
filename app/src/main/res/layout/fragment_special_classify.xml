@@ -9,7 +9,8 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/ghostcolor">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -30,67 +31,112 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18dp"
+                        android:textColor="@color/ssy"
                         android:text="我的专栏"/>
 
                     <TextView
                         android:id="@+id/special_classify_no_zone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/comment_again_background"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/textcontent"
                         android:text="您暂时没有个人专栏，请点击右下角按钮申请。"/>
+
+                    <TextView
+                        android:id="@+id/special_classify_state_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/comment_again_background"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/textcontent"
+                        android:text="您已提交申请、请耐心等待。"/>
 
                     <LinearLayout
                         android:id="@+id/special_classify_zone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/comment_again_background"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/textcontent"
                             android:text="1"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/textcontent"
                             android:text="文章"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/textcontent"
                             android:text="1"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/textcontent"
                             android:text="关注"/>
 
                         <Button
+                            android:id="@+id/special_classify_go_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/tech_detail_attention_0"
+                            android:textColor="@color/white"
+                            android:layout_margin="5dp"
                             android:text="进入"/>
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="专栏列表"/>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/special_classify_listview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </android.support.v7.widget.RecyclerView>
-
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@color/line"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:textColor="@color/ssy"
+                    android:layout_marginLeft="10dp"
+                    android:text="专栏列表"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/line"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/special_classify_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
 
 
             </LinearLayout>
 
         </ScrollView>
-
-
 
 
         <android.support.design.widget.FloatingActionButton

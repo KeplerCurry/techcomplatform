@@ -26,6 +26,7 @@ public class techDetailData {
     private String tdfirsttime;
     private String uphoto;
     private String uid;
+    private String like;
 
     public String getUid() {
         return uid;
@@ -35,14 +36,12 @@ public class techDetailData {
         this.uid = uid;
     }
 
-    private String likecount;
-
-    public String getLikecount() {
-        return likecount;
+    public String getLike() {
+        return like;
     }
 
-    public void setLikecount(String likecount) {
-        this.likecount = likecount;
+    public void setLike(String like) {
+        this.like = like;
     }
 
     public String getUphoto() {

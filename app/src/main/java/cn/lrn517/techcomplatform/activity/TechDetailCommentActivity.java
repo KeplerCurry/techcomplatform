@@ -47,7 +47,7 @@ public class TechDetailCommentActivity extends AppCompatActivity {
     String tdid;
     String cid;
     String ctime;
-    //测试数据
+
     String uid = null;
     String ualiase = null;
     String content = "";
@@ -87,7 +87,7 @@ public class TechDetailCommentActivity extends AppCompatActivity {
         //临时添加
         //firstRecyclerView.setNestedScrollingEnabled(false);
         swipeRefreshLayout = findViewById(R.id.tech_detail_comment_swiperefreshlayout);
-        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#1296db"));
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorBasic));
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
     }
 
@@ -124,8 +124,8 @@ public class TechDetailCommentActivity extends AppCompatActivity {
         });
     }
 
-    public void send(String toualiase,String cid){
-        flag = 1==flag ? 0:1;
+    public void send(String toualiase,String cid,int flag){
+        this.flag = flag;
         if( 0 == flag ){
             this.cid = cid;
             this.toualiase = toualiase;

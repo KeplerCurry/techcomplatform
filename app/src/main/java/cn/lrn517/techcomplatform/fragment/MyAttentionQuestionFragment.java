@@ -1,6 +1,8 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,9 +32,8 @@ public class MyAttentionQuestionFragment extends Fragment {
     private Call call;
     private UserModel userModel = new UserModel();
     private MyAttentionCommonViewAdapter myAttentionCommonViewAdapter;
-
-    //测试数据
-    String uid = "20180319124601";
+    private SharedPreferences sharedPreferences;
+    String uid = "";
 
     public MyAttentionQuestionFragment() {
         // Required empty public constructor
@@ -44,6 +45,8 @@ public class MyAttentionQuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_my_attention_question, container, false);
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid",  null);
         initView(view);
         initEvent();
         return view;

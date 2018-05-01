@@ -23,6 +23,24 @@ public class userInfo {
     private String ulogintime;
     private String uloginip;
     private String uphoto;
+    private String tpzid;
+    private int applyTPZState;
+
+    public String getTpzid() {
+        return tpzid;
+    }
+
+    public void setTpzid(String tpzid) {
+        this.tpzid = tpzid;
+    }
+
+    public int getApplyTPZState() {
+        return applyTPZState;
+    }
+
+    public void setApplyTPZState(int applyTPZState) {
+        this.applyTPZState = applyTPZState;
+    }
 
     public String getUphoto() {
         return uphoto;

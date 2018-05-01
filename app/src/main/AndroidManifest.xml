@@ -22,16 +22,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
-            android:authorities="cn.lrn517.techcomplatform.fileprovider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="cn.lrn517.techcomplatform.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity android:name=".activity.LoginAndRegisterActivity" />
         <activity android:name=".activity.TechDetailActivity" />
         <activity android:name=".activity.TechDetailCommentActivity" />
@@ -67,7 +67,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.EditUserInfoActivity"></activity>
+        <activity android:name=".activity.EditUserInfoActivity" />
+        <activity android:name=".activity.RealNameActivity" />
+        <activity android:name=".activity.MySendActivity" />
+        <activity android:name=".activity.EditCommonActivity"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,8 @@ import cn.lrn517.techcomplatform.activity.MyAttentionActivity;
 import cn.lrn517.techcomplatform.activity.MyBuyedActivity;
 import cn.lrn517.techcomplatform.activity.MyCollectionActivity;
 import cn.lrn517.techcomplatform.activity.MyLikeActivity;
+import cn.lrn517.techcomplatform.activity.MySendActivity;
+import cn.lrn517.techcomplatform.activity.RealNameActivity;
 import cn.lrn517.techcomplatform.activity.UserInfoActivity;
 import cn.lrn517.techcomplatform.service.serviceAddress;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -45,11 +47,13 @@ public class MineFragment extends Fragment {
     private LinearLayout editpassword;
     private LinearLayout logout;
     private LinearLayout my_like;
+    private LinearLayout realname,realnameline;
     private View view;
 
     private SharedPreferences sharedPreferences;
 
     private String uid;
+    private String ispassed;
 
     public MineFragment() {
         // Required empty public constructor
@@ -81,6 +85,8 @@ public class MineFragment extends Fragment {
         editpassword = view.findViewById(R.id.mine_editpassword);
         logout = view.findViewById(R.id.mine_logout);
         my_like = view.findViewById(R.id.mine_like);
+        realname = view.findViewById(R.id.mine_realname);
+        realnameline = view.findViewById(R.id.mine_realname_line);
     }
 
     private void initEvent(){
@@ -100,6 +106,27 @@ public class MineFragment extends Fragment {
             login_layout.setVisibility(View.GONE);
             unloginlayout.setVisibility(View.VISIBLE);
         }
+
+        ispassed = sharedPreferences.getString("ispassed" , null);
+        Log.i("ispassed" , ispassed);
+        if( "2".equals(ispassed) || "1".equals(ispassed) ){
+            realname.setVisibility(View.GONE);
+            realnameline.setVisibility(View.GONE);
+        }else{
+            realname.setVisibility(View.VISIBLE);
+            realnameline.setVisibility(View.VISIBLE);
+        }
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if( null != uid ){
+                    Intent intent = new Intent( getActivity(), MySendActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
 
         my_collection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +180,14 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MineInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        realname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity() , RealNameActivity.class);
                 startActivity(intent);
             }
         });

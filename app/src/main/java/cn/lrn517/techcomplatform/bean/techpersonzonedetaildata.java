@@ -134,6 +134,33 @@ public class techpersonzonedetaildata {
     private String tpzdfirsttime;
     private String tpzname;
     private String ualiase;
+    private String like;
+    private String uphoto;
+    private String uid;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getLike() {
+        return like;
+    }
+
+    public void setLike(String like) {
+        this.like = like;
+    }
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getTpzdtitle() {
         return tpzdtitle;

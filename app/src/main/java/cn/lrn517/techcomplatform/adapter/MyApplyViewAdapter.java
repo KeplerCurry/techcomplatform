@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class MyApplyViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     Context context;
     View view;
     private LayoutInflater layoutInflater;
+    SharedPreferences sharedPreferences;
 
     public MyApplyViewAdapter(Context context, List<Map<String,Object>> list ){
         this.context = context;
@@ -43,7 +45,7 @@ public class MyApplyViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if( null == data )
             return;
         MyApplyViewAdapter.ViewHolder viewHolder = (MyApplyViewAdapter.ViewHolder) holder;
-
+        sharedPreferences = context.getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
         switch ( data.getFlag() ){
             case 0:
                 viewHolder.flag_1.setVisibility(View.GONE);
@@ -52,6 +54,11 @@ public class MyApplyViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     viewHolder.state_0.setText("正在处理");
                 }else if( 1 == data.getState()){
                     viewHolder.state_0.setText("申请通过");
+                    if( !"2".equals(sharedPreferences.getString("ispassed" , null))){
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("ispassed" , "2");
+                        editor.apply();
+                    }
                 }else{
                     viewHolder.state_0.setText("申请失败");
                 }
@@ -63,6 +70,12 @@ public class MyApplyViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     viewHolder.state_1.setText("正在处理");
                 }else if( 1 == data.getState()){
                     viewHolder.state_1.setText("申请通过");
+                    if( null == sharedPreferences.getString("tpzid" , null)){
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("tpzid" , data.getTpzid());
+                        editor.putInt("applyTPZState" , 2);
+                        editor.apply();
+                    }
                 }else{
                     viewHolder.state_1.setText("申请失败");
                 }

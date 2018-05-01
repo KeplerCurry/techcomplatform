@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.model;
 
 
+import cn.lrn517.techcomplatform.service.DetailService;
 import cn.lrn517.techcomplatform.service.TechPersonZoneService;
 import cn.lrn517.techcomplatform.service.serviceAddress;
 import retrofit2.Call;
@@ -81,5 +82,11 @@ public class TechPersonZoneModel {
     public Call sendTechPersonZoneCommentAgain(String tpzcid, String healer, String content){
         techPersonZoneService = retrofit.create(TechPersonZoneService.class);
         return techPersonZoneService.sendtpzcommentagain(tpzcid, healer, content);
+    }
+
+    //获取用户是否对专栏贴进行关注用户、点赞、收藏操作
+    public Call getUsera_l_c_TPZ(String auid,String uid ,String tdid){
+        techPersonZoneService = retrofit.create(TechPersonZoneService.class);
+        return techPersonZoneService.getUsera_l_c_TPZ(auid, uid, tdid);
     }
 }

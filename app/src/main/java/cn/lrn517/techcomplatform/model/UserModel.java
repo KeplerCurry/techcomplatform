@@ -1,5 +1,6 @@
 package cn.lrn517.techcomplatform.model;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cn.lrn517.techcomplatform.service.UserService;
@@ -54,6 +55,12 @@ public class UserModel {
         return userService.editUserInfo(file, uid, ualiase);
     }
 
+    //申请实名认证
+    public Call applyForRealName(MultipartBody.Part file , String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.applyForRealName(file, uid);
+    }
+
     //修改密码
     public Call alterUserPassword(String uid, String oldpassword, String newpassword){
         userService = retrofit.create(UserService.class);
@@ -78,6 +85,12 @@ public class UserModel {
         return userService.getUserInfoData(uid);
     }
 
+    //判断用户在查看其他用户页面中是否关注该用户
+    public Call getUserAttentionUser(String uid, String id){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserAttentionUser(uid, id);
+    }
+
     //获取用户个人发布的帖子、回答等列表
     public Call getUserSendData(String uid, int state){
         userService = retrofit.create(UserService.class);
@@ -94,5 +107,25 @@ public class UserModel {
     public Call attentionData(String uid){
         userService = retrofit.create(UserService.class);
         return userService.attentionData(uid);
+    }
+
+    //获取用户已发布的帖子、问题、专栏贴列表
+    //state为标识 0->帖子 1->问题 2->回答 3->专栏贴
+    public Call getUserSendList(int state ,String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserSendList(state, uid);
+    }
+
+    //修改页面通过id获取数据
+    public Call getDataByIdFromEdit(int state , String id){
+        userService = retrofit.create(UserService.class);
+        return userService.getDataByIdFromEdit(state, id);
+    }
+
+    //修改发表内容通用接口
+    //state为标识 0->帖子 1->问题 2->回答 3->专栏贴
+    public Call editSendByState(Map<String,String> params){
+        userService = retrofit.create(UserService.class);
+        return userService.editSendByState(params);
     }
 }

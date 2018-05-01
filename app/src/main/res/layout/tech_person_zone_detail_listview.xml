@@ -1,76 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        card_view:cardCornerRadius="1dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/browse_tech_person_zone_detail_list_tpzdtitle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="tpzdtitle"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
 
                 <TextView
-                    android:id="@+id/browse_tech_person_zone_detail_list_isfree"
+                    android:id="@+id/browse_tech_person_zone_detail_list_tpzdtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="免费"/>
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/ssy"
+                    android:textSize="18dp"
+                    android:text="tpzdtitdddddddddddddddddddddddddddddddddddddddddle"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/browse_tech_person_zone_detail_list_price"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="$100"/>
+                    android:textSize="14dp"
+                    android:gravity="center|top"
+                    android:text="10硬币"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/browse_tech_person_zone_detail_list_likecount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="1赞"/>
-
-                <TextView
-                    android:id="@+id/browse_tech_person_zone_detail_list_commentcount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="1评论"/>
-
-                <TextView
-                    android:id="@+id/browse_tech_person_zone_detail_list_tpzdfirsttime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="时间"/>
-
-            </LinearLayout>
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp">
+
+            <TextView
+                android:id="@+id/browse_tech_person_zone_detail_list_likecount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="赞"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="·"/>
+
+            <TextView
+                android:id="@+id/browse_tech_person_zone_detail_list_commentcount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="评论"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="·"/>
+
+            <TextView
+                android:id="@+id/browse_tech_person_zone_detail_list_tpzdfirsttime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="时间"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/line"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            tools:ignore="Suspicious0dp"
+            android:layout_gravity="bottom"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

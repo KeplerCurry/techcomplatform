@@ -140,7 +140,7 @@ public class TechDetailActivity extends AppCompatActivity {
         uphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( authoruid == uid ){
+                if( authoruid.equals(uid) ){
                     Intent intent = new Intent(TechDetailActivity.this, MineInfoActivity.class);
                     startActivity(intent);
                 }else{
@@ -171,7 +171,7 @@ public class TechDetailActivity extends AppCompatActivity {
                 tdfirsttime.setText(data.getTdfirsttime().toString());
                 tname.setText(data.getTname().toString());
                 tdtitle.setText(data.getTdtitle().toString());
-                liketext.setText(data.getLikecount().toString());
+                liketext.setText(data.getLike());
                 authoruid = data.getUid().toString();
 
             }
@@ -201,7 +201,7 @@ public class TechDetailActivity extends AppCompatActivity {
                 tdfirsttime.setText(data.getTdfirsttime().toString());
                 tname.setText(data.getTname().toString());
                 tdtitle.setText(data.getTdtitle().toString());
-                liketext.setText(data.getLikecount().toString());
+                liketext.setText(data.getLike().toString());
                 authoruid = data.getUid().toString();
                 getUserL_A_C();
             }
