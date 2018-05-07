@@ -3,6 +3,7 @@ package cn.lrn517.techcomplatform.adapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,10 +55,13 @@ public class MyApplyViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     viewHolder.state_0.setText("正在处理");
                 }else if( 1 == data.getState()){
                     viewHolder.state_0.setText("申请通过");
-                    if( !"2".equals(sharedPreferences.getString("ispassed" , null))){
+                    Log.i("专栏申请","申请+"+sharedPreferences.getString("tpzid" , null));
+                    if( null == sharedPreferences.getString("tpzid" , null)){
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("ispassed" , "2");
+                        editor.putString("tpzid" , data.getTpzid());
+                        editor.putInt("applyTPZState" , 2);
                         editor.apply();
+                        Log.i("专栏申请","申请成功");
                     }
                 }else{
                     viewHolder.state_0.setText("申请失败");
@@ -70,11 +74,11 @@ public class MyApplyViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     viewHolder.state_1.setText("正在处理");
                 }else if( 1 == data.getState()){
                     viewHolder.state_1.setText("申请通过");
-                    if( null == sharedPreferences.getString("tpzid" , null)){
+                    if( !"2".equals(sharedPreferences.getString("ispassed" , null))){
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("tpzid" , data.getTpzid());
-                        editor.putInt("applyTPZState" , 2);
+                        editor.putString("ispassed" , "2");
                         editor.apply();
+                        Log.i("ispassed" , "ispassed"+" success");
                     }
                 }else{
                     viewHolder.state_1.setText("申请失败");

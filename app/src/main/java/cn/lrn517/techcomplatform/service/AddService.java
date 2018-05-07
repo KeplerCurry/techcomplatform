@@ -1,9 +1,14 @@
 package cn.lrn517.techcomplatform.service;
 
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.bean.addAnswerResult;
 import cn.lrn517.techcomplatform.bean.addTechDetailResult;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 /**
@@ -22,14 +27,10 @@ public interface AddService {
     );
 
     //发送技术贴
+    @Multipart
     @POST("send_technology_detail")
     Call<addTechDetailResult> sendTechnologyDetail(
-            @Query("tuid")  String tuid,
-            @Query("tdtitle")  String tdtitle,
-            @Query("tdcontent")  String tdcontent,
-            @Query("tid")  String tid,
-            @Query("isfree")  int isfree,
-            @Query("price")  double price
+            @PartMap Map<String, RequestBody> params
     );
 
 }

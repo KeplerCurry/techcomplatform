@@ -81,6 +81,12 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public boolean onLongClick(View view) {
                     Toast.makeText(context, "长按修改", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context , EditCommonActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("state" , 1);
+                    bundle.putString("id",data.getTdid());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
                     return true;
                 }
             });
@@ -92,6 +98,13 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public boolean onLongClick(View view) {
                     Toast.makeText(context, "长按修改", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context , EditCommonActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("state" , 2);
+                    bundle.putString("id",data.getCid());
+                    bundle.putString("tdtitle" , data.getTdtitle());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
                     return true;
                 }
             });
@@ -102,6 +115,12 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public boolean onLongClick(View view) {
                     Toast.makeText(context, "长按修改", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context , EditCommonActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("state" , 3);
+                    bundle.putString("id",data.getTpzdid());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
                     return true;
                 }
             });

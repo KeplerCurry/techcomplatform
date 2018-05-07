@@ -182,11 +182,11 @@ public class BrowseTechPersonZoneActivity extends AppCompatActivity {
                         .dontAnimate()
                         .crossFade()
                         .into(uphoto);
-                tpzname.setText(data.getTpzname().toString());
-                toolbar.setTitle(data.getTpzname().toString());
-                ualiase.setText(data.getUaliase().toString());
-                tname.setText(data.getTname().toString());
-                detailcount.setText(data.getListcount().toString()+"篇文章");
+                tpzname.setText(data.getTpzname());
+                toolbar.setTitle(data.getTpzname());
+                ualiase.setText(data.getUaliase());
+                tname.setText(data.getTname());
+                detailcount.setText(data.getListcount()+"篇文章");
             }
 
             @Override

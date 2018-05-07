@@ -150,5 +150,6 @@ public class SpecialClassifyFragment extends Fragment {
         super.onResume();
         sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
         i = sharedPreferences.getInt("applyTPZState" , -1);
+        Log.i("i" , "i = "+i);
     }
 }

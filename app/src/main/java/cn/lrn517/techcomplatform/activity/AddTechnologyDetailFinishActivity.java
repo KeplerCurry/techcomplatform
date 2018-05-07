@@ -13,9 +13,14 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.bean.addTechDetailResult;
 import cn.lrn517.techcomplatform.model.AddModel;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,6 +32,7 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
     private AddModel addModel = new AddModel();
     private SharedPreferences sharedPreferences;
     private Toolbar toolbar;
+    Map<String,RequestBody> params = new HashMap<>();
     Call call;
 
     int isfree;
@@ -65,6 +71,12 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
             public void onClick(View view) {
                 tdcontent_s = tdcontent.getText().toString();
                 tdtitle_s = tdtitle.getText().toString();
+                params.put("tuid" , toRequestBody(tuid));
+                params.put("tdtitle" , toRequestBody(tdtitle_s));
+                params.put("tdcontent" , toRequestBody(tdcontent_s));
+                params.put("tid" , toRequestBody(tid));
+                params.put("isfree" , toRequestBody(String.valueOf(isfree)));
+                params.put("price" , toRequestBody(String.valueOf(price)));
                 if( "".equals(tdcontent_s) || "".equals(tdtitle_s)){
                     Toast.makeText(AddTechnologyDetailFinishActivity.this, "请将标题或内容填写完整", Toast.LENGTH_SHORT).show();
                 }else{
@@ -92,12 +104,12 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
     private void getDataForFirst(){
         Bundle bundle = getIntent().getExtras();
         isfree = bundle.getInt("isfree");
-        price = bundle.getDouble("price",0.0);
+        price = bundle.getInt("price",0);
         tid = bundle.getString("tid");
     }
 
     private void sendTechnologyDetail(){
-        call =  addModel.sendTechnologyDetail(tuid , tdtitle_s , tdcontent_s , tid , isfree , price);
+        call =  addModel.sendTechnologyDetail(params);
         Callback<addTechDetailResult> addTechDetailResultCallback = new Callback<addTechDetailResult>() {
             @Override
             public void onResponse(Call<addTechDetailResult> call, Response<addTechDetailResult> response) {
@@ -120,5 +132,11 @@ public class AddTechnologyDetailFinishActivity extends AppCompatActivity {
             }
         };
         call.enqueue(addTechDetailResultCallback);
+    }
+
+    //将文本类型转换成RequestBody
+    public static RequestBody toRequestBody(String text){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain") , text);
+        return requestBody;
     }
 }

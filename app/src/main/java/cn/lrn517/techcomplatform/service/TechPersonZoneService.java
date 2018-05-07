@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.service;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.bean.commonForSendTPZ;
@@ -12,8 +13,11 @@ import cn.lrn517.techcomplatform.bean.techpersonzoneuserinfo;
 import cn.lrn517.techcomplatform.bean.tpzCommentAgain;
 import cn.lrn517.techcomplatform.bean.tpzFirstComment;
 import cn.lrn517.techcomplatform.bean.userForTechDetailState;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 /**
@@ -30,13 +34,10 @@ public interface TechPersonZoneService {
     );
 
     //发表个人专栏文章
+    @Multipart
     @POST("send_tech_person_zone_detail")
     Call<commonForSendTPZ> sendtechpersonzonedetail(
-            @Query("tpzid") String tpzid,
-            @Query("tpzdtitle") String tpzdtitle,
-            @Query("tpzdcontent") String tpzdcontent,
-            @Query("isfree") int isfree,
-            @Query("price") double price
+            @PartMap Map<String, RequestBody> params
     );
     //获取专栏列表
     @POST("load_tech_person_zone_list")

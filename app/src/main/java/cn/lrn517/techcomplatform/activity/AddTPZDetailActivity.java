@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,12 +14,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.bean.commonForSendTPZ;
 import cn.lrn517.techcomplatform.model.TechPersonZoneModel;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Multipart;
 
 public class AddTPZDetailActivity extends AppCompatActivity {
 
@@ -33,15 +40,16 @@ public class AddTPZDetailActivity extends AppCompatActivity {
     int price = 0;
     String title = "";
     String content = "";
-
-
-    //测试数据
-    String tpzid = "tpz-1";
+    Map<String, RequestBody> params = new HashMap<>();
+    String tpzid = null;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tpzdetail);
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        tpzid = sharedPreferences.getString("tpzid" , null);
         initView();
         initEvent();
     }
@@ -90,7 +98,12 @@ public class AddTPZDetailActivity extends AppCompatActivity {
         if( !"".equals(tpzdprice.getText().toString())){
             price = Integer.valueOf(tpzdprice.getText().toString());
         }
-        call = techPersonZoneModel.sendTechPersonZoneDetail(tpzid , title , content , isfree_flag , price);
+        params.put("tpzid" , toRequestBody(tpzid));
+        params.put("tpzdtitle" , toRequestBody(title));
+        params.put("tpzdcontent" , toRequestBody(content));
+        params.put("isfree" , toRequestBody(String.valueOf(isfree_flag)));
+        params.put("price" , toRequestBody(String.valueOf(price)));
+        call = techPersonZoneModel.sendTechPersonZoneDetail(params);
         Callback<commonForSendTPZ> commonForSendTPZCallback = new Callback<commonForSendTPZ>() {
             @Override
             public void onResponse(Call<commonForSendTPZ> call, Response<commonForSendTPZ> response) {
@@ -114,6 +127,12 @@ public class AddTPZDetailActivity extends AppCompatActivity {
             }
         };
         call.enqueue(commonForSendTPZCallback);
+    }
+
+    //将文本类型转换成RequestBody
+    public static RequestBody toRequestBody(String text){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain") , text);
+        return requestBody;
     }
 
 

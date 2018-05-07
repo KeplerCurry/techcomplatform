@@ -1,7 +1,10 @@
 package cn.lrn517.techcomplatform.model;
 
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.service.AddService;
 import cn.lrn517.techcomplatform.service.serviceAddress;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -29,9 +32,9 @@ public class AddModel {
     }
 
     //发送技术贴
-    public Call sendTechnologyDetail(String tuid , String tdtitle , String tdcontent , String tid , int isfree , double price){
+    public Call sendTechnologyDetail(Map<String, RequestBody> params){
         addService = retrofit.create(AddService.class);
-        return addService.sendTechnologyDetail(tuid, tdtitle, tdcontent, tid, isfree, price);
+        return addService.sendTechnologyDetail(params);
     }
 
 }

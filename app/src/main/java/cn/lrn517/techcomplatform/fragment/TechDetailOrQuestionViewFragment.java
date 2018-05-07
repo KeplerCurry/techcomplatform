@@ -114,7 +114,7 @@ public class TechDetailOrQuestionViewFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<homeData>> call, Throwable t) {
-
+                Log.i("network" , "获取失败");
             }
         };
         call.enqueue(listCallback);

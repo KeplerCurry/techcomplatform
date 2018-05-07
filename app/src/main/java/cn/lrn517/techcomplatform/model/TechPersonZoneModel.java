@@ -1,9 +1,12 @@
 package cn.lrn517.techcomplatform.model;
 
 
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.service.DetailService;
 import cn.lrn517.techcomplatform.service.TechPersonZoneService;
 import cn.lrn517.techcomplatform.service.serviceAddress;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -31,9 +34,9 @@ public class TechPersonZoneModel {
     }
 
     //发表个人专栏文章
-    public Call sendTechPersonZoneDetail(String tpzdid, String tpzdtitle, String tpzdcontent, int isfree, double price){
+    public Call sendTechPersonZoneDetail(Map<String,RequestBody> params){
         techPersonZoneService = retrofit.create(TechPersonZoneService.class);
-        return techPersonZoneService.sendtechpersonzonedetail(tpzdid, tpzdtitle, tpzdcontent, isfree, price);
+        return techPersonZoneService.sendtechpersonzonedetail(params);
     }
 
     //获取专栏列表

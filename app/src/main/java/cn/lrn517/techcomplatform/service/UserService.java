@@ -14,6 +14,8 @@ import cn.lrn517.techcomplatform.bean.userBuyedData;
 import cn.lrn517.techcomplatform.bean.userInfo;
 import cn.lrn517.techcomplatform.bean.userapplyfordata;
 import okhttp3.MultipartBody;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Multipart;
@@ -141,6 +143,6 @@ public interface UserService {
     @Multipart
     @POST("editSendByState")
     Call<common> editSendByState(
-            @PartMap Map<String,String> params
+            @PartMap Map<String, RequestBody> params
     );
  }

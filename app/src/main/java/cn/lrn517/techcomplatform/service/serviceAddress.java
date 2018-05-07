@@ -6,4 +6,5 @@ package cn.lrn517.techcomplatform.service;
 
 public class serviceAddress {
     public final static String SERVICE_ADDRESS = "http://47.95.198.79/techcomplatformAPI";
+    //public final static String SERVICE_ADDRESS = "http://127.0.0.1/techcomplatformAPI";
 }
