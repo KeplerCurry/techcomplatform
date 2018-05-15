@@ -25,6 +25,15 @@ public class completeAnswerData {
     private String commentcount;
     private String uid;
     private String uphoto;
+    private String uspecialline;
+
+    public String getUspecialline() {
+        return uspecialline;
+    }
+
+    public void setUspecialline(String uspecialline) {
+        this.uspecialline = uspecialline;
+    }
 
     public String getUid() {
         return uid;

@@ -1,7 +1,9 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -10,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -37,6 +40,9 @@ public class TechDetailFragment extends Fragment {
     private int i;
     private FloatingActionButton add;
 
+    private SharedPreferences sharedPreferences;
+    private String ispassed;
+
     public TechDetailFragment() {
         // Required empty public constructor
     }
@@ -47,6 +53,7 @@ public class TechDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tech_detail, container, false);
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
         initView(view);
         initEvent();
         return view;
@@ -61,6 +68,8 @@ public class TechDetailFragment extends Fragment {
 
 
     private void initEvent(){
+        ispassed = sharedPreferences.getString("ispassed" , null);
+
         call = detailModel.getTechClassifyData();
         Callback<List<techclassifydata>> callback = new Callback<List<techclassifydata>>() {
             @Override
@@ -88,8 +97,13 @@ public class TechDetailFragment extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent( getActivity() , AddTechnologyDetailFirstActivity.class);
-                startActivity(intent);
+                if( "2".equals(ispassed)){
+                    Intent intent = new Intent( getActivity() , AddTechnologyDetailFirstActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "没有通过身份认证，请提交或耐心等待", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -103,5 +117,11 @@ public class TechDetailFragment extends Fragment {
         }
         viewPager.setAdapter(new TechDetailOrQuestionFragmentPagerAdapter(getActivity().getSupportFragmentManager() , mTitle , mTitleId,0));
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ispassed = sharedPreferences.getString("ispassed" , null);
     }
 }

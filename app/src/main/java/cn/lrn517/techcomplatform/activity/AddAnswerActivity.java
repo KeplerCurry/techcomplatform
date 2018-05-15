@@ -10,9 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.model.DetailModel;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +34,8 @@ public class AddAnswerActivity extends AppCompatActivity {
     private DetailModel detailModel = new DetailModel();
     private Call call;
     private SharedPreferences sharedPreferences;
+
+    Map<String, RequestBody> params = new HashMap<>();
 
     String uid;
     @Override
@@ -62,7 +69,10 @@ public class AddAnswerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String content = content_send.getText().toString();
-                call = detailModel.sendAnswer(tdid , uid , content);
+                params.put("tdid" , toRequestBody(tdid));
+                params.put("reviewer" , toRequestBody(uid));
+                params.put("content" ,toRequestBody(content));
+                call = detailModel.sendAnswer(params);
                 Callback<common> commonCallback = new Callback<common>() {
                     @Override
                     public void onResponse(Call<common> call, Response<common> response) {
@@ -82,5 +92,10 @@ public class AddAnswerActivity extends AppCompatActivity {
                 call.enqueue(commonCallback);
             }
         });
+    }
+
+    private static RequestBody toRequestBody(String t){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"),t);
+        return requestBody;
     }
 }

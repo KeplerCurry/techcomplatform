@@ -1,7 +1,10 @@
 package cn.lrn517.techcomplatform.model;
 
+import java.util.Map;
+
 import cn.lrn517.techcomplatform.service.DetailService;
 import cn.lrn517.techcomplatform.service.serviceAddress;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -96,9 +99,9 @@ public class DetailModel {
     }
 
     //回答提问帖
-    public Call sendAnswer(String tdid , String reviewer ,String content){
+    public Call sendAnswer(Map<String, RequestBody> params){
         detailService = retrofit.create(DetailService.class);
-        return detailService.sendAnswerData(tdid,reviewer,content);
+        return detailService.sendAnswerData(params);
     }
 
     //评论回答内容

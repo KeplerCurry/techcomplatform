@@ -70,7 +70,9 @@
         <activity android:name=".activity.EditUserInfoActivity" />
         <activity android:name=".activity.RealNameActivity" />
         <activity android:name=".activity.MySendActivity" />
-        <activity android:name=".activity.EditCommonActivity"></activity>
+        <activity android:name=".activity.EditCommonActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.PaddingInfoActivity"></activity>
     </application>
 
 </manifest>

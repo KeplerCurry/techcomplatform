@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +63,7 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         if( holder instanceof MySendCommonViewAdapter.ViewHolder_0){
             MySendCommonViewAdapter.ViewHolder_0 viewHolder_0 = (MySendCommonViewAdapter.ViewHolder_0) holder;
             viewHolder_0.name.setText(data.getTdtitle());
+            viewHolder_0.tname.setText(data.getTname());
             viewHolder_0.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -77,6 +80,7 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         }else if( holder instanceof MySendCommonViewAdapter.ViewHolder_1){
             MySendCommonViewAdapter.ViewHolder_1 viewHolder_1 = (MySendCommonViewAdapter.ViewHolder_1) holder;
             viewHolder_1.tdtitle.setText(data.getTdtitle());
+            viewHolder_1.tname.setText(data.getTname());
             viewHolder_1.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -111,6 +115,7 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         }else{
             MySendCommonViewAdapter.ViewHolder_3 viewHolder_3 = (MySendCommonViewAdapter.ViewHolder_3) holder;
             viewHolder_3.name.setText(data.getTpzdtitle());
+            viewHolder_3.tname.setText(data.getTpzname());
             viewHolder_3.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -146,32 +151,35 @@ public class MySendCommonViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private class ViewHolder_1 extends RecyclerView.ViewHolder{
 
         TextView tdtitle;
-
+        TextView tname;
         ViewHolder_1(View itemView){
             super(itemView);
             tdtitle = itemView.findViewById(R.id.my_attention_question_tdtitle);
+            tname = itemView.findViewById(R.id.my_attention_question_tname);
         }
     }
 
     public class ViewHolder_0 extends RecyclerView.ViewHolder{
 
         TextView name;
-
+        TextView tname;
 
         public ViewHolder_0(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.my_collection_common_detail_name);
+            tname = itemView.findViewById(R.id.my_collection_common_detail_tname);
         }
     }
 
     public class ViewHolder_3 extends RecyclerView.ViewHolder{
 
         TextView name;
-
+        TextView tname;
 
         public ViewHolder_3(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.my_collection_common_detail_name);
+            tname = itemView.findViewById(R.id.my_collection_common_detail_tname);
         }
     }
 }

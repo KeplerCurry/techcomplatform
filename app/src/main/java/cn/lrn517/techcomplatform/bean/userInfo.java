@@ -25,6 +25,33 @@ public class userInfo {
     private String uphoto;
     private String tpzid;
     private int applyTPZState;
+    private int usex;
+    private String uspecialline;
+    private String utype;
+
+    public String getUtype() {
+        return utype;
+    }
+
+    public void setUtype(String utype) {
+        this.utype = utype;
+    }
+
+    public int getUsex() {
+        return usex;
+    }
+
+    public void setUsex(int usex) {
+        this.usex = usex;
+    }
+
+    public String getUspecialline() {
+        return uspecialline;
+    }
+
+    public void setUspecialline(String uspecialline) {
+        this.uspecialline = uspecialline;
+    }
 
     public String getTpzid() {
         return tpzid;

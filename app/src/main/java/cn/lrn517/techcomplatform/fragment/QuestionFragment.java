@@ -1,7 +1,9 @@
 package cn.lrn517.techcomplatform.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,6 +41,9 @@ public class QuestionFragment extends Fragment {
     private int i;
     private FloatingActionButton add;
 
+    private SharedPreferences sharedPreferences;
+    private String ispassed;
+
     public QuestionFragment() {
         // Required empty public constructor
     }
@@ -48,6 +54,7 @@ public class QuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_question, container, false);
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
         initView(view);
         initEvent();
         return view;
@@ -60,6 +67,8 @@ public class QuestionFragment extends Fragment {
     }
 
     private void initEvent(){
+        ispassed = sharedPreferences.getString("ispassed" , null);
+
         call = detailModel.getTechClassifyData();
         Callback<List<techclassifydata>> callback = new Callback<List<techclassifydata>>() {
             @Override
@@ -87,8 +96,13 @@ public class QuestionFragment extends Fragment {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent( getActivity() , AddAskForFirstActivity.class);
-                startActivity(intent);
+                if( "2".equals(ispassed)){
+                    Intent intent = new Intent( getActivity() , AddAskForFirstActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getActivity(), "没有通过身份认证，请提交或耐心等待", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -102,6 +116,12 @@ public class QuestionFragment extends Fragment {
         }
         viewPager.setAdapter(new TechDetailOrQuestionFragmentPagerAdapter(getActivity().getSupportFragmentManager() , mTitle , mTitleId,1));
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ispassed = sharedPreferences.getString("ispassed" , null);
     }
 
 }

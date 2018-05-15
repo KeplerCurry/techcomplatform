@@ -9,11 +9,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 import java.util.Map;
 
 import cn.lrn517.techcomplatform.R;
+import cn.lrn517.techcomplatform.activity.MainActivity;
 import cn.lrn517.techcomplatform.bean.commonAttentionData;
+import cn.lrn517.techcomplatform.service.serviceAddress;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by lirun on 2018/4/8.
@@ -55,9 +60,21 @@ public class MyAttentionCommonViewAdapter extends RecyclerView.Adapter<RecyclerV
         if( holder instanceof ViewHolder_11){
             ViewHolder_11 viewHolder_11 = (ViewHolder_11) holder;
             viewHolder_11.ualiase.setText(data.getUaliase().toString());
+            Glide.with(context)
+                    .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto())
+                    .dontAnimate()
+                    .crossFade()
+                    .into(viewHolder_11.image);
+            viewHolder_11.ulevel.setText(data.getUlevel());
+            if( "0".equals(data.getUtype())){
+                viewHolder_11.utype.setText("普通用户");
+            }else{
+                viewHolder_11.utype.setText("高级用户");
+            }
         }else if( holder instanceof ViewHolder_12){
             ViewHolder_12 viewHolder_12 = (ViewHolder_12) holder;
-            viewHolder_12.tdtitle.setText(data.getTdtitle().toString());
+            viewHolder_12.tdtitle.setText(data.getTdtitle());
+            viewHolder_12.tname.setText(data.getTname());
         }else{
             ViewHolder_13 viewHolder_13 = (ViewHolder_13) holder;
             viewHolder_13.tpzname.setText(data.getTpzname().toString());
@@ -72,7 +89,7 @@ public class MyAttentionCommonViewAdapter extends RecyclerView.Adapter<RecyclerV
     private class ViewHolder_11 extends RecyclerView.ViewHolder{
 
         TextView ualiase,ulevel,utype;
-        ImageView image;
+        CircleImageView image;
 
         ViewHolder_11(View itemView){
             super(itemView);
@@ -86,10 +103,12 @@ public class MyAttentionCommonViewAdapter extends RecyclerView.Adapter<RecyclerV
     private class ViewHolder_12 extends RecyclerView.ViewHolder{
 
         TextView tdtitle;
+        TextView tname;
 
         ViewHolder_12(View itemView){
             super(itemView);
             tdtitle = itemView.findViewById(R.id.my_attention_question_tdtitle);
+            tname = itemView.findViewById(R.id.my_attention_question_tname);
         }
     }
 

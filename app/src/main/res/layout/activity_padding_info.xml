@@ -6,25 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/ghostcolor"
-    tools:context="cn.lrn517.techcomplatform.activity.EditUserInfoActivity">
+    tools:context="cn.lrn517.techcomplatform.activity.PaddingInfoActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/edit_user_info_toolbar"
+            android:id="@+id/padding_info_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_close_new"
-            app:contentInsetStart="0dp"
-            app:title="修改个人信息"
+            app:contentInsetStart="30dp"
+            app:title="完善个人信息"
             android:background="@color/colorPrimary"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/Base.ThemeOverlay.AppCompat.Light">
 
             <ImageView
-                android:id="@+id/edit_user_info_send"
+                android:id="@+id/padding_info_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_right"
@@ -41,13 +40,13 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/edit_user_info_uphoto"
+            android:id="@+id/padding_info_uphoto"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/defaultpic"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -65,7 +64,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/edit_user_info_ualiase"
+                    android:id="@+id/padding_info_ualiase"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -88,29 +87,29 @@
                 android:src="@drawable/ic_sex"/>
 
 
-                <CheckBox
-                    android:id="@+id/edit_user_info_men"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"/>
+            <CheckBox
+                android:id="@+id/padding_info_men"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="男"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="男"/>
 
-                <CheckBox
-                    android:id="@+id/edit_user_info_women"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"/>
+            <CheckBox
+                android:id="@+id/padding_info_women"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="女"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="女"/>
 
         </LinearLayout>
 
@@ -131,7 +130,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/edit_user_info_uspecialline"
+                    android:id="@+id/padding_info_uspecialline"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"

@@ -92,7 +92,7 @@
                     android:layout_marginRight="30dp"
                     android:text="获取验证码"
                     android:textColor="#FFFFFF"
-                    android:background="@color/colorBasic"/>
+                    android:background="@drawable/common_button_background"/>
 
             </LinearLayout>
 
@@ -111,7 +111,7 @@
                     android:layout_marginRight="30dp"
                     android:text="验证"
                     android:textColor="#FFFFFF"
-                    android:background="@color/colorBasic"/>
+                    android:background="@drawable/common_button_background"/>
 
             </LinearLayout>
 

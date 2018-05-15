@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class SeeAnswerActivity extends AppCompatActivity {
 
-    private TextView tdtitle,ualiase,content,ctime,commentcount,likecount,attentiontext;
+    private TextView tdtitle,ualiase,content,ctime,commentcount,likecount,attentiontext,uspecialline;
     private Toolbar toolbar;
     private LinearLayout like,comment,attention;
     private ImageView likepic;
@@ -58,7 +58,7 @@ public class SeeAnswerActivity extends AppCompatActivity {
     }
 
     private void initView(){
-        //close = (ImageView) findViewById(R.id.see_answer_close);
+        uspecialline = findViewById(R.id.see_answer_uspecialline);
         tdtitle = (TextView) findViewById(R.id.see_answer_tdtitle);
         ualiase = (TextView) findViewById(R.id.see_answer_ualiase);
         content = (TextView) findViewById(R.id.see_answer_content);
@@ -138,11 +138,12 @@ public class SeeAnswerActivity extends AppCompatActivity {
                             .dontAnimate()
                             .crossFade()
                             .into(uphoto);
-                    ualiase.setText(data.getUaliase().toString());
-                    content.setText(data.getContent().toString());
-                    ctime.setText("发表于  "+data.getCtime().toString());
-                    likecount.setText(data.getChit().toString());
-                    commentcount.setText(data.getCommentcount().toString());
+                    ualiase.setText(data.getUaliase());
+                    content.setText(data.getContent());
+                    ctime.setText("发表于  "+data.getCtime());
+                    likecount.setText(data.getChit());
+                    commentcount.setText(data.getCommentcount());
+                    uspecialline.setText(data.getUspecialline());
                 }
             }
 
@@ -166,12 +167,13 @@ public class SeeAnswerActivity extends AppCompatActivity {
                             .dontAnimate()
                             .crossFade()
                             .into(uphoto);
-                    ualiase.setText(data.getUaliase().toString());
-                    content.setText(data.getContent().toString());
-                    ctime.setText("发表于  "+data.getCtime().toString());
-                    likecount.setText(data.getChit().toString());
-                    commentcount.setText(data.getCommentcount().toString());
-                    authorid = data.getUid().toString();
+                    ualiase.setText(data.getUaliase());
+                    content.setText(data.getContent());
+                    ctime.setText("发表于  "+data.getCtime());
+                    likecount.setText(data.getChit());
+                    commentcount.setText(data.getCommentcount());
+                    authorid = data.getUid();
+                    uspecialline.setText(data.getUspecialline());
                     getUserForTheAnswer();
                 }
             }
@@ -314,5 +316,7 @@ public class SeeAnswerActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getAnswerData();
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
     }
 }

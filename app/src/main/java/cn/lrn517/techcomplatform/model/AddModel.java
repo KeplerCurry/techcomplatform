@@ -4,6 +4,7 @@ import java.util.Map;
 
 import cn.lrn517.techcomplatform.service.AddService;
 import cn.lrn517.techcomplatform.service.serviceAddress;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -26,9 +27,9 @@ public class AddModel {
     }
 
     //发送提问帖
-    public Call sendAsk(String tuid , String tdtitle , String tdcontent , String tid){
+    public Call sendAsk(Map<String, RequestBody> params){
         addService = retrofit.create(AddService.class);
-        return addService.sendAsk(tuid, tdtitle, tdcontent, tid);
+        return addService.sendAsk(params);
     }
 
     //发送技术贴

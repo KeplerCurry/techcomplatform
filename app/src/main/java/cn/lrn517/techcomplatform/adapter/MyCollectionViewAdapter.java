@@ -43,8 +43,10 @@ public class MyCollectionViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         MyCollectionViewAdapter.ViewHolder viewHolder = (MyCollectionViewAdapter.ViewHolder) holder;
         if( null != data.getTdtitle()){
             viewHolder.name.setText(data.getTdtitle().toString());
+            viewHolder.tname.setText(data.getTname());
         }else{
             viewHolder.name.setText(data.getTpzdtitle().toString());
+            viewHolder.tname.setText(data.getTpzname());
         }
     }
 
@@ -56,11 +58,12 @@ public class MyCollectionViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView name;
-
+        TextView tname;
 
         public ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.my_collection_common_detail_name);
+            tname = itemView.findViewById(R.id.my_collection_common_detail_tname);
         }
     }
 }

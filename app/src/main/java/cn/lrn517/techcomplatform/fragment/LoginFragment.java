@@ -94,10 +94,13 @@ public class    LoginFragment extends Fragment {
         editor.putString("ispassed" , data.getIspassed());
         editor.putString("ulevel" , data.getUlevel());
         editor.putString("uexp" , data.getUexp());
+        editor.putString("utype" , data.getUtype());
         editor.putString("ulogintime" , data.getUlogintime());
         editor.putString("uloginip" , data.getUloginip());
         editor.putString("tpzid" , data.getTpzid());
         editor.putInt("applyTPZState" , data.getApplyTPZState());
+        editor.putInt("usex" , data.getUsex());
+        editor.putString("uspecialline" , data.getUspecialline());
         editor.apply();
     }
 

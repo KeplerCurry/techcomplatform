@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 
 import cn.lrn517.techcomplatform.R;
 import cn.lrn517.techcomplatform.activity.AlterPasswordActivity;
+import cn.lrn517.techcomplatform.activity.LoginAndRegisterActivity;
 import cn.lrn517.techcomplatform.activity.MainActivity;
 import cn.lrn517.techcomplatform.activity.MineInfoActivity;
 import cn.lrn517.techcomplatform.activity.MyApplyActivity;
@@ -90,32 +91,8 @@ public class MineFragment extends Fragment {
     }
 
     private void initEvent(){
-        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
-        uid = sharedPreferences.getString("uid" , null);
-        if( uid != null ){
-            login_layout.setVisibility(View.VISIBLE);
-            unloginlayout.setVisibility(View.GONE);
-            Glide.with(getActivity())
-                    .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+sharedPreferences.getString("uphoto" , null))
-                    .dontAnimate()
-                    .crossFade()
-                    .into(uphoto);
-            ualiase.setText(sharedPreferences.getString("ualiase" , null));
 
-        }else{
-            login_layout.setVisibility(View.GONE);
-            unloginlayout.setVisibility(View.VISIBLE);
-        }
-
-        ispassed = sharedPreferences.getString("ispassed" , null);
-        Log.i("ispassed" , ispassed);
-        if( "2".equals(ispassed) || "1".equals(ispassed) ){
-            realname.setVisibility(View.GONE);
-            realnameline.setVisibility(View.GONE);
-        }else{
-            realname.setVisibility(View.VISIBLE);
-            realnameline.setVisibility(View.VISIBLE);
-        }
+        startView();
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +161,14 @@ public class MineFragment extends Fragment {
             }
         });
 
+        unloginlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity()  , LoginAndRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
         realname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -196,9 +181,38 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 clearSpData();
+                startView();
             }
         });
 
+    }
+
+    private void startView(){
+        sharedPreferences = getActivity().getSharedPreferences("userInfo" , Context.MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
+        if( uid != null ){
+            login_layout.setVisibility(View.VISIBLE);
+            unloginlayout.setVisibility(View.GONE);
+            Glide.with(getActivity())
+                    .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+sharedPreferences.getString("uphoto" , null))
+                    .dontAnimate()
+                    .crossFade()
+                    .into(uphoto);
+            ualiase.setText(sharedPreferences.getString("ualiase" , null));
+            ispassed = sharedPreferences.getString("ispassed" , null);
+            Log.i("ispassed" , ispassed);
+            if( "2".equals(ispassed) || "1".equals(ispassed) ){
+                realname.setVisibility(View.GONE);
+                realnameline.setVisibility(View.GONE);
+            }else{
+                realname.setVisibility(View.VISIBLE);
+                realnameline.setVisibility(View.VISIBLE);
+            }
+
+        }else{
+            login_layout.setVisibility(View.GONE);
+            unloginlayout.setVisibility(View.VISIBLE);
+        }
     }
 
     private void clearSpData(){
@@ -209,4 +223,9 @@ public class MineFragment extends Fragment {
         Log.i("mag" , "清除数据成功！");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initEvent();
+    }
 }

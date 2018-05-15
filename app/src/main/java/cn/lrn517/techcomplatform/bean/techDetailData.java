@@ -27,6 +27,15 @@ public class techDetailData {
     private String uphoto;
     private String uid;
     private String like;
+    private String uspecialline;
+
+    public String getUspecialline() {
+        return uspecialline;
+    }
+
+    public void setUspecialline(String uspecialline) {
+        this.uspecialline = uspecialline;
+    }
 
     public String getUid() {
         return uid;

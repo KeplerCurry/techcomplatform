@@ -50,10 +50,16 @@ public class UserModel {
         return userService.getAttentionDataList(state,uid);
     }
 
-    //修改用户信息
-    public Call editUserInfo(MultipartBody.Part file , String uid, String ualiase){
+    //修改用户信息-有头像
+    public Call editUserInfoByPic(MultipartBody.Part file,String uid,String ualiase,int usex,String uspecialline){
         userService = retrofit.create(UserService.class);
-        return userService.editUserInfo(file, uid, ualiase);
+        return userService.editUserInfoByPic(file, uid, ualiase, usex, uspecialline);
+    }
+
+    //修改用户信息-无头像
+    public Call editUserInfoNoPic(String uid,String ualiase,int usex,String uspecialline){
+        userService = retrofit.create(UserService.class);
+        return userService.editUserInfoNoPic(uid, ualiase, usex, uspecialline);
     }
 
     //申请实名认证
@@ -128,5 +134,17 @@ public class UserModel {
     public Call editSendByState(Map<String, RequestBody> params){
         userService = retrofit.create(UserService.class);
         return userService.editSendByState(params);
+    }
+
+    //获取用户历史搜索记录
+    public Call getUserSearch(String uid){
+        userService = retrofit.create(UserService.class);
+        return userService.getUserSearch(uid);
+    }
+
+    //搜索
+    public Call search(String uid, String searchtext , int state){
+        userService = retrofit.create(UserService.class);
+        return userService.search(uid, searchtext,state);
     }
 }

@@ -137,8 +137,8 @@ public class ApplyForSpecialClassifyActivity extends AppCompatActivity {
                     /*
                     0 ->未申请 1-已申请 2->申请成功
                      */
-                    editor.putInt("applySCState" , 1 );
-                    editor.commit();
+                    editor.putInt("applyTPZState" , 1 );
+                    editor.apply();
                     finish();
                 }
             }

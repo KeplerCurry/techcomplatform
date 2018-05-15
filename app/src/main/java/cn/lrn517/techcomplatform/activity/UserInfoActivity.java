@@ -41,6 +41,7 @@ public class UserInfoActivity extends BaseActivity {
     private TextView ualiase;
     private TextView ulevel;
     private TextView utype;
+    private TextView uspecialline;
     private TextView attention_ta;
     private TextView ta_attention;
     private CircleImageView uphoto;
@@ -78,6 +79,7 @@ public class UserInfoActivity extends BaseActivity {
         ualiase = findViewById(R.id.user_info_ualiase);
         ulevel = findViewById(R.id.user_info_ulevel);
         utype = findViewById(R.id.user_info_utype);
+        uspecialline = findViewById(R.id.user_info_uspecialline);
         attention_ta = findViewById(R.id.user_info_attention_ta);
         ta_attention = findViewById(R.id.user_info_ta_attention);
         to_attention_ta = findViewById(R.id.user_info_to_attention_ta);
@@ -165,6 +167,7 @@ public class UserInfoActivity extends BaseActivity {
                         .into(uphoto);
                 ualiase.setText(data.getUaliase().toString());
                 ulevel.setText("Lv."+data.getUlevel().toString());
+                uspecialline.setText(data.getUspecialline());
                 if( "0".equals(data.getUtype().toString())){
                     utype.setText("普通用户");
                 }else{
@@ -195,6 +198,7 @@ public class UserInfoActivity extends BaseActivity {
                         .into(uphoto);
                 ualiase.setText(data.getUaliase().toString());
                 ulevel.setText("Lv."+data.getUlevel().toString());
+                uspecialline.setText(data.getUspecialline());
                 if( "0".equals(data.getUtype().toString())){
                     utype.setText("普通用户");
                 }else{

@@ -72,6 +72,7 @@
                         android:textColor="@color/ssy"/>
 
                     <TextView
+                        android:id="@+id/tech_detail_uspecialline"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"

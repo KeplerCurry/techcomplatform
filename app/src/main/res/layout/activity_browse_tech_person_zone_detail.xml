@@ -73,6 +73,7 @@
                         android:textColor="@color/ssy"/>
 
                     <TextView
+                        android:id="@+id/browse_tech_person_zone_detail_uspecialline"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"

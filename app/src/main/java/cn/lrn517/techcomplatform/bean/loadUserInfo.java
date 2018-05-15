@@ -20,6 +20,15 @@ public class loadUserInfo {
     private String attention_user;
     private String user_attention;
     private String uphoto;
+    private String uspecialline;
+
+    public String getUspecialline() {
+        return uspecialline;
+    }
+
+    public void setUspecialline(String uspecialline) {
+        this.uspecialline = uspecialline;
+    }
 
     public String getUphoto() {
         return uphoto;

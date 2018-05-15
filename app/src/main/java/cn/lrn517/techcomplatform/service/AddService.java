@@ -18,12 +18,10 @@ import retrofit2.http.Query;
 public interface AddService {
 
     //发送提问帖
+    @Multipart
     @POST("send_ask")
     Call<addAnswerResult> sendAsk(
-            @Query("tuid") String tuid,
-            @Query("tdtitle") String tdtitle,
-            @Query("tdcontent") String tdcontent,
-            @Query("tid") String tid
+            @PartMap Map<String,RequestBody> params
     );
 
     //发送技术贴

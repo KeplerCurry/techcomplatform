@@ -10,8 +10,10 @@ import cn.lrn517.techcomplatform.bean.commonForUserSend;
 import cn.lrn517.techcomplatform.bean.commonGetDataFromEdit;
 import cn.lrn517.techcomplatform.bean.homeattentiondata;
 import cn.lrn517.techcomplatform.bean.loadUserInfo;
+import cn.lrn517.techcomplatform.bean.searchlist;
 import cn.lrn517.techcomplatform.bean.userBuyedData;
 import cn.lrn517.techcomplatform.bean.userInfo;
+import cn.lrn517.techcomplatform.bean.userSearchHistory;
 import cn.lrn517.techcomplatform.bean.userapplyfordata;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
@@ -44,13 +46,24 @@ public interface UserService {
             @Query("password") String password
     );
 
-    //修改个人信息
+    //修改个人信息-无头像
+    @POST("editUserInfoNoPic")
+    Call<commonEdit> editUserInfoNoPic(
+            @Query("uid") String uid,
+            @Query("ualiase") String ualiase,
+            @Query("usex") int usex,
+            @Query("uspecialline") String uspecialline
+    );
+
+    //修改个人信息-有头像
     @Multipart
-    @POST("editUserInfo")
-    Call<commonEdit> editUserInfo(
+    @POST("editUserInfoByPic")
+    Call<commonEdit> editUserInfoByPic(
             @Part MultipartBody.Part file,
             @Query("uid") String uid,
-            @Query("ualiase") String ualiase
+            @Query("ualiase") String ualiase,
+            @Query("usex") int usex,
+            @Query("uspecialline") String uspecialline
     );
 
     //申请实名认证
@@ -144,5 +157,19 @@ public interface UserService {
     @POST("editSendByState")
     Call<common> editSendByState(
             @PartMap Map<String, RequestBody> params
+    );
+
+    //获取用户历史搜索记录
+    @POST("getUserSearch")
+    Call<List<userSearchHistory>> getUserSearch(
+            @Query("uid") String uid
+    );
+
+    //搜索功能
+    @POST("search")
+    Call<List<searchlist>> search(
+            @Query("uid") String uid,
+            @Query("searchtext") String searchtext,
+            @Query("state") int state
     );
  }

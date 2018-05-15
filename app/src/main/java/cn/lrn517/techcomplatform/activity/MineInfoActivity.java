@@ -40,6 +40,7 @@ public class MineInfoActivity extends BaseActivity {
     private TextView ualiase;
     private TextView ulevel;
     private TextView utype;
+    private TextView uspecialline;
     private TextView attention_me;
     private TextView my_attention;
     private CircleImageView uphoto;
@@ -73,6 +74,7 @@ public class MineInfoActivity extends BaseActivity {
         collapsingToolbarLayout.setTitle(" ");
         uphoto = findViewById(R.id.mine_info_uphoto);
         ualiase = findViewById(R.id.mine_info_ualiase);
+        uspecialline = findViewById(R.id.mine_info_uspecialline);
         ulevel = findViewById(R.id.mine_info_ulevel);
         utype = findViewById(R.id.mine_info_utype);
         attention_me = findViewById(R.id.mine_info_attention_me);
@@ -140,6 +142,7 @@ public class MineInfoActivity extends BaseActivity {
                         .into(uphoto);
                 ualiase.setText(data.getUaliase().toString());
                 ulevel.setText("Lv."+data.getUlevel().toString());
+                uspecialline.setText(data.getUspecialline());
                 if( "0".equals(data.getUtype().toString())){
                     utype.setText("普通用户");
                 }else{

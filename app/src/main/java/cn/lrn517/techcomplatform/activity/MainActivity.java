@@ -45,7 +45,7 @@ public class MainActivity extends BaseActivity
     private LinearLayout login;
     private LinearLayout unlogin;
     private CircleImageView uphoto;
-    private TextView level,type,aliase;
+    private TextView level,type,aliase,uspecialline;
 
     NavigationView navigationView;
 
@@ -84,6 +84,7 @@ public class MainActivity extends BaseActivity
         level = navview.findViewById(R.id.login_ulevel);
         type = navview.findViewById(R.id.login_utype);
         aliase = navview.findViewById(R.id.login_ualiase);
+        uspecialline = navview.findViewById(R.id.login_uspecialline);
     }
 
     private void setSelect( int i ){
@@ -124,18 +125,11 @@ public class MainActivity extends BaseActivity
                 }
                 break;
             case 4:
-                sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
-                uid = sharedPreferences.getString("uid" , null);
-                if( null == uid ){
-                    Intent intent = new Intent(MainActivity.this,LoginAndRegisterActivity.class);
-                    startActivity(intent);
+                if( null == mTabMine){
+                    mTabMine = new MineFragment();
+                    fragmentTransaction.add(R.id.main_fragment , mTabMine);
                 }else{
-                    if( null == mTabMine){
-                        mTabMine = new MineFragment();
-                        fragmentTransaction.add(R.id.main_fragment , mTabMine);
-                    }else{
-                        fragmentTransaction.show(mTabMine);
-                    }
+                    fragmentTransaction.show(mTabMine);
                 }
                 break;
         }
@@ -186,6 +180,8 @@ public class MainActivity extends BaseActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.search) {
+            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -249,6 +245,7 @@ public class MainActivity extends BaseActivity
             }else{
                 type.setText("高级用户");
             }
+            uspecialline.setText(sharedPreferences.getString("uspecialline" , null));
             unlogin.setVisibility(View.GONE);
         }else{
             login.setVisibility(View.GONE);

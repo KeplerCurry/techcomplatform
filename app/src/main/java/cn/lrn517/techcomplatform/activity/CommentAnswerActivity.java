@@ -40,7 +40,6 @@ public class CommentAnswerActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     public SwipeRefreshLayout swipeRefreshLayout;
 
-    //测试数据
     String uid = null;
     String ualiase = null;
 

@@ -1,6 +1,7 @@
 package cn.lrn517.techcomplatform.service;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.lrn517.techcomplatform.bean.askData;
 import cn.lrn517.techcomplatform.bean.commentAnswerData;
@@ -15,8 +16,11 @@ import cn.lrn517.techcomplatform.bean.techDetailData;
 import cn.lrn517.techcomplatform.bean.techFirstComment;
 import cn.lrn517.techcomplatform.bean.techclassifydata;
 import cn.lrn517.techcomplatform.bean.userForTechDetailState;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 /**
@@ -106,11 +110,10 @@ public interface DetailService {
     );
 
     //回答提问帖
+    @Multipart
     @POST("send_detail_state_1_firstAnswer")
     Call<common> sendAnswerData(
-            @Query("tdid") String tdid,
-            @Query("reviewer") String reviewer,
-            @Query("content") String content
+            @PartMap Map<String, RequestBody> params
     );
 
     //评论回答内容

@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
@@ -30,7 +29,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -43,10 +41,8 @@ import java.util.List;
 import java.util.Map;
 
 import cn.lrn517.techcomplatform.R;
-import cn.lrn517.techcomplatform.bean.common;
 import cn.lrn517.techcomplatform.bean.commonEdit;
 import cn.lrn517.techcomplatform.model.UserModel;
-import cn.lrn517.techcomplatform.service.serviceAddress;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,7 +51,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditUserInfoActivity extends AppCompatActivity {
+public class PaddingInfoActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private CircleImageView uphoto;
@@ -68,7 +64,7 @@ public class EditUserInfoActivity extends AppCompatActivity {
 
     private CheckBox men;
     private CheckBox women;
-    private int usex;
+    private int usex = 0;
 
     private SharedPreferences sharedPreferences;
     private ImageView send;
@@ -82,10 +78,12 @@ public class EditUserInfoActivity extends AppCompatActivity {
     private Call call;
     private UserModel userModel = new UserModel();
 
+    private Map<Object,RequestBody> params = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_user_info);
+        setContentView(R.layout.activity_padding_info);
         initView();
         initEvent();
     }
@@ -93,37 +91,24 @@ public class EditUserInfoActivity extends AppCompatActivity {
     private void initView(){
         sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
         uid = sharedPreferences.getString("uid" , null);
-        usex = sharedPreferences.getInt("usex" , 2);
-        toolbar = findViewById(R.id.edit_user_info_toolbar);
+        toolbar = findViewById(R.id.padding_info_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        uphoto = findViewById(R.id.edit_user_info_uphoto);
-        ualiase_edit = findViewById(R.id.edit_user_info_ualiase);
-        uspecialline_edit = findViewById(R.id.edit_user_info_uspecialline);
-        send = findViewById(R.id.edit_user_info_send);
-        men = findViewById(R.id.edit_user_info_men);
-        women = findViewById(R.id.edit_user_info_women);
-        uspecialline_edit = findViewById(R.id.edit_user_info_uspecialline);
-    }
-
-    private void initEvent(){
-        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
-        Glide.with(EditUserInfoActivity.this)
-                .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+sharedPreferences.getString("uphoto" , null))
-                .dontAnimate()
-                .crossFade()
-                .into(uphoto);
-        ualiase_edit.setText(sharedPreferences.getString("ualiase" , null));
-        uspecialline_edit.setText(sharedPreferences.getString("uspecialline" , null));
-
-        if( usex == 0 ){
-            women.setChecked(false);
+        uphoto = findViewById(R.id.padding_info_uphoto);
+        ualiase_edit = findViewById(R.id.padding_info_ualiase);
+        uspecialline_edit = findViewById(R.id.padding_info_uspecialline);
+        send = findViewById(R.id.padding_info_send);
+        men = findViewById(R.id.padding_info_men);
+        women = findViewById(R.id.padding_info_women);
+        uspecialline_edit = findViewById(R.id.padding_info_uspecialline);
+        if( 0 == usex){
             men.setChecked(true);
         }else{
             women.setChecked(true);
-            men.setChecked(false);
         }
+    }
 
+    private void initEvent(){
         men.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -171,7 +156,7 @@ public class EditUserInfoActivity extends AppCompatActivity {
                             Log.i("photo" , file.toString());
                             RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data") , file);
                             MultipartBody.Part body = MultipartBody.Part.createFormData("uphoto" , file.getName() , requestBody);
-                            call = userModel.editUserInfoByPic(body , uid, ualiase ,usex,uspecialline);
+                            call = userModel.editUserInfoByPic(body , uid, ualiase ,usex , uspecialline);
                         }
                         else
                         {
@@ -181,6 +166,30 @@ public class EditUserInfoActivity extends AppCompatActivity {
                             MultipartBody.Part body = MultipartBody.Part.createFormData("uphoto" , file.getName() , requestBody);
                             call = userModel.editUserInfoByPic(body , uid, ualiase ,usex,uspecialline);
                         }
+                        Callback<commonEdit> callback = new Callback<commonEdit>() {
+                            @Override
+                            public void onResponse(Call<commonEdit> call, Response<commonEdit> response) {
+                                commonEdit data = response.body();
+                                if( 1 == data.getSuccess() ){
+                                    Toast.makeText(PaddingInfoActivity.this, "完善个人信息成功！", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("uphoto" , data.getUphoto());
+                                    editor.putString("ualiase" , data.getUaliase());
+                                    editor.putString("uspecialline" , data.getUspecialline());
+                                    editor.putInt("usex" , data.getUsex());
+                                    editor.apply();
+                                    finish();
+                                }else{
+                                    Toast.makeText(PaddingInfoActivity.this, "完善个人信息失败！", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<commonEdit> call, Throwable t) {
+                                Toast.makeText(PaddingInfoActivity.this, "超时！", Toast.LENGTH_SHORT).show();
+                            }
+                        };
+                        call.enqueue(callback);
                         break;
                     case 1:
                         File file = new File(uimage.toString());
@@ -188,44 +197,41 @@ public class EditUserInfoActivity extends AppCompatActivity {
                         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data") , file);
                         MultipartBody.Part body = MultipartBody.Part.createFormData("uphoto" , file.getName() , requestBody);
                         call = userModel.editUserInfoByPic(body , uid, ualiase  , usex , uspecialline);
+                        Callback<commonEdit> callback1 = new Callback<commonEdit>() {
+                            @Override
+                            public void onResponse(Call<commonEdit> call, Response<commonEdit> response) {
+                                commonEdit data = response.body();
+                                if( 1 == data.getSuccess() ){
+                                    Toast.makeText(PaddingInfoActivity.this, "完善个人信息成功！", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("uphoto" , data.getUphoto());
+                                    editor.putString("ualiase" , data.getUaliase());
+                                    editor.putString("uspecialline" , data.getUspecialline());
+                                    editor.putInt("usex" , data.getUsex());
+                                    editor.apply();
+                                    finish();
+                                }else{
+                                    Toast.makeText(PaddingInfoActivity.this, "完善个人信息失败！", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<commonEdit> call, Throwable t) {
+                                Toast.makeText(PaddingInfoActivity.this, "超时！", Toast.LENGTH_SHORT).show();
+                            }
+                        };
+                        call.enqueue(callback1);
                         break;
                     case 2:
-                        call = userModel.editUserInfoNoPic( uid, ualiase  , usex,uspecialline);
+                        Toast.makeText(PaddingInfoActivity.this, "请添加头像！", Toast.LENGTH_SHORT).show();
                 }
-
-                Callback<commonEdit> callback = new Callback<commonEdit>() {
-                    @Override
-                    public void onResponse(Call<commonEdit> call, Response<commonEdit> response) {
-                        commonEdit data = response.body();
-                        if( 1 == data.getSuccess() ){
-                            Toast.makeText(EditUserInfoActivity.this, "修改个人信息成功！", Toast.LENGTH_SHORT).show();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            if( 2 != state){
-                                editor.putString("uphoto" , data.getUphoto());
-                            }
-                            editor.putString("ualiase" , ualiase);
-                            editor.putInt("usex" , data.getUsex());
-                            editor.putString("uspecialline" , data.getUspecialline());
-                            editor.apply();
-                        }else{
-                            Toast.makeText(EditUserInfoActivity.this, "修改个人信息失败！", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<commonEdit> call, Throwable t) {
-                        Toast.makeText(EditUserInfoActivity.this, "超时！", Toast.LENGTH_SHORT).show();
-                    }
-                };
-                call.enqueue(callback);
-
             }
         });
     }
 
 
     private void ImageChooseDialog(){
-        final AlertDialog.Builder normalDialog = new AlertDialog.Builder(EditUserInfoActivity.this);
+        final AlertDialog.Builder normalDialog = new AlertDialog.Builder(PaddingInfoActivity.this);
         normalDialog.setMessage("请选择上传图片方式");
         normalDialog.setPositiveButton("拍照上传", new DialogInterface.OnClickListener() {
             @Override
@@ -265,7 +271,7 @@ public class EditUserInfoActivity extends AppCompatActivity {
         }
         if( Build.VERSION.SDK_INT >= 24 )
         {
-            imageUri = FileProvider.getUriForFile( EditUserInfoActivity.this ,"cn.lrn517.techcomplatform.fileprovider" , outputImage );
+            imageUri = FileProvider.getUriForFile( PaddingInfoActivity.this ,"cn.lrn517.techcomplatform.fileprovider" , outputImage );
         }
         else
         {
@@ -278,13 +284,13 @@ public class EditUserInfoActivity extends AppCompatActivity {
     }
 
     private void getImageByChoosePhoto(){
-        if(ContextCompat.checkSelfPermission(EditUserInfoActivity.this , Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+        if(ContextCompat.checkSelfPermission(PaddingInfoActivity.this , Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
         {
-            ActivityCompat.requestPermissions(EditUserInfoActivity.this , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE} , 1);
+            ActivityCompat.requestPermissions(PaddingInfoActivity.this , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE} , 1);
         }
         else
         {
-            Matisse.from(EditUserInfoActivity.this)
+            Matisse.from(PaddingInfoActivity.this)
                     .choose(MimeType.allOf())
                     .countable(true)
                     .maxSelectable(1)
@@ -380,4 +386,6 @@ public class EditUserInfoActivity extends AppCompatActivity {
             state = 1;
         }
     }
+
+
 }

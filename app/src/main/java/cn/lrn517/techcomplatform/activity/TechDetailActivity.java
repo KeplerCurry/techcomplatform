@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class TechDetailActivity extends AppCompatActivity {
 
-    private TextView ualiase,tdtitle,tname,tdcontent,tdfirsttime;
+    private TextView ualiase,tdtitle,tname,tdcontent,tdfirsttime,uspecialline;
     private Toolbar toolbar;
     private CircleImageView uphoto;
     private LinearLayout like,attention;
@@ -75,6 +75,7 @@ public class TechDetailActivity extends AppCompatActivity {
         liketext = findViewById(R.id.tech_detail_like_count);
         collectpic = findViewById(R.id.tech_detail_collect_pic);
         collecttext = findViewById(R.id.tech_detail_collect_text);
+        uspecialline = findViewById(R.id.tech_detail_uspecialline);
         toolbar = (Toolbar) findViewById(R.id.tech_detail_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -105,7 +106,9 @@ public class TechDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if( null == uid ){
-
+                    Toast.makeText(TechDetailActivity.this, "请登录后操作！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TechDetailActivity.this,LoginAndRegisterActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     attention();
@@ -117,7 +120,9 @@ public class TechDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if( null == uid ){
-
+                    Toast.makeText(TechDetailActivity.this, "请登录后操作！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TechDetailActivity.this,LoginAndRegisterActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     like();
@@ -129,7 +134,9 @@ public class TechDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if( null == uid ){
-
+                    Toast.makeText(TechDetailActivity.this, "请登录后操作！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TechDetailActivity.this,LoginAndRegisterActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     collection();
@@ -161,19 +168,19 @@ public class TechDetailActivity extends AppCompatActivity {
             public void onResponse(Call<techDetailData> call, Response<techDetailData> response) {
                 techDetailData data = response.body();
                 Glide.with(TechDetailActivity.this)
-                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString())
+                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto())
                         .dontAnimate()
                         .crossFade()
                         .into(uphoto);
-                toolbar.setTitle(data.getTdtitle().toString());
-                ualiase.setText(data.getUaliase().toString());
-                tdcontent.setText(data.getTdcontent().toString());
-                tdfirsttime.setText(data.getTdfirsttime().toString());
-                tname.setText(data.getTname().toString());
-                tdtitle.setText(data.getTdtitle().toString());
+                toolbar.setTitle(data.getTdtitle());
+                ualiase.setText(data.getUaliase());
+                tdcontent.setText(data.getTdcontent());
+                tdfirsttime.setText(data.getTdfirsttime());
+                tname.setText(data.getTname());
+                tdtitle.setText(data.getTdtitle());
                 liketext.setText(data.getLike());
-                authoruid = data.getUid().toString();
-
+                authoruid = data.getUid();
+                uspecialline.setText(data.getUspecialline());
             }
 
             @Override
@@ -191,18 +198,19 @@ public class TechDetailActivity extends AppCompatActivity {
             public void onResponse(Call<techDetailData> call, Response<techDetailData> response) {
                 techDetailData data = response.body();
                 Glide.with(TechDetailActivity.this)
-                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto().toString())
+                        .load(serviceAddress.SERVICE_ADDRESS+"/Public/userphoto/"+data.getUphoto())
                         .dontAnimate()
                         .crossFade()
                         .into(uphoto);
-                toolbar.setTitle(data.getTdtitle().toString());
-                ualiase.setText(data.getUaliase().toString());
-                tdcontent.setText(data.getTdcontent().toString());
-                tdfirsttime.setText(data.getTdfirsttime().toString());
-                tname.setText(data.getTname().toString());
-                tdtitle.setText(data.getTdtitle().toString());
-                liketext.setText(data.getLike().toString());
-                authoruid = data.getUid().toString();
+                toolbar.setTitle(data.getTdtitle());
+                ualiase.setText(data.getUaliase());
+                tdcontent.setText(data.getTdcontent());
+                tdfirsttime.setText(data.getTdfirsttime());
+                uspecialline.setText(data.getUspecialline());
+                tname.setText(data.getTname());
+                tdtitle.setText(data.getTdtitle());
+                liketext.setText(data.getLike());
+                authoruid = data.getUid();
                 getUserL_A_C();
             }
 
@@ -357,5 +365,12 @@ public class TechDetailActivity extends AppCompatActivity {
             }
         };
         call.enqueue(commonCallback);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedPreferences = getSharedPreferences("userInfo" , MODE_PRIVATE);
+        uid = sharedPreferences.getString("uid" , null);
     }
 }

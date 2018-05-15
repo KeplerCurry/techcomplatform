@@ -29,7 +29,7 @@ import retrofit2.Response;
 
 public class BrowseTechPersonZoneDetailActivity extends AppCompatActivity {
 
-    private TextView tpzdtitle,ualiase,tpzname,tpzdcontent,tpzdfirsttime;
+    private TextView tpzdtitle,ualiase,tpzname,tpzdcontent,tpzdfirsttime,uspecialline;
     private Toolbar toolbar;
     private LinearLayout tocomment,like,collect,attention;
     private CircleImageView uphoto;
@@ -75,6 +75,7 @@ public class BrowseTechPersonZoneDetailActivity extends AppCompatActivity {
         collectpic = findViewById(R.id.browse_tech_person_zone_detail_collect_pic);
         liketext = findViewById(R.id.browse_tech_person_zone_detail_like_count);
         collecttext = findViewById(R.id.browse_tech_person_zone_detail_collect_text);
+        uspecialline = findViewById(R.id.browse_tech_person_zone_detail_uspecialline);
         attentiontext = findViewById(R.id.browse_tech_person_zone_detail_attention_text);
         Bundle bundle = getIntent().getExtras();
         tpzdid = bundle.getString("tpzdid");
@@ -169,6 +170,7 @@ public class BrowseTechPersonZoneDetailActivity extends AppCompatActivity {
                 tpzdfirsttime.setText(data.getTpzdfirsttime().toString());
                 tpzdcontent.setText(data.getTpzdcontent().toString());
                 tpzname.setText(data.getTpzname());
+                uspecialline.setText(data.getUspecialline());
                 liketext.setText(data.getLike());
                 authoruid = data.getUid();
             }
@@ -198,6 +200,7 @@ public class BrowseTechPersonZoneDetailActivity extends AppCompatActivity {
                 tpzdfirsttime.setText(data.getTpzdfirsttime().toString());
                 tpzdcontent.setText(data.getTpzdcontent().toString());
                 tpzname.setText(data.getTpzname());
+                uspecialline.setText(data.getUspecialline());
                 authoruid = data.getUid();
                 liketext.setText(data.getLike());
                 getUserL_A_C_TPZ();

@@ -15,6 +15,33 @@ public class commonAttentionData {
     private String tname;
     private String tdid;
     private String cid;
+    private String uphoto;
+    private String ulevel;
+    private String utype;
+
+    public String getUlevel() {
+        return ulevel;
+    }
+
+    public void setUlevel(String ulevel) {
+        this.ulevel = ulevel;
+    }
+
+    public String getUtype() {
+        return utype;
+    }
+
+    public void setUtype(String utype) {
+        this.utype = utype;
+    }
+
+    public String getUphoto() {
+        return uphoto;
+    }
+
+    public void setUphoto(String uphoto) {
+        this.uphoto = uphoto;
+    }
 
     public String getTdid() {
         return tdid;
