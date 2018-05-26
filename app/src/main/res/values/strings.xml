@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">techcomplatform</string>
+    <string name="app_name">技术交流</string>
     <string name="home">首页</string>
     <string name="community">社区</string>
     <string name="special_classify">专栏</string>
@@ -21,8 +21,4 @@
     <string name="applyfor2">\n· 专栏需由本人申请，不可代为申请；\n· 10天内在技术交流社区内无违规行为。</string>
     <string name="applyfor3">\n专栏需要有明确得写作方向，我们更欢迎专业方向得分享，部分方向暂时不接受申请。</string>
     <string name="applyfor4">\n工作人员将在三个工作日内对专栏申请进行反馈。\n</string>
-    <string name="applyfor5"></string>
-    <string name="applyfor6"></string>
-    <string name="applyfor7"></string>
-    <string name="applyfor8"></string>
 </resources>

@@ -4,6 +4,7 @@ package cn.lrn517.techcomplatform.fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class MessageFragment extends Fragment {
     private RecyclerView recyclerView;
     private MessageViewAdapter messageViewAdapter;
     private SharedPreferences sharedPreferences;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public MessageFragment() {
         // Required empty public constructor
@@ -59,12 +61,26 @@ public class MessageFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView = view.findViewById(R.id.message_recyclerview);
         recyclerView.setLayoutManager(linearLayoutManager);
+        swipeRefreshLayout = view.findViewById(R.id.message_swiperefresh);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorBasic));
     }
 
     private void initEvent(){
         sharedPreferences = getActivity().getSharedPreferences("userInfo" , MODE_PRIVATE);
         uid = sharedPreferences.getString("uid" , null);
+        getData();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
+
+    }
+
+    private void getData(){
         call = messageModel.loadMessageList(uid);
         Callback<loadMessageData> callback = new Callback<loadMessageData>() {
             @Override
@@ -83,5 +99,6 @@ public class MessageFragment extends Fragment {
         };
         call.enqueue(callback);
     }
+
 
 }

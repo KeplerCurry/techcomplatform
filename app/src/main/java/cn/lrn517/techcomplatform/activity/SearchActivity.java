@@ -43,7 +43,7 @@ public class SearchActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private SearchCommonViewAdapter searchCommonViewAdapter;
 
-    String searchtext = "";
+    public String searchtext = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,5 +118,9 @@ public class SearchActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void setSearch(String text){
+        search.setText(text);
     }
 }

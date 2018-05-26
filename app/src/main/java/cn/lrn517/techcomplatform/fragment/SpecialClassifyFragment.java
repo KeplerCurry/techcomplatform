@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class SpecialClassifyFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private SharedPreferences sharedPreferences;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     //测试数据
     int i = 0;
@@ -78,24 +80,14 @@ public class SpecialClassifyFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         state_1 = view.findViewById(R.id.special_classify_state_1);
         go = view.findViewById(R.id.special_classify_go_button);
+        swipeRefreshLayout = view.findViewById(R.id.special_classify_swiperefresh);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorBasic));
     }
 
 
     private void initEvent(){
 
-        if( 2 == i ){
-            noZone.setVisibility(View.GONE);
-            state_1.setVisibility(View.GONE);
-            zoneLayout.setVisibility(View.VISIBLE);
-        }else if( 0 == i){
-            noZone.setVisibility(View.VISIBLE);
-            state_1.setVisibility(View.GONE);
-            zoneLayout.setVisibility(View.GONE);
-        }else{
-            noZone.setVisibility(View.GONE);
-            state_1.setVisibility(View.VISIBLE);
-            zoneLayout.setVisibility(View.GONE);
-        }
+        changeView();
 
         applyfor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +116,32 @@ public class SpecialClassifyFragment extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getTechPersonZoneListData();
+                changeView();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         getTechPersonZoneListData();
+    }
+
+    private void changeView(){
+        if( 2 == i ){
+            noZone.setVisibility(View.GONE);
+            state_1.setVisibility(View.GONE);
+            zoneLayout.setVisibility(View.VISIBLE);
+        }else if( 0 == i){
+            noZone.setVisibility(View.VISIBLE);
+            state_1.setVisibility(View.GONE);
+            zoneLayout.setVisibility(View.GONE);
+        }else{
+            noZone.setVisibility(View.GONE);
+            state_1.setVisibility(View.VISIBLE);
+            zoneLayout.setVisibility(View.GONE);
+        }
     }
 
     private void getTechPersonZoneListData(){
